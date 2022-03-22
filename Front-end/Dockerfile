@@ -12,7 +12,7 @@ COPY . .
 
 RUN npm run build --prod
 
-#stage 2
-#FROM nginx:alpine
-#COPY  /app/dist/Front-end /usr/share/nginx/html
 
+EXPOSE 8081
+
+CMD [ "node", "server.js" ]

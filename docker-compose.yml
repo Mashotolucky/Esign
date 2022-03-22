@@ -1,14 +1,13 @@
 version: '3'
 services:
-
     playground-web-frontend:
-      image: playground-web-frontend:latest
+      build: ./Front-end/
       environment:
-        PORT: 3000
+        PORT: 8080
       ports:
-        - 3000:3000
+        - 8080:8080
     playground-web-backend:
-      image: playground-web-backend:latest
+      build: ./Back-end/
       environment:
         PORT: 8081
       ports:
