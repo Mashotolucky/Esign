@@ -1,4 +1,4 @@
-const { errorCodes, roles } = require('./constants');
+const { errorCodes, roles } = require('../helpers/constants');
 
 const isAdmin = (req, res, next) => {
   const role = req.user.role;
