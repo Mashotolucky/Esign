@@ -12,6 +12,7 @@ import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import { FreelancerDetailsComponent } from './Modals/freelancer-details/freelancer-details.component';
 import { LogsComponent } from './Components/users-components/logs/logs.component';
+import { CardComponent } from './Components/freelancer-components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LogsComponent } from './Components/users-components/logs/logs.component
     LoginComponent,
     RegisterComponent,
     FreelancerDetailsComponent,
-    LogsComponent
+    LogsComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
