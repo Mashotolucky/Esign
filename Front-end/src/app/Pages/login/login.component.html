@@ -10,12 +10,22 @@
             </h3>
 
             <div class="container w-55 ">
-                <form class="text-center">
+                <form class="text-center" (ngSubmit)="onSubmit(form)">
                     <div class="mb-4">
-                        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email" FormControlName="Email" required>
+                         <div *ngIf="(email?.dirty || email?.touched) && email?.errors" class="errors">
+                            <span *ngIf="email?.errors" class="text_color">Email is required</span>
+                            <span *ngIf="email?.errors?.email" class="text_color">Email is invalid</span>
+                          
+                    </div>
                     </div>
                     <div class="mb-4">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formContolName="password" required>
+                        <div *ngIf="(password?.dirty || password?.touched) && password?.invalid" class="errors">
+                            <span *ngIf="password?.errors?.required" class="text_color">Password is required</span>
+                            <span *ngIf="password?.errors?.required">Password is invalid</span>
+                          </div>
+                    
                     </div>
                     <div class="mb-4">
                         <p class="text-start">Forgot password?</p>
