@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { InterpreterBookingComponent } from './Components/freelancer-components/interpreter-booking/interpreter-booking.component';
 
 const routes: Routes = [ 
-  {path: '', component: InterpreterBookingComponent},
+  // {path: '', component: InterpreterBookingComponent},
   {path: 'interpreterbooking', component: InterpreterBookingComponent},
 
 ];
