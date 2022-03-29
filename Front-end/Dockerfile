@@ -8,11 +8,11 @@ COPY ./package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY . /app/
 
 RUN npm run build --prod
 
 
-EXPOSE 8081
+EXPOSE 4313
 
-CMD [ "node", "server.js" ]
+CMD [ "npm", "start" ]
