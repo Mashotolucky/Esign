@@ -4,8 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15",
+    "pino": "^7.9.1",
+    "pg": "^8.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.4.17",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "@hapi/joi": "^15.0.3",
+    "bcrypt": "^5.0.0"
+  }
+
 }

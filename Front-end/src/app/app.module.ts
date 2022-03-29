@@ -12,6 +12,8 @@ import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import { FreelancerDetailsComponent } from './Modals/freelancer-details/freelancer-details.component';
 import { LogsComponent } from './Components/users-components/logs/logs.component';
+import { InterpreterBookingComponent } from './Components/freelancer-components/interpreter-booking/interpreter-booking.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { LogsComponent } from './Components/users-components/logs/logs.component
     LoginComponent,
     RegisterComponent,
     FreelancerDetailsComponent,
-    LogsComponent
+    LogsComponent,
+    InterpreterBookingComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
