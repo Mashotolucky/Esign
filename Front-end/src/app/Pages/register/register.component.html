@@ -10,30 +10,52 @@
             </h3>
 
             <div class="container w-55">
-                <form class="text-center">
+                <form [formGroup]="registerForm" (ngSubmit)="submit()" ngNativeValidate class="text-center">
                     <select class="form-select mb-4 form-control" aria-label="Default select example">
                         <option selected>User type</option>
                         <option value="1">User</option>
                         <option value="2">Interpretor</option>
                     </select>
                     <div class="mb-4">
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="First Name">
-                    </div>
-                    <div class="mb-4">
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Last Name">
-                    </div>
-                    <div class="mb-4">
-                        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
-                    </div>
-                    <div class="mb-4">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
+                        
+                        <input class="form-control" type="text" 
+                        id="firstname"
+                        formControlName="firstName"
+                         placeholder="First Name">
+                        </div>
+                        <div class="mb-4">
+                            <input class="form-control" type="text" 
+                            formControlName="lastName" 
+                            id="lastname" 
+                            placeholder="Last Name">
+                        </div>
+                        <div class="mb-4">
+                            <input class="form-control" type="email"
+                            id="email"
+                            formControlName="email"
+                            placeholder="Email">
+                        </div>
+                        <div class="mb-4">
+                            <input class="form-control" type="password"
+                            id="password" 
+                            formControlName="password"
+                            placeholder="Password">
+                        </div>
+    
+                        <div class="mb-4">
+                            <input class="form-control"type="password"
+                            id="confirm_password" 
+                            formControlName="confirm_password"
+                            placeholder="Confirm password">
+                             <div class="details" *ngIf="!fieldsWithData()">{{message}}</div>
+                            <span class="details" *ngIf="!passwordMatch()" >{{passwordMessage}}</span> 
+                            </div>
                     <div class="file mb-4">
                         <input type="file" class="form-control"  id="exampleInputPassword1">
                     </div>
                     <button type="submit" class="btn mt-3 px-5 text-light" id="submit">Sign in</button>
 
-                    <p class="tag mt-3 mb-3">Already have an accout? <a routerLink='/login'>Sign up</a></p>
+                    <p class="tag mt-3 mb-3">Already have an account? <a routerLink='/login'>Sign up</a></p>
                 </form>
                 
             </div>
