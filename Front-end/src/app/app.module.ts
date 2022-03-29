@@ -15,6 +15,7 @@ import { LogsComponent } from './Components/users-components/logs/logs.component
 import { InterpreterBookingComponent } from './Components/freelancer-components/interpreter-booking/interpreter-booking.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CardComponent } from './Components/freelancer-components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FreelancerDetailsComponent,
     LogsComponent,
     InterpreterBookingComponent,
-    NavbarComponent
+    NavbarComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
