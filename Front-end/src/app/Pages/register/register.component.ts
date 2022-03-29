@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/Services/auth.service';
 // import { UserService } from 'src/app/Services/user.service';
 
 
@@ -18,10 +19,11 @@ export class RegisterComponent implements OnInit {
   password_matched: boolean = false;
   strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
-  constructor(private fb : FormBuilder) { }
+  constructor(private fb : FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
+      role: new FormControl('',[Validators.required]),
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -65,6 +67,12 @@ export class RegisterComponent implements OnInit {
     // return console.log(this.myForm.value)
     if(this.passwordMatch()) {
       this.messages();
+      
+      this.authService.register(this.registerForm.value)
+      .subscribe(res =>{
+        alert("Registered!!")
+        console.log(this.registerForm.value)
+      })
       // this.userService.register(this.registerForm.value)
       // .subscribe(res => {
       //   alert("Successfully registered!!");
@@ -75,7 +83,7 @@ export class RegisterComponent implements OnInit {
       //   alert(err+ "Login failed check console");
         
       // });
-      console.log(this.registerForm.value)
+      
     }  
     
     }

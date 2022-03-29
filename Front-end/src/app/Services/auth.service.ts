@@ -4,24 +4,28 @@ import { newUser } from '../Models/newUser';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { User } from '../Models/User';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private httpOptions: {headers: HttpHeaders} = {
-    headers: new HttpHeaders({})
-  }) { }
+  constructor(private http: HttpClient
+  //   , private httpOptions: {headers: HttpHeaders} = {
+  //   headers: new HttpHeaders({})
+  // }
+  ) { }
 
-  register(newUser: newUser): Observable<User> {
+  register(newUser: newUser): Observable<any> {
     return this.http
-    .post<User>(`${environment.baseUrl}/auth/register`,
-    newUser,
-    this.httpOptions,
+    .post<any>("localhost:8081/register", newUser
+    // newUser
+    // this.httpOptions,
     )
     .pipe(take(1));
+
+    console.log(newUser);
   }
 }
 

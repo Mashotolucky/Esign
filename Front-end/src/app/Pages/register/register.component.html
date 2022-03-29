@@ -11,10 +11,11 @@
 
             <div class="container w-55">
                 <form [formGroup]="registerForm" (ngSubmit)="submit()" ngNativeValidate class="text-center">
-                    <select class="form-select mb-4 form-control" aria-label="Default select example">
+                    <select class="form-select mb-4 form-control" aria-label="Default select example"
+                    formControlName="role">
                         <option selected>User type</option>
-                        <option value="1">User</option>
-                        <option value="2">Interpretor</option>
+                        <option value="User">User</option>
+                        <option value="Interpretor">Interpretor</option>
                     </select>
                     <div class="mb-4">
                         
@@ -47,8 +48,8 @@
                             id="confirm_password" 
                             formControlName="confirm_password"
                             placeholder="Confirm password">
-                             <div class="details" *ngIf="!fieldsWithData()">{{message}}</div>
-                            <span class="details" *ngIf="!passwordMatch()" >{{passwordMessage}}</span> 
+                             <div class="details text-danger" *ngIf="!fieldsWithData()">{{message}}</div>
+                            <span class="details text-danger" *ngIf="!passwordMatch()" >{{passwordMessage}}</span> 
                             </div>
                     <div class="file mb-4">
                         <input type="file" class="form-control"  id="exampleInputPassword1">
