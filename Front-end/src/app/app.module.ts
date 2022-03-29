@@ -14,6 +14,7 @@ import { FreelancerDetailsComponent } from './Modals/freelancer-details/freelanc
 import { LogsComponent } from './Components/users-components/logs/logs.component';
 import { InterpreterBookingComponent } from './Components/freelancer-components/interpreter-booking/interpreter-booking.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
