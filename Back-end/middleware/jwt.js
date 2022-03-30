@@ -28,7 +28,7 @@ const verifyJWT = async (req, res, next) => {
   }
 };
 
-const generateToken = (data) => jwt.sign({ userId: data.id, userRole: data.role }, process.env.SECRET_KEY);
+const generateToken = async(data) => jwt.sign({ userId: data.id, userRole: data.role }, process.env.SECRET_KEY);
 
 
 module.exports = { verifyJWT, generateToken };

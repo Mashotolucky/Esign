@@ -1,8 +1,8 @@
 const {
-    createClientDb,
-    deleteClientDb,
-    updateClientDb,
-    getAllClientDb
+  deleteClientDb,
+  updateClientDb,
+  getAllClientDb,
+  createClientDb
   } = require("./client.db");
 
 
@@ -20,9 +20,13 @@ const deleteClient = async (id) => {
       } catch (error) {
         throw error;
       }
-    };
+};
 const UpdateClient=async(client)=>{
-
+  try {
+    return await updateClientDb(id);
+  } catch (error) {
+    throw error;
+  }
 }
 const getAllClients = async () => {
       try {

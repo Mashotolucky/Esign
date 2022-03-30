@@ -21,8 +21,6 @@ const getUserByEmailDb = async (email) => {
   );
 
   return exists.rows[0]? exists.rows[0]: false;
-  
-  //return user[0];
 };
 
 const changeUserPasswordDb = async (hashedPassword, email) => {
