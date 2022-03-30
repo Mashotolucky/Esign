@@ -13,6 +13,10 @@ import { RegisterComponent } from './Pages/register/register.component';
 import { FreelancerDetailsComponent } from './Modals/freelancer-details/freelancer-details.component';
 import { LogsComponent } from './Components/users-components/logs/logs.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
+import { InterpreterBookingComponent } from './Components/freelancer-components/interpreter-booking/interpreter-booking.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CardComponent } from './Components/freelancer-components/card/card.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +30,16 @@ import { ProfileComponent } from './Pages/profile/profile.component';
     RegisterComponent,
     FreelancerDetailsComponent,
     LogsComponent,
-    ProfileComponent
+    ProfileComponent,
+    InterpreterBookingComponent,
+    NavbarComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

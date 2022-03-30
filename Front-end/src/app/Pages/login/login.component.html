@@ -1,1 +1,44 @@
-<p>login works!</p>
+<div class="container " >
+    <div class="row align-items-center my-5 " id="loginContainer">
+        <div class="col col-sm-12 col-lg-6 ">
+            <img class="img-fluid" src="../../../assets/eSIGN.webp" alt="">
+        </div>
+        <div class="col col-12 col-lg-6 border-start mt-2">
+            
+            <h3 class="text-center display-4 mb-5">
+                login
+            </h3>
+
+            <div class="container w-55 ">
+                <form class="text-center" (ngSubmit)="onSubmit(form)">
+                    <div class="mb-4">
+                        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email" FormControlName="Email" required>
+                         <div *ngIf="(email?.dirty || email?.touched) && email?.errors" class="errors">
+                            <span *ngIf="email?.errors" class="text_color">Email is required</span>
+                            <span *ngIf="email?.errors?.email" class="text_color">Email is invalid</span>
+                          
+                    </div>
+                    </div>
+                    <div class="mb-4">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formContolName="password" required>
+                        <div *ngIf="(password?.dirty || password?.touched) && password?.invalid" class="errors">
+                            <span *ngIf="password?.errors?.required" class="text_color">Password is required</span>
+                            <span *ngIf="password?.errors?.required">Password is invalid</span>
+                          </div>
+                    
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-start">Forgot password?</p>
+                    </div>
+                    <button type="submit" class="btn mt-3 px-5 text-light" id="submit">Sign up</button>
+
+                    <p class="tag mt-3 mb-3">Already have an accout? <a routerLink='/register'>Sign in</a></p>
+                </form>
+                
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+
+</div>

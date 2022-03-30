@@ -1,1 +1,66 @@
-<p>register works!</p>
+<div class="container" >
+    <div class="row align-items-center my-5" id="loginContainer">
+        <div class="col col-sm-12 col-lg-6 ">
+            <img class="img-fluid" src="../../../assets/eSIGN.webp" alt="">
+        </div>
+        <div class="col col-12 col-lg-6 border-start">
+            
+            <h3 class="text-center display-4 mb-4">
+                Register
+            </h3>
+
+            <div class="container w-55">
+                <form [formGroup]="registerForm" (ngSubmit)="submit()" ngNativeValidate class="text-center">
+                    <select class="form-select mb-4 form-control" aria-label="Default select example"
+                    formControlName="role">
+                        <option selected>User type</option>
+                        <option value="User">User</option>
+                        <option value="Interpretor">Interpretor</option>
+                    </select>
+                    <div class="mb-4">
+                        
+                        <input class="form-control" type="text" 
+                        id="firstname"
+                        formControlName="firstName"
+                         placeholder="First Name">
+                        </div>
+                        <div class="mb-4">
+                            <input class="form-control" type="text" 
+                            formControlName="lastName" 
+                            id="lastname" 
+                            placeholder="Last Name">
+                        </div>
+                        <div class="mb-4">
+                            <input class="form-control" type="email"
+                            id="email"
+                            formControlName="email"
+                            placeholder="Email">
+                        </div>
+                        <div class="mb-4">
+                            <input class="form-control" type="password"
+                            id="password" 
+                            formControlName="password"
+                            placeholder="Password">
+                        </div>
+    
+                        <div class="mb-4">
+                            <input class="form-control"type="password"
+                            id="confirm_password" 
+                            formControlName="confirm_password"
+                            placeholder="Confirm password">
+                             <div class="details text-danger" *ngIf="!fieldsWithData()">{{message}}</div>
+                            <span class="details text-danger" *ngIf="!passwordMatch()" >{{passwordMessage}}</span> 
+                            </div>
+                    <div class="file mb-4">
+                        <input type="file" class="form-control"  id="exampleInputPassword1">
+                    </div>
+                    <button type="submit" class="btn mt-3 px-5 text-light" id="submit">Sign in</button>
+
+                    <p class="tag mt-3 mb-3">Already have an account? <a routerLink='/login'>Sign up</a></p>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
