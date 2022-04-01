@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
+import { FileuploadserviceService } from 'src/app/Services/fileuploadservice.service';
 // import { UserService } from 'src/app/Services/user.service';
 
 
@@ -19,8 +20,12 @@ export class RegisterComponent implements OnInit {
   password_matched: boolean = false;
   strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
+  file: any = '';
+  spinnerState:boolean=false;
+
   constructor(private fb : FormBuilder
-    , private authService: AuthService
+    , private authService: AuthService,
+    private fileuploadservice: FileuploadserviceService
     ) { }
 
   ngOnInit(): void {
@@ -30,7 +35,8 @@ export class RegisterComponent implements OnInit {
       lastName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl(''),
-      confirm_password: new FormControl('')
+      confirm_password: new FormControl(''),
+      file: new FormControl('')
 
   });
   this.message();
@@ -70,6 +76,7 @@ export class RegisterComponent implements OnInit {
     if(this.passwordMatch()) {
       this.messages();
       
+      this.uploadDocument();
       // this.authService.register(this.registerForm.value)
       // .subscribe(res =>{
       //   alert("Registered!!")
@@ -90,6 +97,40 @@ export class RegisterComponent implements OnInit {
     
     }
 
+    selectThisImage(myEvent: any) {
+      this.file = myEvent.target.files[0];
+      //console.log("the file :",this.file.name);
+      
+    }
+
+    uploadDocument(): void {
+
+      this.spinnerState=true
+      this.registerForm.value.file = this.file;
+       console.log(this.registerForm.value.file)
+   
+       const formData = new FormData()
+       formData.append('documents', this.file)
+       console.log(formData.get('documents'));
+   
+       this.fileuploadservice.uploadDocument(this.registerForm.value.file).subscribe((data) => {
+          console.log(data, 'uploaded');
+  
+          // var dat = data.toString()
+          // this.document = document.createElement('document')
+          // this.document.setAttribute('src', dat)
+          console.log('this document')
+          
+          console.log(data)
+          console.log('end of documents')
+          this.spinnerState=false
+         //  if(document.querySelector('.img-wrapper') != null ) {  
+         //   document.querySelector('.img-wrapper')?.appendChild(video)
+         //  }
+          
+       })
+   
+     }
 
 
 }

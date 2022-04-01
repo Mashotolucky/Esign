@@ -17,6 +17,8 @@ import { InterpreterBookingComponent } from './Components/freelancer-components/
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './Components/freelancer-components/card/card.component';
+import { MediaComponent } from './Components/media/media.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,13 +35,15 @@ import { CardComponent } from './Components/freelancer-components/card/card.comp
     ProfileComponent,
     InterpreterBookingComponent,
     NavbarComponent,
-    CardComponent
+    CardComponent,
+    MediaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
