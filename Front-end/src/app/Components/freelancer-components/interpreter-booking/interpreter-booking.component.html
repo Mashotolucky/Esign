@@ -1,5 +1,5 @@
-<app-navbar></app-navbar>
-<br>
+ <!-- <app-navbar></app-navbar>  -->
+<!--<br>
 <br>
 <br>
 <div class="container">
@@ -55,6 +55,87 @@
         
       </tbody>
     </table>
+  </div> -->
+
+  <!-- <row class="headings">
+  <div class = "col-1">No</div>
+  <label class="col-2">Employee Full Name</label>
+  <label class="col-2">Temperature</label>
+  <label class="col-2">Clocking Time </label>
+  <label class="col-3">Location</label>
+  <label class="col-2">View History</label>
+  <row>
+  
+  <list>
+    <item *ngFor="let data of attendResponse | filter:filterTerm; index as i">
+      
+      <label class="col-1">{{i + 1}}</label>
+      <label class="col-2">{{data.name}}</label>
+      <label class="col-2">{{data.temp}}</label>
+      <label class="col-2">{{data.created_at| date :  "dd-MMM-y HH:mm"}}</label>
+      <label class="col-3">{{myLocation}}</label>
+      <label class="col-2 ms-3"><a routerLink='/history' [queryParams]="{emp_id: data.emp_id}">View History</a></label>
+    
+    </item>
+  </list> -->
+
+
+  
+  <app-navbar></app-navbar> 
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="row dflex align-items-center justify-content-evenly">
+      <div class="cards col col-3">
+        <a class="btn" href="#" role="button">Bookings</a>
+      </div>
+      <div class="cards col col-3 ">
+        <a class="btn" href="#" role="button">Streams</a>
+      </div>
+      <div class="cards col col-3">
+        <a class="btn"  href="#" role="button">History</a>
+      </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="container mt-3 overflow-scroll w-60">
+           
+    <table class="table table-striped">
+      <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John</td>
+          <td>Doe</td>
+          <td>john@example.com</td>
+          <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
+        </tr>
+        <tr>
+          <td>Mary</td>
+          <td>Moe</td>
+          <td>mary@example.com</td>
+          <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
+        </tr>
+        <tr>
+          <td>July</td>
+          <td>Dooley</td>
+          <td>july@example.com</td>
+          <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
+        </tr>
+        
+      </tbody>
+    </table>
   </div>
 
   <!-- <row class="headings">
@@ -78,4 +159,5 @@
     
     </item>
   </list> -->
+
 
