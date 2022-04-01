@@ -13,6 +13,8 @@ import { RegisterComponent } from './Pages/register/register.component';
 import { FreelancerDetailsComponent } from './Modals/freelancer-details/freelancer-details.component';
 import { LogsComponent } from './Components/users-components/logs/logs.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
+import { ProfileCardComponent } from './Components/users-components/profile-card/profile-card.component';
+import { InforCardsComponent } from './Components/users-components/infor-cards/infor-cards.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ProfileComponent } from './Pages/profile/profile.component';
     RegisterComponent,
     FreelancerDetailsComponent,
     LogsComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileCardComponent,
+    InforCardsComponent
   ],
   imports: [
     BrowserModule,
