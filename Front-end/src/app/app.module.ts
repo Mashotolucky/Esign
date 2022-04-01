@@ -15,6 +15,7 @@ import { LogsComponent } from './Components/users-components/logs/logs.component
 import { ProfileComponent } from './Pages/profile/profile.component';
 import { ProfileCardComponent } from './Components/users-components/profile-card/profile-card.component';
 import { InforCardsComponent } from './Components/users-components/infor-cards/infor-cards.component';
+import { BookingComponent } from './Modals/booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { InforCardsComponent } from './Components/users-components/infor-cards/i
     LogsComponent,
     ProfileComponent,
     ProfileCardComponent,
-    InforCardsComponent
+    InforCardsComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,
