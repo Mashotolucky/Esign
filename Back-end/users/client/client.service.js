@@ -8,8 +8,12 @@ const {
 
 const createClient = async (user) => {
     try {
-      return await createClientDb(user);
+      const usr= await createClientDb(user);
+     // console.log("client service",usr);
+      return usr;
+
     } catch (error) {
+      console.log(error);
       throw  error;
     }
 };

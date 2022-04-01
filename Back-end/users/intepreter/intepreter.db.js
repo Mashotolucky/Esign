@@ -1,33 +1,33 @@
-import { pool } from "../../config/dbconfig";
+const pool = "../../config/dbconfig";
 
-const createIntepreterDb=async({ name, passwordhash, email, lastname , cellno,role,cert_url,hourly_rate})=>{
-    const usr= await pool.query(
-        `INSERT INTO users(name, passwordhash, email, lastname, cellno, role)
-         VALUES($1, $2, $3, $4, $5,$6) 
-         returning ID, name, email, lastname, cellno, role, created_at`,
-     [name, passwordhash, email, lastname, cellno,role]);
-      const myuser=usr.rows[0];
+const createIntepreterDb=async({userID,cert_url,hourly_rate})=>{
+  try {
 
-     const intepreter= await pool.query(
-      `INSERT INTO intepreter(cert_url,hourly_rate,userID)
-       VALUES($1,$2,$3) 
-       returning cert_url,hourly_rate,userID `,
-   [cert_url,hourly_rate,myuser.ID]);
-   const myintepreter=intepreter.rows[0];
-   return {myuser,myintepreter}
+      const intepreter= await pool.query(
+        `INSERT INTO intepreter(cert_url,hourly_rate,userID)
+        VALUES($1,$2,$3) 
+        returning cert_url,hourly_rate,userID `,[cert_url,hourly_rate,userID]);
+      const myintepreter=intepreter.rows[0];
+      
+      return {myintepreter}
+
+  } catch (error) {
+    throw new Error(error.detail);
+  }
 };
 const updateIntepreterDb = async ({
     name,
     email,
     lastname,
-    id,cellno,
+    id,
     cert_url,hourly_rate,active_status
     
   }) => {
+   try {
     const { rows: user } = await pool.query(
-      `UPDATE users set name = $1, email = $2, lastname = $3 , cellno= $4
+      `UPDATE users set name = $1, email = $2, lastname = $3 
         where ID = $5 returning name, email, lastname, ID`,
-      [name, email, lastname, cellno, id]
+      [name, email, lastname, id]
     );
     const myuser=user[0];
 
@@ -36,27 +36,38 @@ const updateIntepreterDb = async ({
     [cert_url,hourly_rate,active_status, myuser.ID]);
 
     return {myuser,intepreter:intepreter[0]}
+   } catch (error) {
+     throw error;
+   }
 
 };
 const deleteInteprterDb = async (id) => {
-    const { rows: user } = await pool.query(
-      "DELETE FROM users where ID = $1 returning *",
-      [id]
-    );
-    const {rows:intepreter} = await pool.query(
-        `DELETE FROM intepreter WHERE userID=$1 `,
-    [user[0].ID]);
+ try {
+      const { rows: user } = await pool.query(
+        "DELETE FROM users where ID = $1 returning *",
+        [id]
+      );
+      const {rows:intepreter} = await pool.query(
+          `DELETE FROM intepreter WHERE userID=$1 `,
+      [user[0].ID]);
 
-  return user[0];
+    return user[0];
+ } catch (error) {
+   throw error;
+ }
 
 };
 const getAllIntepretersDb=async () => {
-    const { rows: intepreters } = await pool.query(
-      `select users.* intepreter.* FROM intepreter
-      join users 
-      on users.ID = intepreter.ID`
-    );
-    return intepreters;
+try {
+  const { rows: intepreters } = await pool.query(
+    `select users.* intepreter.* FROM intepreter
+    join users 
+    on users.ID = intepreter.ID`
+  );
+  return intepreters;
+} catch (error) {
+  throw error; 
+}
 };
 
 
