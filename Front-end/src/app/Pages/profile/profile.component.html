@@ -6,7 +6,7 @@
             <app-profile-card></app-profile-card>
             <app-infor-cards></app-infor-cards>
             <div class="text-center mt-5">
-            <button type="button" class="btn p-2 ps-5 px-5 text-light" id="proceed" ><a routerlink='/booking'>Proceed</a></button>
+            <button type="button" class="btn p-2 ps-5 px-5 text-light" id="proceed" data-bs-toggle="modal" data-bs-target="#exampleModal">Proceed</button>
             </div>
 
             <!-- <div class="projects">
@@ -30,3 +30,29 @@
     </div>
 
 </div>
+
+<!-- Button trigger modal -->
+
+  <!-- Modal -->
+  
+  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/action_page.php">
+
+                <input class="date" type="date" id="birthday" name="birthday" style="width:500px;" />
+             
+              </form>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button type="button" class="btn-1 " data-bs-dismiss="modal">Create booking</button>
+        </div>
+      </div>
+    </div>
+  </div>
