@@ -1,1 +1,53 @@
-<p>home works!</p>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #E3E0E0;">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand">
+            <img src="../../../../assets/ADesign.webp"  height="60" alt="">
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+           
+            <div class="navbar-nav ms-auto">
+             
+  
+                  <button class=" btn mt-3 px-5 text-light" id="submit"> <a routerLink='/login'></a>Login</button>
+                  <button class=" btn mt-3 px-5 text-light" id="submit"><a routerLink='/register'></a>register</button>
+            </div>
+        </div>
+    </div>
+  </nav>
+  
+      <div class="container align-items-sm-stretch">
+          <div class="row row-cols-1 row-cols-lg-4 g-4">
+              <div class="col" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+                <div class="card">
+                  
+                  <div class="avatar text-center">
+                    <img class= "img-fluid rounded-circle" width="200" height="200" src="https://pixinvent.com/materialize-material-design-admin-template/app-assets/images/user/12.jpg"/>
+                  </div>
+            
+                  
+                  <div class="card-body">
+                    <h1 class="text-center fw-bold">Lindo Mashoto</h1>
+                    <p class="card-text text-center fw-bold">South African Sign Language</p>
+  
+                    <div class="text-center pb-2">
+                      <span class="fa fa-star checked" *ngFor="let i of [1,2,3,5]"></span>
+                    </div>
+                    
+                    
+                   <div class="text-center">
+                     <button class="btn text-light" >Procced</button>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  
+      
+  
+  
