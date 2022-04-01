@@ -19,8 +19,8 @@ const getUserByEmailDb = async (email) => {
     "select users.* from users where lower(email) = lower($1) ",
     [email]
   )
- //console.log(exists);
-  return exists? exists: false;
+  console.log(exists[0]);
+  return exists? exists[0]: false;
 };
 
 const changeUserPasswordDb = async (hashedPassword, email) => {
@@ -40,6 +40,7 @@ const createUserDb=async({ name, passwordhash, email, lastname,role})=>{
     const myuser=usr.rows[0];
      return myuser;
     }catch(err){
+      console.log(err);
       throw new Error(err);
     }
 }

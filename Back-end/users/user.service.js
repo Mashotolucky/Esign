@@ -30,7 +30,7 @@ const {generateToken}=require('../middleware/jwt');
        // console.log(user);
 
         const newuser=await createUserDb(user)
-       //console.log("userservice:",newuser);
+       console.log("userservice:",newuser);
        //console.log("my new user:",newuser.ID);
         if(newuser.role && newuser.role.toUpperCase() == constants.roles.CLIENT){
 
@@ -56,11 +56,11 @@ const {generateToken}=require('../middleware/jwt');
     login= async ({email,password})=>{
       
       const user= await this.getUserByEmail(email);
-     //console.log("found",user);
+      console.log("found",user);
       if (!user) { throw Error("user not found");}
       
       console.log();
-      const result =  await comparePassword(password,user[0].passwordhash);
+      const result =  await comparePassword(password,user.passwordhash);
 
       if(result){
 
@@ -69,7 +69,7 @@ const {generateToken}=require('../middleware/jwt');
       console.log(token);
       const refreshToken = jwt.sign({ userId: user.id, userRole: user.role }, process.env.REFRESH_TOKEN_SECRET)
       //store refresh token
-      return {user:user[0],refreshToken,token};
+      return {user:user,refreshToken,token};
       }
       
 
@@ -80,7 +80,7 @@ const {generateToken}=require('../middleware/jwt');
     getUserByEmail = async (email) => {
       try {
         const user = await getUserByEmailDb(email);
-        //console.log("email Found: ",user);
+        console.log("email Found: ",user);
         return user;
       } catch (error) {
         throw error;
