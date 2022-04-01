@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
   constructor(private fb : FormBuilder
-    // , private authService: AuthService
+    , private authService: AuthService
     ) { }
 
   ngOnInit(): void {
