@@ -21,7 +21,7 @@
   
       <div class="container align-items-sm-stretch">
           <div class="row row-cols-1 row-cols-lg-4 g-4">
-              <div class="col" *ngFor="let i of [1,2,3,4,5,6,7,8]">
+              <div class="col" *ngFor="let interpreter of interpretors">
                 <div class="card">
                   
                   <div class="avatar text-center">
@@ -30,7 +30,7 @@
             
                   
                   <div class="card-body">
-                    <h1 class="text-center fw-bold">Lindo Mashoto</h1>
+                    <h1 class="text-center fw-bold">{{interpreter.name}} {{interpreter.lastname}}</h1>
                     <p class="card-text text-center fw-bold">South African Sign Language</p>
   
                     <div class="text-center pb-2">
