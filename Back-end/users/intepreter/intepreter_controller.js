@@ -3,7 +3,7 @@ const {  getAllIntepreters, UpdateIntepreter} = require('./intepreter.service');
 
 const getAll=async(req,res,next)=>{
     try {
-        console.log("meeeeee");
+        
         const intepreters=await getAllIntepreters();
         console.log("int",intepreters);
         if(!intepreters) return res.send(201).send({msg:"could not find any"});
