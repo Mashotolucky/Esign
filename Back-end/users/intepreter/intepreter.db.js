@@ -60,12 +60,13 @@ const deleteInteprterDb = async (id) => {
 const getAllIntepretersDb=async () => {
 try {
   const { rows: intepreters } = await pool.query(
-    `select users.* intepreter.* FROM intepreter
-    join users 
-    on users.ID = intepreter.ID`
+    `select * FROM users, intepreter
+    WHERE users.id = intepreter.id`
   );
+  console.log("kill",intepreters);
   return intepreters;
 } catch (error) {
+  console.log(error);
   throw error; 
 }
 };

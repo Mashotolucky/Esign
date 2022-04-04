@@ -65,9 +65,8 @@ const updateClientDb = async ({
 const getAllClientDb=async () => {
     try {
       const { rows: clients } = await pool.query(
-        `select users.*  client.* FROM client
-        join users 
-        on users.ID = client.ID`
+        `select * FROM users, client 
+        WHERE users.id = client.id`
       );
       return clients;
     } catch (error) {
