@@ -19,5 +19,8 @@ $avatar-size: 200px;
   .card{
       background: #e9e6e6;
   }
+  p{
+     transform: translateX(25%);
+  }
 
   @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
