@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertsService } from 'src/app/Services/alerts.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { enableRipple } from '@syncfusion/ej2-base';
+enableRipple(true);
+import { TimePicker } from '@syncfusion/ej2-calendars';
 
 @Component({
   selector: 'app-profile',
@@ -11,8 +14,12 @@ export class ProfileComponent implements OnInit {
 
   constructor(private alerts:AlertsService) { }
 
+  
+
   ngOnInit(): void {
-    
+  //   let timeObj: TimePicker = new TimePicker({ step:45, placeholder: 'Select a time'
+  // });
+  // timeObj.appendTo('#timepicker');
   }
 
   simpleAlert(){
