@@ -2,7 +2,9 @@ const {
   deleteClientDb,
   updateClientDb,
   getAllClientDb,
-  createClientDb
+  createClientDb,
+  createBookingDb,
+  deleteBookingDb
   } = require("./client.db");
 
 
@@ -38,12 +40,34 @@ const getAllClients = async () => {
         throw error;
       }
 };
+//bookings
+const createBooking = async () => {
+  try {
+
+    return await createBookingDb();
+
+  } catch (error) {
+    throw error;
+  }
+};
+const deleteBooking = async (id) => {
+  try {
+
+    return await deleteBookingDb(id);
+
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 module.exports={
     getAllClients,
     UpdateClient,
     deleteClient,
-    createClient
+    createClient,
+    createBooking,
+    deleteBooking
 }
   
 

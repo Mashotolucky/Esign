@@ -13,18 +13,18 @@ const getAll=async(req,res,next)=>{
     }
 }
 
-const updateInterpreter= async(req,res,next)=>{
-    try {
-        const id = req.params.id;
-        const newIntepreter=await UpdateIntepreter(id);
-        if(!newIntepreter) return res.status(201).send({msg:"not updated"});
-        return res.status(200).send(newIntepreter);
-    } catch (error) {
-        next(error);
-    }
-}
+// const updateInterpreter= async(req,res,next)=>{
+//     try {
+//         const id = req.params.id;
+//         const newIntepreter=await UpdateIntepreter(id);
+//         if(!newIntepreter) return res.status(201).send({msg:"not updated"});
+//         return res.status(200).send(newIntepreter);
+//     } catch (error) {
+//         next(error);
+//     }
+// }
 
 module.exports={
     getAll,
-    updateInterpreter
+   // updateInterpreter
 }

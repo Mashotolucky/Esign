@@ -2,9 +2,12 @@ const {
   deleteInteprterDb,
   updateIntepreterDb,
   getAllIntepretersDb,
-  createIntepreterDb
-} = require('./intepreter.db')
+  createIntepreterDb,
 
+  GetAllBookingsDb,
+  getBookingDb,
+  getIntepreterBookingDb
+} = require('./intepreter.db');
 
 const deleteIntepreter = async (id) => {
     try {
@@ -39,9 +42,37 @@ const getAllIntepreters = async () => {
       }
 };
 
+//bookings
+const GetAllBookings = async () => {
+  try {
+    console.log("kil");
+    return await GetAllBookingsDb();
+  } catch (error) {
+    throw error;
+  }
+};
+const getBooking = async (id) => {
+  try {
+    console.log("kil");
+    return await getBookingDb(id);
+  } catch (error) {
+    throw error;
+  }
+};
+const getIntepreterBooking = async (id) => {
+  try {
+    console.log("kil");
+    return await getIntepreterBookingDb(id);
+  } catch (error) {
+    throw error;
+  }
+};
 module.exports={
   getAllIntepreters,
   UpdateIntepreter,
   createIntepreter,
-  deleteIntepreter
+  deleteIntepreter,
+  GetAllBookings,
+  getBooking,
+  getIntepreterBooking
 }

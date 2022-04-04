@@ -15,14 +15,7 @@ const createIntepreterDb=async({userID,cert_url,hourly_rate})=>{
     throw error;
   }
 };
-const updateIntepreterDb = async ({
-    name,
-    email,
-    lastname,
-    id,
-    cert_url,hourly_rate,active_status
-    
-  }) => {
+const updateIntepreterDb = async ({name,email,lastname,id,cert_url,hourly_rate,active_status}) => {
    try {
     const { rows: user } = await pool.query(
       `UPDATE users set name = $1, email = $2, lastname = $3 
@@ -41,40 +34,75 @@ const updateIntepreterDb = async ({
    }
 
 };
-const deleteInteprterDb = async (id) => {
- try {
-      const { rows: user } = await pool.query(
-        "DELETE FROM users where ID = $1 returning *",
-        [id]
-      );
-      const {rows:intepreter} = await pool.query(
-          `DELETE FROM intepreter WHERE userID=$1 `,
-      [user[0].ID]);
 
-    return user[0];
- } catch (error) {
-   throw error;
- }
+const deleteInteprterDb = async (id) => {
+  try {
+        const { rows: user } = await pool.query(
+          "DELETE FROM users where ID = $1 returning *",
+          [id]
+        );
+        const {rows:intepreter} = await pool.query(
+            `DELETE FROM intepreter WHERE userID=$1 `,
+        [user[0].ID]);
+
+      return user[0];
+  } catch (error) {
+    throw error;
+  }
 
 };
 const getAllIntepretersDb=async () => {
-try {
-  const { rows: intepreters } = await pool.query(
-    `select * FROM users, intepreter
-    WHERE users.id = intepreter.id`
-  );
-  console.log("kill",intepreters);
-  return intepreters;
-} catch (error) {
-  console.log(error);
-  throw error; 
-}
+  try {
+    const { rows: intepreters } = await pool.query(
+      `select * FROM users, intepreter
+        WHERE users.id = intepreter.id`
+    );
+    console.log("kill",intepreters);
+    return intepreters;
+  } catch (error) {
+    console.log(error);
+    throw error; 
+  }
+};
+//bookings
+const GetAllBookingsDb=async () => {
+  try {
+    const { rows: bookings } = await pool.query(`select * FROM booking`);
+  
+    return bookings;
+  } catch (error) {
+    console.log(error);
+    throw error; 
+  }
 };
 
+const getBookingDb=async (id) => {
+  try {
+    const { rows: booking } = await pool.query(`select * FROM bookings WHERE ID = $1`,[id]);
+    return booking;
+  } catch (error) {
+    console.log(error);
+    throw error; 
+  }
+};
+
+const getIntepreterBookingDb=async (id) => {
+  try {
+    const { rows: booking } = await pool.query(`select * FROM booking WHERE intepreterid = $1`,[id]);
+    
+    return booking;
+  } catch (error) {
+    console.log(error);
+    throw error; 
+  }
+};
 
 module.exports={
   deleteInteprterDb,
   updateIntepreterDb,
   getAllIntepretersDb,
-  createIntepreterDb
+  createIntepreterDb,
+  GetAllBookingsDb,
+  getBookingDb,
+  getIntepreterBookingDb
 }

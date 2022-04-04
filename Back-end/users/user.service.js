@@ -166,6 +166,9 @@ const {generateToken}=require('../middleware/jwt');
         throw error;
       }
     };
+ 
+    
+
   }
   
   module.exports = new UserService();
