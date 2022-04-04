@@ -114,18 +114,26 @@
 }
 .date{
   max-width: 300px;
+  width: 500px;
 }
+.time{
+  max-width: 300px;
+  width: 500px;
+}
+
+
 .btn-1{
   background-color: #29A9AF;
   color:#fff;
   border-radius: 3px;
   border: none;
   justify-content: center;
+ transform: translateX(-5%);
 
 
  
 width: 295px;
-height: 70px;
+height: 60px;
 left: 572px;
 top: 594px;
 
@@ -133,3 +141,4 @@ background: #199DA4;
 box-shadow: 0px 4px 4px rgba(25, 157, 164, 0.54);
 border-radius: 10px;
 }
+
