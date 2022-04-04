@@ -1,4 +1,5 @@
 const UserService = require('../users/user.service');
+const {roles} = require('../helpers/constants');
 
 const login =async (req, res, next) =>{
  try {
@@ -14,20 +15,33 @@ const login =async (req, res, next) =>{
 } 
 
 const register = async(req, res, next) =>{
+    const {name, password, email, lastname , cellno ,role,hourly_rate,langID}=req.body;
+    
+    let cert_url ="";
+       console.log(req.file);
+   
+    if(req.file && role && role == roles.INTEPRETER){
+        console.log("test cert");
+        cert_url = req.file.path ? req.file.path : "";
+        console.log("certificate url:",cert_url);
+      // upload file to cloudinary if req.file exists  use external function await this 
+      //take cloudinary response and get url set cert_url to cloudinary url
+    }
+    
+    
+
       
-       const {name, password, email, lastname , cellno, role, cert_url,hourly_rate,langID}=req.body;
-       
-        const data={
+    const data={
             name: name ? String(name).trim() : null,
             password:password? String(password).trim(): null,
             email: email? String(email).trim(): null,
             lastname: lastname? String(lastname).trim() : null,
             cellno: cellno? String(cellno).trim(): null,
             role: role? String(role).trim(): null,
-            cert_url: cert_url? String(cert_url).trim() : null,
+            cert_url: cert_url? cert_url : null,
             langID: langID ? langID : null,
             hourly_rate: cert_url? String(hourly_rate).trim(): null
-        }
+    }
 
     try {
         

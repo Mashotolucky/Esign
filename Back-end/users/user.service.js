@@ -40,7 +40,7 @@ const {generateToken}=require('../middleware/jwt');
         }else
         if(newuser.role && newuser.role.toUpperCase() == constants.roles.INTEPRETER){
 
-            return await createIntepreter({userID:newuser.id,cert_url,hourly_rate});
+            return await createIntepreter({userID:newuser.id,cert_url:user.cert_url,hourly_rate:user.hourly_rate});
 
         }else{
           throw Error("role is empty or not defined");

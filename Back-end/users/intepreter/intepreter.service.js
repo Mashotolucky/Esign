@@ -23,7 +23,7 @@ const deleteIntepreter = async (id) => {
     }
 };
 
-const UpdateIntepreter=async(client)=>{
+const UpdateIntepreter=async(id)=>{
   try {
     return await updateIntepreterDb(id);
   } catch (error) {
