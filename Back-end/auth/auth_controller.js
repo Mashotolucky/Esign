@@ -2,6 +2,9 @@ const UserService = require('../users/user.service');
 const { roles } = require('../helpers/constants');
 const { cloudinary } = require('../cloudinary/cloudinary');
 const uploader = require('../helpers/uploader');
+const fs = require('fs');
+
+const uploadFile = require('../helpers/fileUpload');
 
 const login = async (req, res, next) => {
     try {
@@ -26,26 +29,8 @@ const register = async (req, res, next) => {
         cert_url = req.file.path ? req.file.path : "";
         // upload file to cloudinary if req.file exists  use external function await this 
         
-        try {
-            const uploadResponse = await cloudinary.uploader.upload(cert_url, {
-                folder: 'certificates',
-                resource_type: 'raw'
-            });
-
-            //take cloudinary response and get url set cert_url to cloudinary url
-            cert_url = uploadResponse.url;
-
-
-            
-
-        } catch (error) {
-            console.log(error.message);
-            next(error);
-        }
+        cert_url = await uploadFile.fileUpload(cert_url,"certificates");
     }
-
-
-
 
     const data = {
         name: name ? String(name).trim() : null,
