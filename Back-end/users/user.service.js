@@ -57,7 +57,7 @@ const {generateToken}=require('../middleware/jwt');
       
       const user= await this.getUserByEmail(email);
       console.log("found",user);
-      if (!user) { throw Error("user not found");}
+      if (!user) { throw Error("user not found check email of password");}
       
       console.log();
       const result =  await comparePassword(password,user.passwordhash);
@@ -70,11 +70,9 @@ const {generateToken}=require('../middleware/jwt');
       const refreshToken = jwt.sign({ userId: user.id, userRole: user.role }, process.env.REFRESH_TOKEN_SECRET)
       //store refresh token
       return {user:user,refreshToken,token};
+      }else{
+          throw new Error('password is wrong ');
       }
-      
-
-      return 1;
-
     }
   
     getUserByEmail = async (email) => {
