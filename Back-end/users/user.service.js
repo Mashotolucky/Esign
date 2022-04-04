@@ -30,12 +30,9 @@ const {generateToken}=require('../middleware/jwt');
        // console.log(user);
 
         const newuser=await createUserDb(user)
-       console.log("userservice:",newuser);
-       //console.log("my new user:",newuser.ID);
         if(newuser.role && newuser.role.toUpperCase() == constants.roles.CLIENT){
 
             const usr = await createClient({userID:newuser.id,langID:user.langID});
-           // console.log("client :",usr);
             return usr;
         }else
         if(newuser.role && newuser.role.toUpperCase() == constants.roles.INTEPRETER){
@@ -48,7 +45,6 @@ const {generateToken}=require('../middleware/jwt');
      
       } catch (error) {
         console.log(error);
-        //console.log(error);
         throw  error;
       }
     };
@@ -66,19 +62,19 @@ const {generateToken}=require('../middleware/jwt');
 
       //create token
       const token= await generateToken({ userId: user.id, userRole: user.role });
-      console.log(token);
       const refreshToken = jwt.sign({ userId: user.id, userRole: user.role }, process.env.REFRESH_TOKEN_SECRET)
       //store refresh token
       return {user:user,refreshToken,token};
       }else{
-          throw new Error('password is wrong ');
+        throw new Error("Password do not match");
       }
+
     }
   
     getUserByEmail = async (email) => {
       try {
         const user = await getUserByEmailDb(email);
-        console.log("email Found: ",user);
+        
         return user;
       } catch (error) {
         throw error;

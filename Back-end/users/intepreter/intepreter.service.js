@@ -32,6 +32,7 @@ const UpdateIntepreter=async(id)=>{
 }
 const getAllIntepreters = async () => {
       try {
+        console.log("kil");
         return await getAllIntepretersDb();
       } catch (error) {
         throw error;

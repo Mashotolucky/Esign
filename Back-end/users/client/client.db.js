@@ -2,18 +2,13 @@ const  {pool} =require("../../config/dbconfig");
 
 const createClientDb=async({userID,langID} )=>{
     try {
-      //console.log(userID);
      const client= await pool.query(
       `INSERT INTO client(langID,userID)
        VALUES($1,$2) 
        returning langID, userID`,[langID,userID]);
       const myclient=client.rows[0];
-      //return {myclient}
-      //console.log(myclient);
+ 
     const { rows : results }= await pool.query("select * from client,users where users.id= client.userid and users.id= $1",[myclient.userid]);
-     
-     
-      // console.log(results);
      return results;
 
     } catch (error) {
@@ -70,9 +65,8 @@ const updateClientDb = async ({
 const getAllClientDb=async () => {
     try {
       const { rows: clients } = await pool.query(
-        `select users.*  client.* FROM client
-        join users 
-        on users.ID = client.ID`
+        `select * FROM users, client 
+        WHERE users.id = client.id`
       );
       return clients;
     } catch (error) {
