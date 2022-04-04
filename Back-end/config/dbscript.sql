@@ -1,9 +1,9 @@
 CREATE TABLE public.users(
 	ID serial NOT NULL, 
 	name varchar(100),
-	last_name varchar(100),
+	lastname varchar(100),
 	email varchar(100) not null unique,
-	password_hash varchar(100) not null,
+	passwordhash varchar(100) not null,
 	image_url varchar(100),
 	role character varying(10) NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,

@@ -9,17 +9,15 @@ const getUserByIdDb = async (id) => {
   const { rows: user } = await pool.query(
     "select users.* from users where users.ID = $1",
     [id]
-  );//0581
+  );
   return user[0];
 };
 
 const getUserByEmailDb = async (email) => {
-//  console.log("hhere");
   const {rows : exists} =await pool.query(
     "select users.* from users where lower(email) = lower($1) ",
     [email]
   )
-  console.log(exists[0]);
   return exists? exists[0]: false;
 };
 
