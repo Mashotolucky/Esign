@@ -29,24 +29,6 @@ const handle_errors=fn=>(req,res,next)=>Promise.resolve(fn(req,res,next)).catch(
 //handle all app routes
 app.use("/api/v1/",esign_routes);
 
-//404 resource not found
-app.use((req,res)=>{
-    const error=new Error(`Resource not found ${req.method}:${req.originalUrl}`);
-    error.status=404;
-    res.status(error.status).json(error.message);
-   // next(error);
-  });
-
-  //handle all errors 
-app.use((err,req,res,next)=>{
- // error("error:",err);
- log("here")
-  res.status(err.status||500).send({
-     message: `${err.message} on ${req.method}:${req.originalUrl}` || "Oops something went wrong",
-     timestamp: Date.now(),
-     origin: req.originalurl
-  })
-})
 
 
 //Cloudinary media //
@@ -127,9 +109,10 @@ app.post('/api/upload/video',uploader.single("videos"), async (req, res) => {
 });
 
 const docUploader = multer({ dest: 'documents/' })
-app.post('/api/upload/document',docUploader.single("documents"), async (req, res) => {
+app.post("/api/upload/document",docUploader.single("file"), async (req, res) => {
   const documents = req.file
-  console.log(documents);
+
+  console.log("document here: ",documents);
  try {
      const fileStr = req.file.path;
      console.log(fileStr)
@@ -153,6 +136,27 @@ app.post('/api/upload/document',docUploader.single("documents"), async (req, res
  }
 });
 //Cloudinary ends here//
+
+
+
+//404 resource not found
+app.use((req,res)=>{
+  const error=new Error(`Resource not found ${req.method}:${req.originalUrl}`);
+  error.status=404;
+  res.status(error.status).json(error.message);
+ // next(error);
+});
+
+//handle all errors 
+app.use((err,req,res,next)=>{
+// error("error:",err);
+log("here")
+res.status(err.status||500).send({
+   message: `${err.message} on ${req.method}:${req.originalUrl}` || "Oops something went wrong",
+   timestamp: Date.now(),
+   origin: req.originalurl
+})
+})
 
 app.listen(Port,()=>{
   console.log(`server running on localhost Port:${Port}`);
