@@ -133,3 +133,7 @@ background: #199DA4;
 box-shadow: 0px 4px 4px rgba(25, 157, 164, 0.54);
 border-radius: 10px;
 }
+
+::ng-deep .success-snackbar{  background-color:green;  color:white;}
+::ng-deep .danger-snackbar{  background-color:red;  color:white;}
+::ng-deep .warning-snackbar{  background-color:yellow;  color:white;}

@@ -16,6 +16,9 @@ import { ProfileComponent } from './Pages/profile/profile.component';
 import { ProfileCardComponent } from './Components/users-components/profile-card/profile-card.component';
 import { InforCardsComponent } from './Components/users-components/infor-cards/infor-cards.component';
 import { BookingComponent } from './Modals/booking/booking.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { BookingComponent } from './Modals/booking/booking.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
