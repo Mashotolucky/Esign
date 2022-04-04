@@ -1,27 +1,37 @@
-import { pool } from "../../config/dbconfig";
+const  {pool} =require("../../config/dbconfig");
 
-const createClientDb=async({ name, password, email, lastname , cellno,role})=>{
-    const usr= await pool.query(
-        `INSERT INTO users(name, password, email, lastname, cellno, role)
-         VALUES($1, $2, $3, $4, $5,$6) 
-         returning user_id, name, email, lastname, cellno, role, created_at`,
-     [name, password, email, lastname, cellno,role]);
-      const myuser=usr.rows[0];
-     return myuser;
-}
+const createClientDb=async({userID,langID} )=>{
+    try {
+     const client= await pool.query(
+      `INSERT INTO client(langID,userID)
+       VALUES($1,$2) 
+       returning langID, userID`,[langID,userID]);
+      const myclient=client.rows[0];
+ 
+    const { rows : results }= await pool.query("select * from client,users where users.id= client.userid and users.id= $1",[myclient.userid]);
+     return results;
 
-const deleteclientDb = async (id) => {
-    const { rows: user } = await pool.query(
-      "DELETE FROM users where ID = $1 returning *",
-      [id]
-    );
+    } catch (error) {
+      console.log(error.detail);
+      throw new Error(error||"client/user already exist");
+    }
+};
 
-    const {rows:client} = await pool.query(
-        `DELETE FROM client WHERE userID=$1 `,
-    [user[0].ID]);
-
+const deleteClientDb = async (id) => {
+    try {
+      const { rows: user } = await pool.query(
+        "DELETE FROM users where ID = $1 returning *",
+        [id]
+      );
+      const {rows:client} = await pool.query(
+          `DELETE FROM client WHERE userID=$1 `,
+      [user[0].ID]);
   
-  return {usr:user[0],client:client[0]};
+    
+    return {usr:user[0],client:client[0]};
+    } catch (error) {
+      throw error;
+    }
 
 };
 
@@ -29,38 +39,43 @@ const updateClientDb = async ({
     name,
     email,
     lastname,
-    id,cellno,
+    id,
     payment_method,
-	langID 
+	  langID 
   }) => {
-    const { rows: user } = await pool.query(
-      `UPDATE users set name = $1, email = $2, lastname = $3 , cellno= $4
-        where ID = $5 returning name, email, lastname, ID`,
-      [name, email, lastname, cellno, id]
-    );
-    const myuser=user[0];
-   // return myuser;
-   
-    const {rows:intepreter} = await pool.query(
-        `UPDATE client set payment_method=$1,langID=$2 WHERE userID=$4 `,
-    [payment_method,langID , myuser.ID]);
+      try {
+        const { rows: user } = await pool.query(
+          `UPDATE users set name = $1, email = $2, lastname = $3
+            where ID = $5 returning name, email, lastname, ID`,
+          [name, email, lastname, id]
+        );
+        const myuser=user[0];
+       
+        const {rows:client} = await pool.query(
+            `UPDATE client set payment_method=$1,langID=$2 WHERE userID=$4 `,
+        [payment_method,langID , myuser.ID]);
+    
+    
+        return {myuser,client:client[0]}
+      } catch (error) {
+          throw error;
+      }
 
-
-    return {myuser,intepreter:intepreter[0]}
-
-  };
-
+};
 const getAllClientDb=async () => {
-    const { rows: clients } = await pool.query(
-      `select users.*  client.* FROM client
-      join users 
-      on users.ID = client.ID`
-    );
-    return clients;
+    try {
+      const { rows: clients } = await pool.query(
+        `select * FROM users, client 
+        WHERE users.id = client.id`
+      );
+      return clients;
+    } catch (error) {
+      throw error;
+    }
 }
 
 module.exports={
-    deleteclientDb,
+    deleteClientDb,
     updateClientDb,
     getAllClientDb,
     createClientDb

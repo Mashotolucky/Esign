@@ -1,42 +1,80 @@
-import constants from "../helpers/constants";
-
+require('dotenv').config();
+const constants = require("../helpers/constants");
+const jwt = require('jsonwebtoken');
 const {
     getUserByEmailDb,
     changeUserPasswordDb,
     getUserByIdDb,
-    getAllUsersDb
+    getAllUsersDb,
+    createUserDb
   } = require("./user.db");
-const {createClient} = require('./client/client.service');
-const {createIntepreter}= require('./intepreter/intepreter.service');
+const {createClient,UpdateClient,deleteClient} = require('./client/client.service');
+const {createIntepreter,UpdateIntepreter,deleteIntepreter}= require('./intepreter/intepreter.service');
+const {hashPassword,comparePassword}=require('../helpers/password');
+const {generateToken}=require('../middleware/jwt');
 
   class UserService {
 
     createUser = async (my_user) => {
       try {
-        const user= await this.getUserByEmail(my_user.email);
+        const existing_user= await this.getUserByEmail(my_user.email);
 
-        if (user) { throw Error("email taken");}
+        if (existing_user) { throw Error("email taken");}
+        
+        const hashedPassword_= await hashPassword(my_user.password);
+        console.log(typeof hashedPassword_);
+        const user={
+          ...my_user,
+          passwordhash: hashedPassword_
+        };
+       // console.log(user);
 
-        user=my_user;
+        const newuser=await createUserDb(user)
+        if(newuser.role && newuser.role.toUpperCase() == constants.roles.CLIENT){
 
-        if(user.role && user.role == constants.roles.CLIENT){
+            const usr = await createClient({userID:newuser.id,langID:user.langID});
+            return usr;
+        }else
+        if(newuser.role && newuser.role.toUpperCase() == constants.roles.INTEPRETER){
 
-            return await createClient(id);
+            return await createIntepreter({userID:newuser.id,cert_url:user.cert_url,hourly_rate:user.hourly_rate});
+
+        }else{
+          throw Error("role is empty or not defined");
         }
-
-        if(user.role && user.role == constants.roles.INTEPRETER){
-
-            return await createIntepreter(id);
-
-        }
+     
       } catch (error) {
+        console.log(error);
         throw  error;
       }
     };
+
+    login= async ({email,password})=>{
+      
+      const user= await this.getUserByEmail(email);
+      console.log("found",user);
+      if (!user) { throw Error("user not found check email of password");}
+      
+      console.log();
+      const result =  await comparePassword(password,user.passwordhash);
+
+      if(result){
+
+      //create token
+      const token= await generateToken({ userId: user.id, userRole: user.role });
+      const refreshToken = jwt.sign({ userId: user.id, userRole: user.role }, process.env.REFRESH_TOKEN_SECRET)
+      //store refresh token
+      return {user:user,refreshToken,token};
+      }else{
+        throw new Error("Password do not match");
+      }
+
+    }
   
     getUserByEmail = async (email) => {
       try {
         const user = await getUserByEmailDb(email);
+        
         return user;
       } catch (error) {
         throw error;
@@ -91,8 +129,6 @@ const {createIntepreter}= require('./intepreter/intepreter.service');
             return await UpdateIntepreter(id);
 
         }
-
-        return await updateUserDb(user);
       } catch (error) {
         throw error;
       }

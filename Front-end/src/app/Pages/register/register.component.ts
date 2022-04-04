@@ -19,7 +19,9 @@ export class RegisterComponent implements OnInit {
   password_matched: boolean = false;
   strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
-  constructor(private fb : FormBuilder, private authService: AuthService) { }
+  constructor(private fb : FormBuilder
+    , private authService: AuthService
+    ) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -68,11 +70,11 @@ export class RegisterComponent implements OnInit {
     if(this.passwordMatch()) {
       this.messages();
       
-      this.authService.register(this.registerForm.value)
-      .subscribe(res =>{
-        alert("Registered!!")
-        console.log(this.registerForm.value)
-      })
+      // this.authService.register(this.registerForm.value)
+      // .subscribe(res =>{
+      //   alert("Registered!!")
+        
+      // })
       // this.userService.register(this.registerForm.value)
       // .subscribe(res => {
       //   alert("Successfully registered!!");
@@ -83,7 +85,7 @@ export class RegisterComponent implements OnInit {
       //   alert(err+ "Login failed check console");
         
       // });
-      
+      console.log(this.registerForm.value)
     }  
     
     }

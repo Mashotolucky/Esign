@@ -17,6 +17,10 @@ export class UserService {
       return this.http.get<User[]>(`/users`);
   }
 
+  getAllinterpreter() {
+    return this.http.get<User[]>(`http://localhost:4000/api/v1/users/intepreters/getAll`);
+  }
+
   register(user: User) {
       return this.http.post(`${BaseUrl}/register`, user);
   }
