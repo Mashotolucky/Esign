@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
+import { RegisterService } from 'src/app/Services/register.service';
 // import { UserService } from 'src/app/Services/user.service';
 
 
@@ -21,6 +22,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb : FormBuilder
     , private authService: AuthService
+    , private registerService: RegisterService
     ) { }
 
   ngOnInit(): void {
@@ -70,21 +72,11 @@ export class RegisterComponent implements OnInit {
     if(this.passwordMatch()) {
       this.messages();
       
-      // this.authService.register(this.registerForm.value)
-      // .subscribe(res =>{
-      //   alert("Registered!!")
+      this.registerService.register(this.registerForm.value)
+      .subscribe(res =>{
+        alert("Registered!!")
         
-      // })
-      // this.userService.register(this.registerForm.value)
-      // .subscribe(res => {
-      //   alert("Successfully registered!!");
-      //   window.location.href = "/login";
-      //     sessionStorage.setItem("user_id", JSON.stringify(res));
-      //   console.log(res)
-      // }, err =>{
-      //   alert(err+ "Login failed check console");
-        
-      // });
+      })
       console.log(this.registerForm.value)
     }  
     
