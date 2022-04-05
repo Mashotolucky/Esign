@@ -1,92 +1,61 @@
+
 <div class="container-fluid mx-auto">
 
-    <div class="row wrapper ps-1">
+    <div class="row ps-1">
         <div class="col right">
-            <div class="card border-0 left d-flex flex-column p-5 align-items-center justify-content-center ">
-                <div class="col justify-content-center ">
-                    <div class="avatar">
-                        <img
-                            src="https://pixinvent.com/materialize-material-design-admin-template/app-assets/images/user/12.jpg" />
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <h4>Alex William</h4>
-                    <p>gauteng</p>
-                </div>
-            </div>
-            <div class="">
-                <h3 class="mt-3">Information</h3>
-                <div class="col d-md-flex justify-content-between border-top">
-                    <div class="col col-sm-12 col-lg-3 data">
-                        <div class="card mt-3">
-                            <div class="card-body ">
-
-                                <div class="iconInfo d-flex">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                        class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
-                                    </svg>
-                                    <h4 class="px-3">Email</h4>
-                                </div>
-
-                                <p>alex@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-sm-12 col-lg-3 data">
-                        <div class="card mt-3">
-                            <div class="card-body">
-                                <div class="iconInfo d-flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                            d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
-                                    </svg>
-                                <h4 class="px-3">Phone</h4>
-                                </div>
-                                <p>0001-213-998761</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-sm-12 col-lg-3 data">
-                        <div class="card mt-3">
-                            <div class="card-body">
-                                <div class="iconInfo d-flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-translate" viewBox="0 0 16 16">
-                                    <path d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286H4.545zm1.634-.736L5.5 3.956h-.049l-.679 2.022H6.18z"/>
-                                    <path d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2zm7.138 9.995c.193.301.402.583.63.846-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6.066 6.066 0 0 1-.415-.492 1.988 1.988 0 0 1-.94.31z"/>
-                                  </svg>
-                                <h4 class="px-3">languages</h4>
-                                </div>
-                                <p>0001-213-998761</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app-profile-card></app-profile-card>
+            <app-infor-cards></app-infor-cards>
             <div class="text-center mt-5">
-            <button type="button" class="btn p-2 ps-5 px-5 text-light" id="proceed">Proceed</button>
+            <button type="button" class="btn p-2 ps-5 px-5 text-light" id="proceed" data-bs-toggle="modal" data-bs-target="#exampleModal">Proceed</button>
             </div>
 
-            <!-- <div class="projects">
-              <h3>packages</h3>
-              <div class="row projects_data">
-                   <div class="col data">
-                      <h4>basic</h4>
-                      <p>Lorem ipsum dolor sit amet.</p>
-                   </div>
-                   <div class="col data">
-                     <h4>standard</h4>
-                      <p>dolor sit amet.</p>
-                   </div>
-                   <div class="col data">
-                    <h4>premium</h4>
-                     <p>dolor sit amet.</p>
-                  </div>
-              </div>
-        </div> -->
         </div>
     </div>
 
 </div>
+
+
+<div class="flex items-center bg-blue-500 text-white text-sm font-bold px-4 py-3" role="alert">
+    <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"/></svg>
+    <p>Something happened that you should know about.</p>
+  </div>
+<!-- Button trigger modal -->
+<h1>Angular Sweetalert2 Examples - ItSolutionstuff.com</h1>
+  
+<button (click)="simpleAlert()">Simple Alert</button>
+<button (click)="alertWithSuccess()">Alert with Success</button>
+<button (click)="confirmBox()">Confirm Box</button>
+  <!-- Modal -->
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/action_page.php">
+
+                <input class="date" type="date" id="birthday" name="birthday" />
+                <br><br>
+                <input class="time" type="time" name="time" ><i class="bi bi-clock"></i>
+               
+             
+              </form>
+        </div>
+
+           
+      
+
+
+
+ 
+
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button type="button" class="btn-1 " data-bs-dismiss="modal">Create booking</button>
+        </div>
+      </div>
+    </div>
+  </div>
