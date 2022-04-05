@@ -77,21 +77,12 @@ export class RegisterComponent implements OnInit {
       this.messages();
       
       this.uploadDocument();
-      // this.authService.register(this.registerForm.value)
-      // .subscribe(res =>{
-      //   alert("Registered!!")
+      this.authService.register(this.registerForm.value)
+      .subscribe(res =>{
+        alert("Registered!!")
         
-      // })
-      // this.userService.register(this.registerForm.value)
-      // .subscribe(res => {
-      //   alert("Successfully registered!!");
-      //   window.location.href = "/login";
-      //     sessionStorage.setItem("user_id", JSON.stringify(res));
-      //   console.log(res)
-      // }, err =>{
-      //   alert(err+ "Login failed check console");
-        
-      // });
+      })
+    
       console.log(this.registerForm.value)
     }  
     
