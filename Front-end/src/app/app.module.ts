@@ -13,11 +13,12 @@ import { RegisterComponent } from './Pages/register/register.component';
 import { FreelancerDetailsComponent } from './Modals/freelancer-details/freelancer-details.component';
 import { LogsComponent } from './Components/users-components/logs/logs.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
-import { InterpreterBookingComponent } from './Components/freelancer-components/interpreter-booking/interpreter-booking.component';
-import { NavbarComponent } from './Components/navbar/navbar.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CardComponent } from './Components/freelancer-components/card/card.component';
-import { HttpClientModule } from '@angular/common/http';
+import { ProfileCardComponent } from './Components/users-components/profile-card/profile-card.component';
+import { InforCardsComponent } from './Components/users-components/infor-cards/infor-cards.component';
+import { BookingComponent } from './Modals/booking/booking.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -32,16 +33,16 @@ import { HttpClientModule } from '@angular/common/http';
     FreelancerDetailsComponent,
     LogsComponent,
     ProfileComponent,
-    InterpreterBookingComponent,
-    NavbarComponent,
-    CardComponent
+    ProfileCardComponent,
+    InforCardsComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
