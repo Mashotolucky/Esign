@@ -15,14 +15,14 @@ const transporter = nodemailer.createTransport({
 const url =
   process.env.NODE_ENV === "production"
     ? "#"
-    : "http://localhost:3000";
+    : "http://localhost:4200";
 
 const signupMail = async (to, name) => {
   try {
     const message = {
       from: "etlhako@gmail.com",
       to,
-      subject: "Welcome to brownies cakes",
+      subject: "Welcome to Esign",
       html: html(name),
     };
 

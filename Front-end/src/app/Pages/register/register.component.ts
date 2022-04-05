@@ -25,21 +25,30 @@ export class RegisterComponent implements OnInit {
   file: any = '';
   spinnerState:boolean=false;
 
-  constructor(private fb : FormBuilder
-    , private authService: AuthService,
-    private fileuploadservice: FileuploadserviceService
-    , private registerService: RegisterService
+  constructor(private fb : FormBuilder,
+    private fileuploadservice: FileuploadserviceService,
+    private registerService: RegisterService
     ) { }
 
+//     cellno: null
+// cert_url: null
+// email: "khethokhuhlecmadi@gmail.com"
+// hourly_rate: null
+// langID: null
+// lastname: null
+// message: "missing/empty field found"
+// name: null
+// password: "1234"
+// role:
   ngOnInit(): void {
     this.registerForm = new FormGroup({
       role: new FormControl('',[Validators.required]),
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      lastname: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl(''),
       confirm_password: new FormControl(''),
-      file: new FormControl('')
+      certificates: new FormControl('')
 
   });
   this.message();
@@ -90,23 +99,17 @@ export class RegisterComponent implements OnInit {
     
     }
 
-    selectThisImage(myEvent: any) {
-      this.file = myEvent.target.files[0];
-      //console.log("the file :",this.file.name);
-      
-    }
-
     uploadDocument(): void {
 
       this.spinnerState=true
-      this.registerForm.value.file = this.file;
-       console.log(this.registerForm.value.file)
+      this.registerForm.value.certificates = this.file;
+       console.log(this.registerForm.value.certificates)
    
        const formData = new FormData()
-       formData.append('documents', this.file)
-       console.log(formData.get('documents'));
+       formData.append('certificates', this.file)
+       console.log(formData.get('certificates'));
    
-       this.fileuploadservice.uploadDocument(this.registerForm.value.file).subscribe((data) => {
+       this.fileuploadservice.uploadDocument(this.registerForm.value.certificates).subscribe((data) => {
           console.log(data, 'uploaded');
   
           // var dat = data.toString()
@@ -124,6 +127,12 @@ export class RegisterComponent implements OnInit {
        })
    
      }
+
+     selectThisImage(myEvent: any) {
+      this.file = myEvent.target.files[0];
+      //console.log("the file :",this.file.name);
+      
+    }
 
 
 }

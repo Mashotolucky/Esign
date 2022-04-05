@@ -10,6 +10,8 @@ export class RegisterService {
   constructor(private http: HttpClient) { }
 
   register(data: any){
+    console.log(data);
+    
     return this.http.post(this.baseUrl,data);
   }
 }
