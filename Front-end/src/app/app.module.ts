@@ -17,6 +17,9 @@ import { InterpreterBookingComponent } from './Components/freelancer-components/
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './Components/freelancer-components/card/card.component';
+import { UserBookingComponent } from './Components/users-components/user-booking/user-booking.component';
+import { BookingComponent } from './Pages/booking/booking.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { CardComponent } from './Components/freelancer-components/card/card.comp
     ProfileComponent,
     InterpreterBookingComponent,
     NavbarComponent,
-    CardComponent
+    CardComponent,
+    UserBookingComponent,
+    BookingComponent,
+   
   ],
   imports: [
     BrowserModule,
