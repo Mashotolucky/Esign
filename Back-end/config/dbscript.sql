@@ -50,7 +50,15 @@ CREATE TABLE public.booking(
 	updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
 	Primary Key(ID)
 );
-
+CREATE TABLE public."resetTokens"
+(
+    id SERIAL NOT NULL,
+    email character varying NOT NULL,
+    token character varying NOT NULL,
+    used boolean DEFAULT false NOT NULL,
+    expiration timestamp without time zone,
+    PRIMARY KEY (id)
+);
 CREATE TABLE public.intepreter_lang(
    intepreterID integer,
    langID integer,
