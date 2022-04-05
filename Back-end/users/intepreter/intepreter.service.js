@@ -3,7 +3,7 @@ const {
   updateIntepreterDb,
   getAllIntepretersDb,
   createIntepreterDb,
-
+ 
   GetAllBookingsDb,
   getBookingDb,
   getIntepreterBookingDb
@@ -17,10 +17,11 @@ const deleteIntepreter = async (id) => {
     }
 };
 
- const createIntepreter = async (user) => {
+const createIntepreter = async (user) => {
     try {
       
      return await createIntepreterDb(user);
+     
     } catch (error) {
       throw error;
     }
@@ -48,6 +49,7 @@ const GetAllBookings = async () => {
     console.log("kil");
     return await GetAllBookingsDb();
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };

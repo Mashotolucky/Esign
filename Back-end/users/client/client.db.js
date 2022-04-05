@@ -74,9 +74,64 @@ const getAllClientDb=async () => {
     }
 }
 
+const getClientById = async (id) => {
+  try {
+    const { rows: clients } = await pool.query(
+      `select id FROM client 
+      WHERE userid = $1`,
+      [id]
+    );
+
+    console.log("db id: ",clients);
+    return clients[0].id;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// clientID integer,
+// 	intepreterID integer,
+// 	date_ date,
+// 	time_ time,
+// 	status boolean,
+
+const createBookingDb = async ({clientID, intepreterID, date_, time_, status}) => {
+  try {
+    console.log("DB booking");
+    const {rows:booking}= await pool.query(
+     `INSERT INTO booking(clientID, intepreterID, date_, time_, status)
+      VALUES($1,$2,$3,$4,$5) 
+      returning id, clientID, intepreterID, date_, time_, status, created_at, updated_at`,
+      [clientID, intepreterID, date_, time_, status]);
+
+   return booking[0];
+
+   } catch (error) {
+    console.log("Error DB booking");
+     console.log(error);
+     throw new Error(error.detail||"failed to book");
+   }
+}
+
+const deleteBookingDb = async (id) => {
+  try {
+    const {rows:booking}= await pool.query(
+      `DELETE FROM booking WHERE id=$1 `,
+      [booking.id]
+    )
+   return {bookings:booking[0]};
+
+   } catch (error) {
+     console.log(error.detail);
+     throw new Error(error||"failed to delete booking");
+   }
+}
 module.exports={
     deleteClientDb,
     updateClientDb,
     getAllClientDb,
-    createClientDb
+    getClientById,
+    createClientDb,
+    deleteBookingDb,
+    createBookingDb
 }

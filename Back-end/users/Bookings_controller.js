@@ -1,12 +1,14 @@
 //const UserService = require('../users/user.service');
 const {GetAllBookings,getBooking,getIntepreterBooking} = require('./intepreter/intepreter.service');
-const {createBooking,deleteBooking} =require('./client/client.service');
+const {createBooking,deleteBooking,getClient} =require('./client/client.service');
 const { roles } = require('../helpers/constants');
+
 
 //get all on system 
 const getAllBookings=async(req,res,next)=>{
     try {
     
+        console.log("booking control");
         const Bookings=await GetAllBookings();
 
         if(!Bookings) return res.status(404).send({msg:"not found"});
@@ -22,9 +24,12 @@ const getAllBookings=async(req,res,next)=>{
 const getBookingsByIntepreterId=async (req,res,next)=>{
     
     try {
-        const id = req.user.id && req.user.role===roles.INTEPRETER ? req.user.id: null;
-        
-        if (id) return res.send(401).send({msg:"you are not authorized to access this route"});
+        // console.log("get book by id");
+        console.log(req.user.id);
+         const id = req.user.id && req.user.role===roles.INTEPRETER ? req.user.id: null;
+
+        console.log(id);
+        if (!id) return res.send(401).send({msg:"you are not authorized to access this route"});
 
         const Bookings=await getIntepreterBooking(id);
 
@@ -33,17 +38,17 @@ const getBookingsByIntepreterId=async (req,res,next)=>{
         return res.status(200).send(Bookings);
 
     } catch (error) {
-        
+        console.log(error);
         next(error);
     }
 }
 //get individual booking by booking id
-const getBookingById=async (req,res,next)=>{
+const getBookingById= async (req,res,next)=>{
     
     try {
         const id = req.params.id;
 
-        const Bookings=await getBooking(id);
+        const Bookings= await getBooking(id);
 
         if(!Bookings) return res.status(404).send({msg:"not found"});
 
@@ -54,18 +59,32 @@ const getBookingById=async (req,res,next)=>{
         next(error);
     }
 }
-const createBooking= async(req,res,next)=>{
+const CreateBooking= async(req,res,next)=>{
     try {
-        const data=req.body;
+        const { intepreterID, date_, time_, status} = req.body;
+       const  userId = req.user.id && req.user.role===roles.CLIENT ? req.user.id: null;
 
-        const newBooking=await createBooking(data);
+       const clientID = await getClient(userId);
+        
+       console.log("client token", req.user);
+
+       const data = {
+        clientID: clientID? clientID: null,
+        intepreterID: intepreterID ? intepreterID : null,
+        date_: date_ ? date_ : null,
+        time_: time_ ? time_ : null,
+        status: status ? status : null
+    }
+
+        const newBooking = await createBooking(data);
 
         if(!newBooking) return res.status(201).send({msg:"not created"});
 
         return res.status(200).send(newBooking);
 
     } catch (error) {
-
+        console.log("control book err");
+        console.log(error);
         next(error);
     }
 }
@@ -86,10 +105,8 @@ const deleteBookingById=async (req,res,next)=>{
     }
 }
 module.exports={
-
-    createBooking,
     getBookingById,
-    createBooking,
+    CreateBooking,
     getAllBookings,
     deleteBookingById,
     getBookingsByIntepreterId

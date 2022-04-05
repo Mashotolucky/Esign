@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/Services/login.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup({})
   
 
-  constructor(private fb:FormBuilder, private router: Router) {}
+  constructor(private fb:FormBuilder, private router: Router, private loginService: LoginService) {}
   ngOnInit(): void{
     this.form = this.fb.group({
       email:  new FormControl('', [Validators.required, Validators.email]),
@@ -37,6 +38,12 @@ export class LoginComponent implements OnInit {
   submit()
   {
     console.log(this.form.value);
+
+    this.loginService.login(this.form.value)
+    .subscribe(res =>{
+      console.log(res);
+      
+    })
   }
 
 

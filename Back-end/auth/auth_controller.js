@@ -3,7 +3,7 @@ const { roles } = require('../helpers/constants');
 const { cloudinary } = require('../cloudinary/cloudinary');
 const uploader = require('../helpers/uploader');
 const fs = require('fs');
-
+const mail=require('../helpers/mailer');
 const uploadFile = require('../helpers/fileUpload');
 
 const login = async (req, res, next) => {
@@ -20,6 +20,7 @@ const login = async (req, res, next) => {
 }
 
 const register = async (req, res, next) => {
+    console.log("req");
     const { name, password, email, lastname, cellno, role, hourly_rate, langID } = req.body;
 
     let cert_url = "";
@@ -30,6 +31,7 @@ const register = async (req, res, next) => {
         // upload file to cloudinary if req.file exists  use external function await this 
         
         cert_url = await uploadFile.fileUpload(cert_url,"certificates");
+        console.log("after filed");
     }
 
     const data = {
@@ -49,8 +51,12 @@ const register = async (req, res, next) => {
         if (!data.role || !data.name || !data.password || !data.email || !data.lastname || !data.cellno)
             return res.status(400).json({ message: `missing/empty field found`, ...data })
         const user = await UserService.createUser(data);
+        
         if (!user) return res.status(500).send("something went wrong");
 
+        if (process.env.NODE_ENV !== "dev") {
+            await mail.signupMail(user.email, user.lastname);
+          }
         return res.status(200).send(user);
 
     } catch (error) {

@@ -2,6 +2,7 @@ const {
   deleteClientDb,
   updateClientDb,
   getAllClientDb,
+  getClientById,
   createClientDb,
   createBookingDb,
   deleteBookingDb
@@ -40,11 +41,20 @@ const getAllClients = async () => {
         throw error;
       }
 };
-//bookings
-const createBooking = async () => {
-  try {
 
-    return await createBookingDb();
+const getClient = async (id) =>{
+  console.log("service id: ",id);
+  try {
+    return await getClientById(id);
+  } catch (error) {
+    throw error;
+  }
+}
+//bookings
+const createBooking = async (data) => {
+  try {
+    console.log("booking data",data);
+    return await createBookingDb(data);
 
   } catch (error) {
     throw error;
@@ -67,7 +77,8 @@ module.exports={
     deleteClient,
     createClient,
     createBooking,
-    deleteBooking
+    deleteBooking,
+    getClient
 }
   
 

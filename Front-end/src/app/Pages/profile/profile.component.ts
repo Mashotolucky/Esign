@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertsService } from 'src/app/Services/alerts.service';
 import { enableRipple } from '@syncfusion/ej2-base';
+import Swal from 'sweetalert2'
 enableRipple(true);
 import { TimePicker } from '@syncfusion/ej2-calendars';
+
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,7 @@ import { TimePicker } from '@syncfusion/ej2-calendars';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private alerts:AlertsService) { }
+  constructor() { }
 
   
 
@@ -22,16 +23,18 @@ export class ProfileComponent implements OnInit {
   }
 
   simpleAlert(){
-    this.alerts.success("hi i am successful");
+    Swal.fire({
+      // position: 'top-end',
+      icon: 'success',
+      title: 'Successfully booked',
+      showConfirmButton: false,
+      timer: 1500,
+       width: '300px'
+    })
+    
   }
 
-  alertWithSuccess(){
-    this.alerts.warning("Hi i am a warning alert")
-  }
 
-  confirmBox(){
-    this.alerts.danger("hi i am a danger alert")
-  }
 
 
 }

@@ -17,15 +17,22 @@ export class AuthService {
   // }
   ) { }
 
-  register(newUser: newUser): Observable<any> {
-    return this.http
-    .post<any>("localhost:8081/register", newUser
-    // newUser
-    // this.httpOptions,
-    )
-    .pipe(take(1));
+  isLoggedIn() {
 
-    console.log(newUser);
+    //get token from local storage
+    const token = localStorage.getItem('auth-token');
+
+    //decode payload of the token
+    const payload = atob(token.split('.')[1]);
+    console.log(token);
+
+    //Convert payload. into an Object
+    const parsedPayload = JSON.parse(payload);
+    console.log(parsedPayload);
+
+    return parsedPayload.exp > Date.now()/1000;
+    
+    
   }
 }
 
