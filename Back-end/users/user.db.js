@@ -42,10 +42,37 @@ const createUserDb=async({ name, passwordhash, email, lastname,role})=>{
       throw new Error(err);
     }
 }
+
+const createResetTokenDb = async ({ email, expireDate, fpSalt }) => {
+  await pool.query(
+    "insert into public.\"resetTokens\" (email, expiration, token) values ($1, $2, $3)",
+    [email, expireDate, fpSalt]
+  );
+
+  return true;
+};
+
+const setTokenStatusDb = async (email) => {
+  await pool.query(
+    "update public.\"resetTokens\" set used = $1 where email = $2",
+    [true, email]
+  );
+
+  return true;
+};
+const deleteResetTokenDb = async (curDate) => {
+  await pool.query("delete from public.\"resetTokens\" where expiration <= $1", [
+    curDate,
+  ]);
+  return true;
+};
 module.exports = {
   getAllUsersDb,
   getUserByIdDb,
   getUserByEmailDb,
   changeUserPasswordDb,
-  createUserDb
+  createUserDb,
+  createResetTokenDb,
+  setTokenStatusDb,
+  deleteResetTokenDb
 };

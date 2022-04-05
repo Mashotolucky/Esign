@@ -17,10 +17,11 @@ const deleteIntepreter = async (id) => {
     }
 };
 
- const createIntepreter = async (user) => {
+const createIntepreter = async (user) => {
     try {
       
      return await createIntepreterDb(user);
+     
     } catch (error) {
       throw error;
     }
