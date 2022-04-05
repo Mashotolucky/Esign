@@ -1,0 +1,31 @@
+.text{
+    width: 137px;
+    height: 58px;
+  
+}
+
+#loginContainer{
+    height: 100%;
+}
+
+#submit{
+    background-color: #29A9AF;
+}
+
+.form-control{
+    background-color: #cecece;
+}
+
+::placeholder{
+    color: solid black;
+}
+
+a {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+  }

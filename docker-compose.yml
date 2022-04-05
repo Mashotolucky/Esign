@@ -3,12 +3,12 @@ services:
     playground-web-frontend:
       build: ./Front-end/
       environment:
-        PORT: 8080
+        PORT: 4313
       ports:
-        - 8080:8080
+        - 4313:4313
     playground-web-backend:
       build: ./Back-end/
       environment:
-        PORT: 8081
+        PORT: 4314
       ports:
-        - 8081:8081
+        - 4314:4314

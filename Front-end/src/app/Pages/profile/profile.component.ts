@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
+=======
+import { AlertsService } from 'src/app/Services/alerts.service';
+>>>>>>> db310917299e8a81a9a6f443cf6ca5c44358d578
 import { enableRipple } from '@syncfusion/ej2-base';
 import Swal from 'sweetalert2'
 enableRipple(true);

@@ -1,11 +1,11 @@
 CREATE TABLE public.users(
 	ID serial NOT NULL, 
-	name_ varchar(100),
-	last_name varchar(100),
+	name varchar(100),
+	lastname varchar(100),
 	email varchar(100) not null unique,
-	password_hash varchar(100) not null,
+	passwordhash varchar(100) not null,
 	image_url varchar(100),
-	role_ character varying(10) NOT NULL,
+	role character varying(10) NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
 	updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     Primary Key(ID)
@@ -114,3 +114,8 @@ ALTER TABLE public.intepreter_lang
 	
 CREATE UNIQUE INDEX users_unique_lower_email_idx
     ON public.users (lower(email));
+
+
+INSERT INTO language('name') VALUES('AMERICAN SIGN LANGUAGE')
+INSERT INTO language('name') VALUES('SOUTH AFRICAN SIGN LANGUAGE')
+INSERT INTO language('name') VALUES('BRITISH SIGN LANGUAGE')

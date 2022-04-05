@@ -6,9 +6,9 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY . .
+COPY ./ .
 
-EXPOSE 8081
+EXPOSE 4314
 
 CMD [ "node", "server.js" ]
 
