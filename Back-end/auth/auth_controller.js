@@ -20,6 +20,7 @@ const login = async (req, res, next) => {
 }
 
 const register = async (req, res, next) => {
+    console.log("req");
     const { name, password, email, lastname, cellno, role, hourly_rate, langID } = req.body;
 
     let cert_url = "";
@@ -30,6 +31,7 @@ const register = async (req, res, next) => {
         // upload file to cloudinary if req.file exists  use external function await this 
         
         cert_url = await uploadFile.fileUpload(cert_url,"certificates");
+        console.log("after filed");
     }
 
     const data = {

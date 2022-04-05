@@ -3,7 +3,7 @@ const {
   updateIntepreterDb,
   getAllIntepretersDb,
   createIntepreterDb,
-
+ 
   GetAllBookingsDb,
   getBookingDb,
   getIntepreterBookingDb
@@ -48,6 +48,7 @@ const GetAllBookings = async () => {
     console.log("kil");
     return await GetAllBookingsDb();
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };

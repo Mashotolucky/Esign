@@ -55,7 +55,7 @@ const {generateToken}=require('../middleware/jwt');
       console.log("found",user);
       if (!user) { throw Error("user not found check email of password");}
       
-      console.log();
+      console.log("user obj",user);
       const result =  await comparePassword(password,user.passwordhash);
 
       if(result){
@@ -167,7 +167,7 @@ const {generateToken}=require('../middleware/jwt');
       }
     };
  
-    
+
 
   }
   

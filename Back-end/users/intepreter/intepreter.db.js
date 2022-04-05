@@ -6,7 +6,7 @@ const createIntepreterDb=async({userID,cert_url,hourly_rate})=>{
       const intepreter= await pool.query(
         `INSERT INTO intepreter(cert_url,hourly_rate,userID)
         VALUES($1,$2,$3) 
-        returning cert_url,hourly_rate,userID `,[cert_url,hourly_rate,userID]);
+        returning cert_url,hourly_rate,userID,ID `,[cert_url,hourly_rate,userID]);
       const myintepreter=intepreter.rows[0];
       
       return {myintepreter}
@@ -67,6 +67,7 @@ const getAllIntepretersDb=async () => {
 //bookings
 const GetAllBookingsDb=async () => {
   try {
+    console.log("booking DB");
     const { rows: bookings } = await pool.query(`select * FROM booking`);
   
     return bookings;
