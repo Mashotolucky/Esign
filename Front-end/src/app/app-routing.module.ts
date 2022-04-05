@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CardComponent } from './Components/freelancer-components/card/card.component';
 import { InterpreterBookingComponent } from './Components/freelancer-components/interpreter-booking/interpreter-booking.component';
+import { UserProfileComponent } from './Components/users-components/user-profile/user-profile.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { LoginComponent } from './Pages/login/login.component';
+import { ProfileComponent } from './Pages/profile/profile.component';
 import { RegisterComponent } from './Pages/register/register.component';
+import{NavbarComponent} from './Components/navbar/navbar.component';
 
 const routes: Routes = [
                         {path: '', component: HomeComponent},
@@ -12,7 +15,10 @@ const routes: Routes = [
                         {path:'register', component: RegisterComponent},
                         {path:'login', component: LoginComponent},
                         {path:'card', component: CardComponent},
-                        {path: 'interpreterbooking', component: InterpreterBookingComponent}
+                        {path: 'interpreterbooking', component: InterpreterBookingComponent},
+                        {path: 'profile', component: ProfileComponent},
+                        {path: 'user', component: UserProfileComponent},
+                        {path:'nav',component:NavbarComponent}
                       ];
 
 @NgModule({
