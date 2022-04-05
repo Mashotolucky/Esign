@@ -6,12 +6,15 @@ const {
     changeUserPasswordDb,
     getUserByIdDb,
     getAllUsersDb,
-    createUserDb
+    createUserDb,
+    createResetTokenDb,
+    setTokenStatusDb
   } = require("./user.db");
 const {createClient,UpdateClient,deleteClient} = require('./client/client.service');
 const {createIntepreter,UpdateIntepreter,deleteIntepreter}= require('./intepreter/intepreter.service');
 const {hashPassword,comparePassword}=require('../helpers/password');
 const {generateToken}=require('../middleware/jwt');
+const mail=require('../helpers/mailer');
 
   class UserService {
 
@@ -55,7 +58,7 @@ const {generateToken}=require('../middleware/jwt');
       console.log("found",user);
       if (!user) { throw Error("user not found check email of password");}
       
-      console.log();
+      console.log("user obj",user);
       const result =  await comparePassword(password,user.passwordhash);
 
       if(result){
@@ -70,7 +73,34 @@ const {generateToken}=require('../middleware/jwt');
       }
 
     }
+    async forgotPassword(email) {
+      //const user = await getUserByEmailDb(email);
+      const user= await this.getUserByEmail(email);
   
+      if (user) {
+        try {
+
+          //inavildate reset token
+          await setTokenStatusDb(email);
+  
+          //Create a random reset token
+          var fpSalt = crypto.randomBytes(64).toString("base64");
+  
+          //token expires after one hour
+          var expireDate = moment().add(1, "h").format();
+  
+          await createResetTokenDb({ email, expireDate, fpSalt });
+  
+          await mail.forgotPasswordMail(fpSalt, email);
+
+        } catch (error) {
+          throw new Error(error.message);
+        }
+      } else {
+        throw new Error("Email not found");
+      }
+    }
+   
     getUserByEmail = async (email) => {
       try {
         const user = await getUserByEmailDb(email);
@@ -132,9 +162,7 @@ const {generateToken}=require('../middleware/jwt');
       } catch (error) {
         throw error;
       }
-    };
-  
-    
+    };  
     deleteUser = async (id) => {
       try {
 
@@ -167,7 +195,7 @@ const {generateToken}=require('../middleware/jwt');
       }
     };
  
-    
+
 
   }
   

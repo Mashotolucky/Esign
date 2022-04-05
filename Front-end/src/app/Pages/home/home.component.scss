@@ -1,10 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Sansita&display=swap');
 
-.btn{
-  background-color: #29A9AF;
-  margin-left: 1rem;
+
+// @media(min-width: 1025px) {
+  .btn{
+    background-color: #29A9AF;
+    margin-left: 1rem;
+  }
   
+// }
+
+
+@media screen and (max-width: 540px) {
+  .btn {
+      width: 150px;
+      background-color: #29A9AF;
+      margin-left: 7rem;
+  }
 }
+
+  // .btn{
+  //   @media (min-width: 450px){
+  //     .btn{
+  //       margin-left: 1rem;
+  //     }
+      
+  //   }
+  //   background-color: #29A9AF;
+  //   margin-left: 1rem;
+  // }
 .navbar{
   background-color: #E3E0E0;
   
