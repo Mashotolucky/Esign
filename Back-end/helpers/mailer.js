@@ -1,8 +1,6 @@
 require("dotenv").config();
 const nodemailer = require("nodemailer");
-const { logger } = require("../utils/logger");
-const { ErrorHandler } = require("../helpers/error");
-const html = require("../helpers/signup");
+const html = require("./welcome");
 
 const transporter = nodemailer.createTransport({
   port: process.env.SMTP_PORT,
