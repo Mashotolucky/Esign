@@ -12,6 +12,12 @@ const getUserByIdDb = async (id) => {
   );
   return user[0];
 };
+const getLanguagesDb = async () => {
+  const {rows : languages} =await pool.query(
+    "select language.* from language",
+  )
+  return languages;
+};
 
 const getUserByEmailDb = async (email) => {
   const {rows : exists} =await pool.query(
@@ -74,5 +80,6 @@ module.exports = {
   createUserDb,
   createResetTokenDb,
   setTokenStatusDb,
-  deleteResetTokenDb
+  deleteResetTokenDb,
+  getLanguagesDb
 };

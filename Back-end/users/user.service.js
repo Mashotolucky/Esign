@@ -8,7 +8,8 @@ const {
     getAllUsersDb,
     createUserDb,
     createResetTokenDb,
-    setTokenStatusDb
+    setTokenStatusDb,
+    getLanguagesDb
   } = require("./user.db");
 const {createClient,UpdateClient,deleteClient} = require('./client/client.service');
 const {createIntepreter,UpdateIntepreter,deleteIntepreter}= require('./intepreter/intepreter.service');
@@ -194,6 +195,15 @@ const mail=require('../helpers/mailer');
         throw error;
       }
     };
+     
+    getAllLanguages = async () => {
+      try {
+        return await getLanguagesDb();
+      } catch (error) {
+        throw error;
+      }
+    };
+    
  
 
 
