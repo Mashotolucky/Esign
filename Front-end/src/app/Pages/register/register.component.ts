@@ -83,6 +83,34 @@ export class RegisterComponent implements OnInit {
     }
      
   }
+
+  ifCLIENT(): Boolean{
+    
+    console.log(this.registerForm.value);
+
+    if(this.registerForm.value.role === "CLIENT"){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+
+  ifINTEPRETER(): Boolean{
+    
+    console.log(this.registerForm.value);
+
+    if(this.registerForm.value.role === "INTEPRETER"){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+
+
   submit(): void{
     // return console.log(this.myForm.value)
     if(this.passwordMatch()) {

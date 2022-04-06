@@ -13,7 +13,7 @@
                 <form [formGroup]="registerForm" (ngSubmit)="submit()" ngNativeValidate class="text-center">
                     <select class="form-select mb-4 form-control" aria-label="Default select example"
                     formControlName="role">
-                        <option selected>User type</option>
+                        <!-- <option selected >User type</option> -->
                         <option value="CLIENT">CLIENT</option>
                         <option value="INTEPRETER">INTEPRETER</option>
                     </select>
@@ -36,6 +36,14 @@
                             formControlName="email"
                             placeholder="Email">
                         </div>
+
+                        <div class="mb-4" *ngIf="ifCLIENT()">
+                            <input class="form-control" type="text"
+                            id="language"
+                            formControlName="language"
+                            placeholder="e.g SOUTH AFRICAN SIGN LANGUAGE">
+                        </div>
+
                         <div class="mb-4">
                             <input class="form-control" type="password"
                             id="password" 
@@ -51,7 +59,7 @@
                              <div class="details text-danger" *ngIf="!fieldsWithData()">{{message}}</div>
                             <span class="details text-danger" *ngIf="!passwordMatch()" >{{passwordMessage}}</span> 
                             </div>
-                    <div class="file mb-4">
+                    <div class="file mb-4" *ngIf="ifINTEPRETER()">
                         <input type="file" class="form-control" name="videos" id="customFile" formControlName="certificates" (change)="selectThisImage($event)"/>
                     </div>
                     <button type="submit" class="btn mt-3 px-5 text-light" id="submit">Sign up</button>
