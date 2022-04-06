@@ -150,12 +150,12 @@ const mail=require('../helpers/mailer');
         }
         if(!user) throw Error(404,"user doest exist");
 
-        if(user.role && user.role == constants.roles.CLIENT){
+        if(user.role && user.role.toUpperCase() == constants.roles.CLIENT){
 
             return await UpdateClient(id);
         }
 
-        if(user.role && user.role == constants.roles.INTEPRETER){
+        if(user.role && user.role.toUpperCase() == constants.roles.INTEPRETER){
 
             return await UpdateIntepreter(id);
 

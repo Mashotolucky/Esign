@@ -20,18 +20,17 @@ const login = async (req, res, next) => {
 }
 
 const register = async (req, res, next) => {
-    console.log("req");
+    //console.log("req",req.file);
     const { name, password, email, lastname, cellno, role, hourly_rate, langID } = req.body;
 
     let cert_url = "";
-
-    if (req.file && role && role == roles.INTEPRETER) {
-    
+  //console.log(role);
+    if (req.file && role && role.toUpperCase() == roles.INTEPRETER) {
+        console.log("req",req.file);
         cert_url = req.file.path ? req.file.path : "";
         // upload file to cloudinary if req.file exists  use external function await this 
-        
         cert_url = await uploadFile.fileUpload(cert_url,"certificates");
-        console.log("after filed");
+        console.log("after filed",cert_url);
     }
 
     const data = {
@@ -41,7 +40,7 @@ const register = async (req, res, next) => {
         lastname: lastname ? String(lastname).trim() : null,
         cellno: cellno ? String(cellno).trim() : null,
         role: role ? String(role).trim() : null,
-        cert_url: cert_url ? cert_url : null,
+        cert_url: cert_url ? cert_url : "",
         langID: langID ? langID : null,
         hourly_rate: cert_url ? String(hourly_rate).trim() : null
     }

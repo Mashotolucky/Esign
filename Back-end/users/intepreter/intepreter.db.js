@@ -97,7 +97,15 @@ const getIntepreterBookingDb=async (id) => {
     throw error; 
   }
 };
-
+const setOnilineDb=async (status,id) => {
+  try {
+    const { rows: booking } = await pool.query(`update intepreter set online_status = $1 WHERE userID = $2`,[status,id]);
+    return booking;
+  } catch (error) {
+    console.log(error);
+    throw error; 
+  }
+};
 module.exports={
   deleteInteprterDb,
   updateIntepreterDb,
