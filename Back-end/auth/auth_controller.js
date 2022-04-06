@@ -48,7 +48,7 @@ const register = async (req, res, next) => {
 
     try {
 
-        if (!data.role || !data.name || !data.password || !data.email || !data.lastname || !data.cellno)
+        if (!data.role || !data.name || !data.password || !data.email || !data.lastname)
             return res.status(400).json({ message: `missing/empty field found`, ...data })
         const user = await UserService.createUser(data);
         
