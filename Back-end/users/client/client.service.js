@@ -5,7 +5,8 @@ const {
   getClientById,
   createClientDb,
   createBookingDb,
-  deleteBookingDb
+  deleteBookingDb,
+  getAllLanguages
   } = require("./client.db");
 
 
@@ -50,6 +51,17 @@ const getClient = async (id) =>{
     throw error;
   }
 }
+
+//languages
+
+const allLanguages = async () =>{
+  console.log('lang ser');
+  try {
+    return await getLanguages();
+  } catch (error) {
+    throw error
+  }
+}
 //bookings
 const createBooking = async (data) => {
   try {
@@ -76,6 +88,7 @@ module.exports={
     UpdateClient,
     deleteClient,
     createClient,
+    allLanguages,
     createBooking,
     deleteBooking,
     getClient

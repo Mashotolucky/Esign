@@ -89,6 +89,17 @@ const getClientById = async (id) => {
   }
 }
 
+const getLanguages = async () =>{
+  console.log('lang DB');
+  try {
+    const {rows: language} = await pool.query(
+      `SELECT * FROM language`
+    )
+  } catch (error) {
+    throw error
+  }
+}
+
 // clientID integer,
 // 	intepreterID integer,
 // 	date_ date,
@@ -133,5 +144,6 @@ module.exports={
     getClientById,
     createClientDb,
     deleteBookingDb,
-    createBookingDb
+    createBookingDb,
+    getLanguages
 }

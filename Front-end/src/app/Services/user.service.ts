@@ -32,5 +32,9 @@ export class UserService {
   delete(id: number) {
       return this.http.delete(`/users/${id}`);
   }
-
+ 
+  getLanguages() {
+    return this.http.get(`http://localhost:4000/api/v1/users/intepreters/getAll`)
+  }
 }
+
