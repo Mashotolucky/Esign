@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Front-end';
+
+  //check if loggedin then set loggedin true
+  
+
 }

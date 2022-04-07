@@ -23,7 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InterpreterBookingComponent } from './Components/freelancer-components/interpreter-booking/interpreter-booking.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 
-import { CardComponent } from './Components/freelancer-components/card/card.component';
+//import { CardComponent } from './Components/freelancer-components/card/card.component';
 import { UserBookingComponent } from './Components/users-components/user-booking/user-booking.component';
 import { MediaComponent } from './Components/media/media.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -47,7 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
     BookingComponent,
     InterpreterBookingComponent,
     NavbarComponent,
-    CardComponent,
+    //CardComponent,
     UserBookingComponent,
     BookingComponent,
    

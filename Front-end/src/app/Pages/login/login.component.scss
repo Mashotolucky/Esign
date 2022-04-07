@@ -30,3 +30,9 @@ a {
     text-decoration: none;
     cursor: pointer;
   }
+
+  @media screen and (max-width:540px){
+    .border-start{
+     border: none !important;
+    }
+  }

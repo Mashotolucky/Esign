@@ -3,9 +3,10 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/Services/auth.service';
 import { FileuploadserviceService } from 'src/app/Services/fileuploadservice.service';
 import { RegisterService } from 'src/app/Services/register.service';
-
+import {Router} from '@angular/router'; 
 // import { UserService } from 'src/app/Services/user.service';
-
+import swal from "sweetalert2";
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb : FormBuilder,
     private fileuploadservice: FileuploadserviceService,
-    private registerService: RegisterService
+    private registerService: RegisterService,
+    private userService:UserService,
+    private router:Router
     ) { }
 
 //     cellno: null
@@ -40,7 +43,14 @@ export class RegisterComponent implements OnInit {
 // name: null
 // password: "1234"
 // role:
+languages:any[]
   ngOnInit(): void {
+
+   this.userService.getLanguages().subscribe(res=>{
+     if(res)
+        this.languages=res;
+   })
+
     this.registerForm = new FormGroup({
       role: new FormControl('',[Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -48,14 +58,13 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl(''),
       confirm_password: new FormControl(''),
-      certificates: new FormControl('')
-
+      certificates: new FormControl(''),
+      langID: new FormControl(''),
+      hourly_rate: new FormControl('')
   });
-  this.message();
   }
   fieldsWithData(): boolean{
     if((this.registerForm.value.firstName && this.registerForm.value.lastName) && (this.registerForm.value.email && this.registerForm.value.password) && (this.registerForm.value.confirm_password) != "" ){
-      // this.messages();
       return true;
     }
     else{
@@ -85,9 +94,6 @@ export class RegisterComponent implements OnInit {
   }
 
   ifCLIENT(): Boolean{
-    
-    console.log(this.registerForm.value);
-
     if(this.registerForm.value.role === "CLIENT"){
       return true;
     }
@@ -95,12 +101,7 @@ export class RegisterComponent implements OnInit {
       return false;
     }
   }
-
-
   ifINTEPRETER(): Boolean{
-    
-    console.log(this.registerForm.value);
-
     if(this.registerForm.value.role === "INTEPRETER"){
       return true;
     }
@@ -112,49 +113,86 @@ export class RegisterComponent implements OnInit {
 
 
   submit(): void{
-    // return console.log(this.myForm.value)
     if(this.passwordMatch()) {
       this.messages();
+      const formData = new FormData()
+      formData.append('certificates', this.file)
       
-      this.registerService.register(this.registerForm.value)
-      .subscribe(res =>{
-        alert("Registered!!")
-        
+      formData.append('email', this.registerForm.value.email);
+      formData.append('name', this.registerForm.value.name);
+      formData.append('lastname', this.registerForm.value.lastname);
+      formData.append('password', this.registerForm.value.password);
+      formData.append('hourly_rate', this.registerForm.value.hourly_rate);
+      formData.append('langID', this.registerForm.value.langID);
+      formData.append('role', this.registerForm.value.role);
+
+     console.log(formData.get("langID"));
+     
+      this.registerService.register(formData)
+      .subscribe({
+       next: res=>{
+
+        if (res == null){
+          this.router.navigate(['/register']);
+          return swal.fire(
+            {
+              icon: 'error',
+              title: "something went wrong",
+              showConfirmButton: false,
+              timer: 1900,
+               width: '300px'
+            }
+          ) 
+        }
+        console.log(res[0]);
+           return this.router.navigate(['/login']);
+       },
+        error: err => {
+
+          swal.fire(
+            {
+               //position: 'top-end',
+              icon: 'error',
+              title: err.error.message,
+              showConfirmButton: false,
+              timer: 1900,
+               width: '300px'
+            }
+          ) 
+      }
       })
-    
-      console.log(this.registerForm.value)
     }  
     
-    }
+  }
 
-    uploadDocument(): void {
+    // uploadDocument(): void {
 
-      this.spinnerState=true
-      this.registerForm.value.certificates = this.file;
-       console.log(this.registerForm.value.certificates)
+    //   this.spinnerState=true
+    //   this.registerForm.value.certificates = this.file;
+    //    console.log(this.registerForm.value.certificates)
    
-       const formData = new FormData()
-       formData.append('certificates', this.file)
-       console.log(formData.get('certificates'));
+    //    const formData = new FormData()
+    //    formData.append('certificates', this.file)
+    //    console.log(formData.get('certificates'));
    
-       this.fileuploadservice.uploadDocument(this.registerForm.value.certificates).subscribe((data) => {
-          console.log(data, 'uploaded');
+    //    this.fileuploadservice.uploadDocument(this.registerForm.value.certificates).subscribe((data) => {
+    //      // console.log(data, 'uploaded');
   
-          // var dat = data.toString()
-          // this.document = document.createElement('document')
-          // this.document.setAttribute('src', dat)
-          console.log('this document')
+    //       // var dat = data.toString()
+    //       // this.document = document.createElement('document')
+    //       // this.document.setAttribute('src', dat)
+    //      // console.log('this document')
           
-          console.log(data)
-          console.log('end of documents')
-          this.spinnerState=false
-         //  if(document.querySelector('.img-wrapper') != null ) {  
-         //   document.querySelector('.img-wrapper')?.appendChild(video)
-         //  }
+    //       //console.log(data)
+    //       ///.log('end of documents')
+    //      // this.spinnerState=false
+    //      //  if(document.querySelector('.img-wrapper') != null ) {  
+    //      //   document.querySelector('.img-wrapper')?.appendChild(video)
+    //      //  }
           
-       })
+    //    })
    
-     }
+    //  }
 
      selectThisImage(myEvent: any) {
       this.file = myEvent.target.files[0];

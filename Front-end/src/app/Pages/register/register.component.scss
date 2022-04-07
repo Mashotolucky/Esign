@@ -35,3 +35,9 @@ a {
         bottom:  #29A9AF;
     }
 }
+
+@media screen and (max-width:540px){
+    .border-start{
+     border: none !important;
+    }
+  }

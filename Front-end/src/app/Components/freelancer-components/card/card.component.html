@@ -25,57 +25,51 @@
   </div>
 </nav>
 
-    <div class="container align-items-sm-stretch">
-        <div class="row row-cols-1 row-cols-lg-4 g-4">
-            <div class="col" *ngFor="let i of [1,2,3,4,5,6,7,8]">
-              <div class="card">
-                
-                <div class="avatar text-center">
-                  <img class= "img-fluid rounded-circle" width="200" height="200" src="https://pixinvent.com/materialize-material-design-admin-template/app-assets/images/user/12.jpg"/>
-                </div>
+<div class="container align-items-sm-stretch">
+  <div class="row row-cols-1 row-cols-lg-4 g-4">
+      <div class="col" *ngFor="let interpreter of interpretors">
+        <div class="card">
           
-                
-                <div class="card-body">
-                  <h1 class="text-center fw-bold">Lindo Mashoto</h1>
-                  <p class="card-text text-center fw-bold">South African Sign Language</p>
-
-                  <div class="text-center pb-2">
-                    <span class="fa fa-star checked" *ngFor="let i of [1,2,3,5]"></span>
-                  </div>
-                  
-                  
-                 <div class="text-center">
-                   <button class="btn text-light"data-toggle="modal" data-target="#myModal" >Procced</button>
-                    <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+          <div class="avatar text-center">
+            <img class= "img-fluid rounded-circle" width="200" height="200" src="https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png"/>
+          </div>
     
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          
+          <div class="card-body">
+            <h1 class="text-center fw-bold">{{interpreter.name}} {{interpreter.lastname}}</h1>
+            <p class="card-text text-center fw-bold">South African Sign Language</p>
+
+            <div class="text-center pb-2">
+              <!-- <span class="fa fa-star checked" *ngFor="let i of [1,2,3,5]"></span> -->
+            </div>
+            
+            
+           <div class="text-center">
+             <button class="btn text-light" routerLink="/profile">view profile</button>
+            </div>
+          
+          </div>
         </div>
       </div>
-      
-    </div>
   </div>
-  
 </div>
-
-                
-                
-                </div>
-              </div>
-            </div>
-        </div>
-    </div>
-
     
+
+
+<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+      <a href="#" class="navbar-brand">
+          <img src="../../../../assets/ADesign.webp"  height="60" alt="">
+      </a>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto">
+                <button class=" btn mt-3 px-5 text-light" id="submit" routerLink='/login'>Login</button>
+                <button class=" btn mt-3 px-5 text-light" id="submit"routerLink='/register' >register</button>
+          </div>
+      </div>
+  </div>
+</nav> -->
 

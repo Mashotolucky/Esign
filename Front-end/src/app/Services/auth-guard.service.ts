@@ -13,10 +13,8 @@ export class AuthGuardService {
     if(!this.auth.isLoggedIn()) {
       console.log("Not logged in");
       this.router.navigate(['/login']);
-
       return false;
     }
-
     return true;
   }
 }

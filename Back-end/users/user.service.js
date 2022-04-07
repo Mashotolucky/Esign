@@ -66,9 +66,9 @@ const mail=require('../helpers/mailer');
 
       //create token
       const token= await generateToken({ userId: user.id, userRole: user.role });
-      const refreshToken = jwt.sign({ userId: user.id, userRole: user.role }, process.env.REFRESH_TOKEN_SECRET)
+      //const refreshToken = jwt.sign({ userId: user.id, userRole: user.role }, process.env.REFRESH_TOKEN_SECRET)
       //store refresh token
-      return {user:user,refreshToken,token};
+      return {user:user,token};
       }else{
         throw new Error("Password do not match");
       }

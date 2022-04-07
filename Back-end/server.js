@@ -152,7 +152,7 @@ app.use((err,req,res,next)=>{
 // error("error:",err);
 log("here")
 res.status(err.status||500).send({
-   message: `${err.message} on ${req.method}:${req.originalUrl}` || "Oops something went wrong",
+   message: `${err.message}` || "Oops something went wrong",
    timestamp: Date.now(),
    origin: req.originalurl
 })

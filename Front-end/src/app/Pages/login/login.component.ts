@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/Services/login.service';
-
+import swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
@@ -21,13 +21,43 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onSubmit(form: FormGroup){
-    console.log(form);
-    console.log('hello')
-    console.log('valid?',form.valid);
-    console.log('password',form.value.password);
-    console.log('email',form.value.email);
+  onSubmit(){
+  console.log(this.form.value);
   
+    this.loginService.login(this.form.value).subscribe(
+      {next: res => {
+      if (res == null){
+        this.router.navigate(['/register']);
+        return //this.toastr.error("somthing went wrong");
+      }
+      var myobject:any={
+        token:"",user:{}
+      };
+      myobject=res;
+      if (myobject){
+        localStorage.setItem("auth-token",myobject.token); 
+        if(myobject.user.role==="CLIENT"){  
+            return this.router.navigate(['/']);
+        }else if (myobject.user.role==="INTEPRETER"){
+            return this.router.navigate(['/interpreterbooking']);
+        }
+      }
+        return 1;
+    },
+error: err => {
+
+    swal.fire(
+      {
+        icon: 'error',
+        title: err.error.message,
+        showConfirmButton: false,
+        timer: 1900,
+         width: '300px'
+      }
+    ) 
+}})
+  
+
   }
 
   get f()
@@ -37,13 +67,7 @@ export class LoginComponent implements OnInit {
 
   submit()
   {
-    console.log(this.form.value);
-
-    this.loginService.login(this.form.value)
-    .subscribe(res =>{
-      console.log(res);
-      
-    })
+    //console.log(this.form.value);
   }
 
 

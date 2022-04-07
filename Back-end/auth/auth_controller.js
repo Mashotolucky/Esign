@@ -8,7 +8,7 @@ const uploadFile = require('../helpers/fileUpload');
 
 const login = async (req, res, next) => {
     try {
-        if (!(req.body && req.body.email && req.body.password)) return res.status(400).json({ message: `missing field found`, ...req.body })
+        if (!(req.body && req.body.email && req.body.password)) return res.status(400).json({ message: `fill in all fields`, ...req.body })
         const loggedin = await UserService.login(req.body);
         
         res.setHeader('Authorization','Bearer'+ loggedin.token);
@@ -27,10 +27,17 @@ const register = async (req, res, next) => {
   //console.log(role);
     if (req.file && role && role.toUpperCase() == roles.INTEPRETER) {
         console.log("req",req.file);
+        if(req.file.size>10485760){
+            return res.status(400).send({msg:"size too large"});
+        }
+        if(!req.file.mimetype === 'application/pdf' ){
+            return res.status(400).send({msg:"wrong file formart expected pdf,doc,jpg,png"});
+        }
         cert_url = req.file.path ? req.file.path : "";
         // upload file to cloudinary if req.file exists  use external function await this 
         cert_url = await uploadFile.fileUpload(cert_url,"certificates");
         console.log("after filed",cert_url);
+
     }
 
     const data = {

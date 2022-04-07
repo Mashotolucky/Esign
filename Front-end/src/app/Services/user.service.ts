@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../Models/User';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 const BaseUrl = environment.backend +'/user';
 
@@ -33,8 +34,8 @@ export class UserService {
       return this.http.delete(`/users/${id}`);
   }
  
-  getLanguages() {
-    return this.http.get(`http://localhost:4000/api/v1/users/intepreters/getAll`)
+  getLanguages():Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:4000/api/v1/users/languages`)
   }
 }
 

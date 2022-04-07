@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private authService:AuthService ) { }
+  public is_loggedIn: boolean;
   ngOnInit(): void {
+
+   this.is_loggedIn=this.authService.isLoggedIn();
+   
+   //alert(this.is_loggedIn);
+
+    //.log(this.is_loggedIn);
+      
   }
 
 }

@@ -43,3 +43,24 @@ $avatar-size: 100px;
      
     }
   }
+  .btn{
+    background-color: #29A9AF;
+    margin-left: 1rem;
+}
+  
+
+@media screen and (max-width: 540px) {
+  .btn {
+      width: 150px;
+      background-color: #29A9AF;
+      margin-left: 7rem;
+  }
+}
+
+nav{
+    background-color: #E3E0E0;
+}
+
+.container{
+    margin-top: 110px; 
+}
