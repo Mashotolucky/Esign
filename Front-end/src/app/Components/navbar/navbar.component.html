@@ -20,17 +20,17 @@
             </div>
 
         </div>
-        <div class="collapse navbar-collapse" id="navbarCollapse" *ngIf="!is_loggedIn">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse" *ngIf="!is_loggedIn">
         
           <div class="login text-light">
-            <button type="submit" class="btn mt-3 px-5 text-light" id="submit">
-              <a routerLink='/login'>Login</a>
+            <button type="submit" class="btn mt-3 px-5 text-light" id="submit" routerLink='/login'>
+               Login
             </button>
           </div>
        
           <div class="sign text-light">
-            <button type="submit" class="btn mt-3 px-5 text-light" id="submit">
-              <a routerLink='/register'>Signup</a>
+            <button type="submit" class="btn mt-3 px-5 text-light" id="submit" routerLink='/register'>
+              Signup
             </button>
             
           </div>
