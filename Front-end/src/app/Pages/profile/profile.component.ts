@@ -57,7 +57,8 @@ export class ProfileComponent implements OnInit {
     }
     console.log(this.data);
 
-    this.bookingService.booking(this.data)
+    let token = localStorage.getItem("auth-token");
+    this.bookingService.booking(this.data,token)
     .subscribe(res =>{
       this.simpleAlert();
     },error =>{
