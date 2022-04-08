@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -10,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   interpretors: any;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, public router: Router) { }
 
   ngOnInit(): void {
     this.getAllIntepreters();
@@ -22,6 +24,11 @@ export class HomeComponent implements OnInit {
       this.interpretors = data;
       console.log(data);
     })
+  }
+
+  setId(id: any): void{
+    this.userService.setInterpretorId(id);
+    this.router.navigate(['/profile'])
   }
 
 }
