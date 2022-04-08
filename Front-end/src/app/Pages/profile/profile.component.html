@@ -25,16 +25,16 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/action_page.php">
-            <input class="date" type="date" id="modaldate" name="modaldate" />
+          <form [formGroup]="bookingForm">
+            <input class="date" type="date" id="modaldate" name="modaldate"  formControlName="date_" />
             <br /><br />
-            <input class="time" type="time" name="time" /><i class="bi bi-clock"></i>
+            <input class="time" type="time" name="time" formControlName="time_" /><i class="bi bi-clock"></i>
           </form>
         </div>
 
         <div class="modal-footer">
         
-          <button (click)="simpleAlert()" type="button" class="btn-1" data-bs-dismiss="modal">
+          <button (click)="creatBooking()" type="button" class="btn-1" data-bs-dismiss="modal">
             Create booking
           </button>
         </div>
