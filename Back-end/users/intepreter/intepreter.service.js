@@ -1,9 +1,10 @@
+const userService = require('../user.service');
 const {
   deleteInteprterDb,
   updateIntepreterDb,
   getAllIntepretersDb,
   createIntepreterDb,
- 
+  setOnilineDb,
   GetAllBookingsDb,
   getBookingDb,
   getIntepreterBookingDb
@@ -43,6 +44,16 @@ const getAllIntepreters = async () => {
       }
 };
 
+const setOniline = async (status,id) =>{
+  try{
+    console.log("online ",status,id)
+    return await setOnilineDb(status,id);
+  }
+  catch (error) {
+    throw  error;
+  }
+}
+
 //bookings
 const GetAllBookings = async () => {
   try {
@@ -76,5 +87,6 @@ module.exports={
   deleteIntepreter,
   GetAllBookings,
   getBooking,
-  getIntepreterBooking
+  getIntepreterBooking,
+  setOniline
 }

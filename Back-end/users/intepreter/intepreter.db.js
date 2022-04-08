@@ -99,8 +99,8 @@ const getIntepreterBookingDb=async (id) => {
 };
 const setOnilineDb=async (status,id) => {
   try {
-    const { rows: booking } = await pool.query(`update intepreter set online_status = $1 WHERE userID = $2`,[status,id]);
-    return booking;
+    const { rows: intepreter } = await pool.query(`update intepreter set online_status = $1 WHERE userID = $2`,[status,id]);
+    return intepreter[0];
   } catch (error) {
     console.log(error);
     throw error; 
@@ -113,5 +113,6 @@ module.exports={
   createIntepreterDb,
   GetAllBookingsDb,
   getBookingDb,
-  getIntepreterBookingDb
+  getIntepreterBookingDb,
+  setOnilineDb
 }

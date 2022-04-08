@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/Services/login.service';
 import swal from "sweetalert2";
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup({})
   
 
-  constructor(private fb:FormBuilder, private router: Router, private loginService: LoginService) {}
+  constructor(private fb:FormBuilder, private router: Router, private loginService: LoginService, private onlineService: UserService) {}
   ngOnInit(): void{
     this.form = this.fb.group({
       email:  new FormControl('', [Validators.required, Validators.email]),
@@ -39,6 +40,8 @@ export class LoginComponent implements OnInit {
         if(myobject.user.role==="CLIENT"){  
             return this.router.navigate(['/']);
         }else if (myobject.user.role==="INTEPRETER"){
+           // set the online_status true 
+           //emit event 
             return this.router.navigate(['/interpreterbooking']);
         }
       }
@@ -81,4 +84,6 @@ error: err => {
   {
     return this.form.get('password');
   }
+   
+
 }

@@ -10,6 +10,7 @@ import { LoginComponent } from './Pages/login/login.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import{NavbarComponent} from './Components/navbar/navbar.component';
+import { AuthGuardService } from './Services/auth-guard.service';
 
 const routes: Routes = [
                         {path: '', component: HomeComponent},
@@ -19,7 +20,7 @@ const routes: Routes = [
                        // {path:'card', component: CardComponent},
                         {path: 'interpreterbooking', component: InterpreterBookingComponent},
                         {path:'user-booking',component:BookingComponent},
-                        {path: 'profile', component: ProfileComponent},
+                        {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
                         {path: 'user', component: UserProfileComponent},
                         {path:'nav',component:NavbarComponent}
                       ];
