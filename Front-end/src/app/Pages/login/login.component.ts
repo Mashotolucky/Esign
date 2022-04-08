@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
         if(myobject.user.role==="CLIENT"){  
             return this.router.navigate(['/']);
         }else if (myobject.user.role==="INTEPRETER"){
+           // set the online_status true 
+           //emit event 
             return this.router.navigate(['/interpreterbooking']);
         }
       }

@@ -22,16 +22,17 @@ export class AuthService {
     //get token from local storage
     const token = localStorage.getItem('auth-token');
 
-    //decode payload of the token
-    const payload = atob(token.split('.')[1]);
-    console.log(token);
+     if (token) {
+      const payload = atob(token.split('.')[1]);
+      // decode payload of token
 
-    //Convert payload. into an Object
-    const parsedPayload = JSON.parse(payload);
-    console.log(parsedPayload);
-
-    return parsedPayload.exp > Date.now()/1000;
-    
+      // convert payload into an Object
+      const parsedPayload = JSON.parse(payload);
+      
+     return parsedPayload.exp > Date.now() / 1000; // check if token is expired
+    }else{
+        return null;
+    }
     
   }
 }
