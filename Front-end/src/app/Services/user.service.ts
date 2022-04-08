@@ -36,6 +36,12 @@ export class UserService {
  
   getLanguages():Observable<any[]> {
     return this.http.get<any[]>(`http://localhost:4000/api/v1/users/languages`)
+
   }
+
+  setOniline(data: any):Observable<any[]> {
+    return this.http.put<any[]>(`http://localhost:4000/api/v1/users/intepreter/online`,data)
+  }
+  
 }
 

@@ -77,16 +77,6 @@ CREATE TABLE public.intepreter_lang(
 
 );
 
--- CREATE TABLE public.refresh_tokens(
---    ID serial NOT NULL, 
---    token_ text,
---    userID integer,
---    valid_ boolean,
---    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
---    updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
---    Primary Key(ID)
--- );
-
 
 ALTER TABLE public.resetTokens
     ADD FOREIGN KEY (userID)
