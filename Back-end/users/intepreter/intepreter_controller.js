@@ -1,5 +1,5 @@
 //const UserService = require('../users/user.service');
-const {  getAllIntepreters, UpdateIntepreter} = require('./intepreter.service');
+const {  getAllIntepreters, UpdateIntepreter, setOniline} = require('./intepreter.service');
 
 const getAll=async(req,res,next)=>{
     try {
@@ -13,6 +13,18 @@ const getAll=async(req,res,next)=>{
     }
 }
 
+const updateStatus = async(req, res, next) => {
+    try {
+        
+        console.log(req);
+        const statusOnline = await setOniline(req.body.status,req.body.id);
+        
+        if(!statusOnline) return res.send(201).send({msg:"offline"});
+        return res.status(200).send(statusOnline );
+    } catch (error) {
+        next(error);
+    }
+}
 // const updateInterpreter= async(req,res,next)=>{
 //     try {
 //         const id = req.params.id;
@@ -26,5 +38,6 @@ const getAll=async(req,res,next)=>{
 
 module.exports={
     getAll,
+    updateStatus
    // updateInterpreter
 }

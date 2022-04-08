@@ -7,6 +7,7 @@ const {getBookingById, CreateBooking, getAllBookings, deleteBookingById,
 const {getlanduages} = require("./client/client_controller");
 
 router.get("/intepreters/getAll", intepreter_controller.getAll);
+router.put ("/intepreter/online",intepreter_controller.updateStatus)
 
 //bookings
 router.get("/booking/intepreter/:id",verifyJWT,getBookingsByIntepreterId);

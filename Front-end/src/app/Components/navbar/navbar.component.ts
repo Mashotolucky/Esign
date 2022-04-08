@@ -12,12 +12,23 @@ export class NavbarComponent implements OnInit {
   public is_loggedIn: boolean;
   ngOnInit(): void {
 
-   this.is_loggedIn=this.authService.isLoggedIn();
+   this.is_loggedIn = this.authService.isLoggedIn();
    
    //alert(this.is_loggedIn);
 
     //.log(this.is_loggedIn);
       
+  }
+
+  clearuser(){
+    //sessionStorage.clear();
+    console.log("hello");
+    
+    localStorage.removeItem("auth-token");
+
+    console.log(localStorage.getItem("auth-token"));
+    
+    window.location.reload();
   }
 
 }
