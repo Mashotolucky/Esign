@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
@@ -7,8 +8,9 @@ import { AuthService } from 'src/app/Services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+ 
 
-  constructor(private authService:AuthService ) { }
+  constructor(private authService:AuthService, private router:Router ) { }
   public is_loggedIn: boolean;
   ngOnInit(): void {
 
@@ -28,7 +30,13 @@ export class NavbarComponent implements OnInit {
 
     console.log(localStorage.getItem("auth-token"));
     
+    // window.location.reload();
+    // this.router.navigate(['/login']); 
+
+    this.router.navigate(['/login'])
+  .then(() => {
     window.location.reload();
+  });
   }
 
 }
