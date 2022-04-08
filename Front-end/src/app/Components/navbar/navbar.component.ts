@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem("auth-token");
 
     console.log(localStorage.getItem("auth-token"));
+    
     window.location.reload();
   }
 
