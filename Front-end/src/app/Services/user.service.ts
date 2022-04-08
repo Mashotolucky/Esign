@@ -12,6 +12,8 @@ const BaseUrl = environment.backend +'/user';
 })
 export class UserService {
 
+  intepreterID: any;
+
   constructor(private http: HttpClient) { }
 
   getAll() {
@@ -20,6 +22,18 @@ export class UserService {
 
   getAllinterpreter() {
     return this.http.get<User[]>(`http://localhost:4000/api/v1/users/intepreters/getAll`);
+  }
+
+  setInterpretorId(id:any): void{
+    this.intepreterID = id;
+  
+    console.log(this.intepreterID);
+    
+  }
+  getInterpreterId() {
+    
+    console.log(this.intepreterID);
+    return this.intepreterID;
   }
 
   register(user: User) {

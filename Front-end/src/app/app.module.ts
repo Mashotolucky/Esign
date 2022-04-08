@@ -27,6 +27,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { UserBookingComponent } from './Components/users-components/user-booking/user-booking.component';
 import { MediaComponent } from './Components/media/media.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuardService } from './Services/auth-guard.service';
 
 
 @NgModule({
@@ -61,7 +62,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
