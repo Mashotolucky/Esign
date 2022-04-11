@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-profile-card',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-card.component.scss']
 })
 export class ProfileCardComponent implements OnInit {
+  
 
-  constructor() { }
+  user: any;
+
+  constructor(private activatedRoute:ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+        console.log("profile", params);
+        this.user = params
+        this.userService.user(params);
+      });
   }
 
 }
