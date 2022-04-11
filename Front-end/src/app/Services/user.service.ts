@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { User } from '../Models/User';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
@@ -53,8 +53,10 @@ export class UserService {
 
   }
 
-  setOniline(data: any):Observable<any[]> {
-    return this.http.put<any[]>(`http://localhost:4000/api/v1/users/intepreter/online`,data)
+  setOniline(data: any, token: any):Observable<any[]> {
+    let headers=new HttpHeaders();
+    headers=headers.set('Authorization',"Bearer "+token);
+    return this.http.put<any[]>(`http://localhost:4000/api/v1/users/intepreter/online`,data,{headers});
   }
   
 }

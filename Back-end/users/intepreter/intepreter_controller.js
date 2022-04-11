@@ -1,5 +1,6 @@
 //const UserService = require('../users/user.service');
 const {  getAllIntepreters, UpdateIntepreter, setOniline} = require('./intepreter.service');
+const { roles } = require('../../helpers/constants');
 
 const getAll=async(req,res,next)=>{
     try {
@@ -15,13 +16,17 @@ const getAll=async(req,res,next)=>{
 
 const updateStatus = async(req, res, next) => {
     try {
+
+        const id = req.user.id && req.user.role===roles.INTEPRETER ? req.user.id: null;
         
+        console.log("statusOnline id:", id);
         console.log(req);
-        const statusOnline = await setOniline(req.body.status,req.body.id);
+        const statusOnline = await setOniline(req.body.status,id);
         
         if(!statusOnline) return res.send(201).send({msg:"offline"});
         return res.status(200).send(statusOnline );
     } catch (error) {
+        throw error;
         next(error);
     }
 }
