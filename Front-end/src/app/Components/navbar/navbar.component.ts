@@ -10,10 +10,11 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class NavbarComponent implements OnInit {
  
-  user: any;
+
 
   constructor(private authService:AuthService, private router:Router, private onlineService: UserService ) { }
   public is_loggedIn: boolean;
+  public user:any;
   ngOnInit(): void {
 
    this.is_loggedIn = this.authService.isLoggedIn();
@@ -21,7 +22,10 @@ export class NavbarComponent implements OnInit {
    //alert(this.is_loggedIn);
 
     //.log(this.is_loggedIn);
-    // this.user = this.userService.getUser();
+
+     this.user=this.authService.getUser()
+     console.log("myuser",this.user)
+      
   }
 
   clearuser(){
@@ -52,6 +56,13 @@ export class NavbarComponent implements OnInit {
   .then(() => {
     window.location.reload();
   });
+
+
+
   }
+
+
+  
+
 
 }
