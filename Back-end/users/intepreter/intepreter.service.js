@@ -10,31 +10,31 @@ const {
   getIntepreterBookingDb
 } = require('./intepreter.db');
 
-const deleteIntepreter = async (id) => {
-    try {
-      return await deleteInteprterDb(id);
-    } catch (error) {
-      throw error;
-    }
-};
+// const deleteIntepreter = async (id) => {
+//     try {
+//       return await deleteInteprterDb(id);
+//     } catch (error) {
+//       throw error;
+//     }
+// };
 
-const createIntepreter = async (user) => {
-    try {
+// const createIntepreter = async (user) => {
+//     try {
       
-     return await createIntepreterDb(user);
+//      return await createIntepreterDb(user);
      
-    } catch (error) {
-      throw error;
-    }
-};
+//     } catch (error) {
+//       throw error;
+//     }
+// };
 
-const UpdateIntepreter=async(id)=>{
-  try {
-    return await updateIntepreterDb(id);
-  } catch (error) {
-    throw error;
-  }
-}
+// const UpdateIntepreter=async(id)=>{
+//   try {
+//     return await updateIntepreterDb(id);
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 const getAllIntepreters = async () => {
       try {
         console.log("kil");
@@ -46,7 +46,7 @@ const getAllIntepreters = async () => {
 
 const setOniline = async (status,id) =>{
   try{
-    console.log("online ",status,id)
+    //console.log("online ",status,id)
     return await setOnilineDb(status,id);
   }
   catch (error) {
@@ -82,9 +82,9 @@ const getIntepreterBooking = async (id) => {
 };
 module.exports={
   getAllIntepreters,
-  UpdateIntepreter,
-  createIntepreter,
-  deleteIntepreter,
+  //UpdateIntepreter,
+ // createIntepreter,
+  //deleteIntepreter,
   GetAllBookings,
   getBooking,
   getIntepreterBooking,

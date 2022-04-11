@@ -13,6 +13,7 @@ import { UserService } from 'src/app/Services/user.service';
 export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup({})
   
+  status: boolean;
 
   constructor(private fb:FormBuilder, private router: Router, private loginService: LoginService, private onlineService: UserService) {}
   ngOnInit(): void{
@@ -40,7 +41,17 @@ export class LoginComponent implements OnInit {
         if(myobject.user.role==="CLIENT"){  
             return this.router.navigate(['/']);
         }else if (myobject.user.role==="INTEPRETER"){
-           // set the online_status true 
+           // set the online_status true
+
+           let data = {status: true};
+
+           console.log(data);
+           const token=localStorage.getItem("auth-token");
+           this.onlineService.setOniline(data,token)
+           .subscribe(res =>{
+             console.log("online",res);
+             
+           })
            //emit event 
             return this.router.navigate(['/interpreterbooking']);
         }
