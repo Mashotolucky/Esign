@@ -99,7 +99,7 @@ const getIntepreterBookingDb=async (id) => {
 };
 const setOnilineDb=async (status,id) => {
   try {
-    const { rows: intepreter } = await pool.query(`update intepreter set online_status = $1 WHERE userID = $2`,[status,id]);
+    const { rows: intepreter } = await pool.query(`update intepreter set online_status = $1 WHERE userID = $2 returning online_status`,[status,id]);
     return intepreter[0];
   } catch (error) {
     console.log(error);

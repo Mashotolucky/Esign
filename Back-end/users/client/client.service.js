@@ -57,7 +57,7 @@ const getClient = async (id) =>{
 const allLanguages = async () =>{
   console.log('lang ser');
   try {
-    return await getLanguages();
+    return await getAllLanguages();
   } catch (error) {
     throw error
   }
