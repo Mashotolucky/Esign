@@ -7,24 +7,19 @@ const verifyJWT = async (req, res, next) => {
 
   if (authHeader) {
     const token = authHeader.split(' ')[1];
-
-    console.log(authHeader);
-
-    console.log("token", token);
+    //console.log(authHeader);
+   // console.log("token", token);
     try {
-     
       const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-
-
-      console.log("decode tok",decodedToken);
+      //console.log("decode tok",decodedToken);
       req.user = {
         id: decodedToken.userId,
         role: decodedToken.userRole,
       };
-      console.log("jwt",req.user);
+      //console.log("jwt",req.user);
       next();
     } catch (err) {
-      console.log("twt error:",err);
+      //console.log("twt error:",err);
       res.status(401).json({
         errorCode: errorCodes.INVALID_TOKEN,
         message: 'Invalid token',

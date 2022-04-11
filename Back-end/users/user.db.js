@@ -48,7 +48,57 @@ const createUserDb=async({ name, passwordhash, email, lastname,role})=>{
       throw new Error(err);
     }
 }
+const createIntepreterDb=async({userID,cert_url,hourly_rate})=>{
+  try {
 
+      const intepreter= await pool.query(
+        `INSERT INTO intepreter(cert_url,hourly_rate,userID)
+        VALUES($1,$2,$3) 
+        returning cert_url,hourly_rate,userID,ID `,[cert_url,hourly_rate,userID]);
+      const myintepreter=intepreter.rows[0];
+      
+      return {myintepreter}
+
+  } catch (error) {
+    throw error;
+  }
+};
+const updateIntepreterDb = async ({name,email,lastname,id,cert_url,hourly_rate,active_status}) => {
+  try {
+   const { rows: user } = await pool.query(
+     `UPDATE users set name = $1, email = $2, lastname = $3 
+       where ID = $5 returning name, email, lastname, ID`,
+     [name, email, lastname, id]
+   );
+   const myuser=user[0];
+
+   const {rows:intepreter} = await pool.query(
+       `UPDATE intepreter set cert_url=$1, hourly_rate=$2, active_status=$3 WHERE userID=$4 `,
+   [cert_url,hourly_rate,active_status, myuser.ID]);
+
+   return {myuser,intepreter:intepreter[0]}
+  } catch (error) {
+    throw error;
+  }
+
+};
+
+const deleteInteprterDb = async (id) => {
+ try {
+       const { rows: user } = await pool.query(
+         "DELETE FROM users where ID = $1 returning *",
+         [id]
+       );
+       const {rows:intepreter} = await pool.query(
+           `DELETE FROM intepreter WHERE userID=$1 `,
+       [user[0].ID]);
+
+     return user[0];
+ } catch (error) {
+   throw error;
+ }
+
+};
 const createResetTokenDb = async ({ email, expireDate, fpSalt }) => {
   await pool.query(
     "insert into public.\"resetTokens\" (email, expiration, token) values ($1, $2, $3)",
@@ -81,5 +131,8 @@ module.exports = {
   createResetTokenDb,
   setTokenStatusDb,
   deleteResetTokenDb,
-  getLanguagesDb
+  getLanguagesDb,
+  createIntepreterDb,
+  updateIntepreterDb,
+  deleteInteprterDb
 };

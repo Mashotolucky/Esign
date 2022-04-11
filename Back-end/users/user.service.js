@@ -9,10 +9,13 @@ const {
     createUserDb,
     createResetTokenDb,
     setTokenStatusDb,
-    getLanguagesDb
+    getLanguagesDb,
+    createIntepreterDb,
+    updateIntepreterDb,
+    deleteInteprterDb
   } = require("./user.db");
 const {createClient,UpdateClient,deleteClient} = require('./client/client.service');
-const {createIntepreter,UpdateIntepreter,deleteIntepreter}= require('./intepreter/intepreter.service');
+//const {createIntepreter,UpdateIntepreter,deleteIntepreter}= require('./intepreter/intepreter.service');
 const {hashPassword,comparePassword}=require('../helpers/password');
 const {generateToken}=require('../middleware/jwt');
 const mail=require('../helpers/mailer');
@@ -41,7 +44,7 @@ const mail=require('../helpers/mailer');
         }else
         if(newuser.role && newuser.role.toUpperCase() == constants.roles.INTEPRETER){
 
-            return await createIntepreter({userID:newuser.id,cert_url:user.cert_url,hourly_rate:user.hourly_rate});
+            return await createIntepreterDb({userID:newuser.id,cert_url:user.cert_url,hourly_rate:user.hourly_rate});
 
         }else{
           throw Error("role is empty or not defined");
@@ -56,10 +59,10 @@ const mail=require('../helpers/mailer');
     login= async ({email,password})=>{
       
       const user= await this.getUserByEmail(email);
-      console.log("found",user);
+     // console.log("found",user);
       if (!user) { throw Error("user not found check email of password");}
       
-      console.log("user obj",user);
+      //console.log("user obj",user);
       const result =  await comparePassword(password,user.passwordhash);
 
       if(result){
@@ -157,7 +160,7 @@ const mail=require('../helpers/mailer');
 
         if(user.role && user.role.toUpperCase() == constants.roles.INTEPRETER){
 
-            return await UpdateIntepreter(id);
+            return await updateIntepreterDb(id);
 
         }
       } catch (error) {
@@ -178,7 +181,7 @@ const mail=require('../helpers/mailer');
 
         if(user.role && user.role == constants.roles.INTEPRETER){
 
-            return await deleteIntepreter(id);
+            return await deleteInteprterDb(id);
 
         }
 
