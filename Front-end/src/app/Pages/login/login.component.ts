@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
            let data = {status: true};
 
            console.log(data);
-           
-           this.onlineService.setOniline(JSON.stringify(data),localStorage.getItem("auth-token"))
+           const token=localStorage.getItem("auth-token");
+           this.onlineService.setOniline(data,token)
            .subscribe(res =>{
              console.log("online",res);
              
