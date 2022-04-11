@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/Services/login.service';
 import swal from "sweetalert2";
 import { UserService } from 'src/app/Services/user.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,9 @@ export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup({})
   
   status: boolean;
+
+  
+  
 
   constructor(private fb:FormBuilder, private router: Router, private loginService: LoginService, private onlineService: UserService) {}
   ngOnInit(): void{
@@ -50,8 +55,9 @@ export class LoginComponent implements OnInit {
            this.onlineService.setOniline(data,token)
            .subscribe(res =>{
              console.log("online",res);
-             
+            
            })
+      
            //emit event 
             return this.router.navigate(['/interpreterbooking']);
         }
