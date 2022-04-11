@@ -40,8 +40,12 @@ export class LoginComponent implements OnInit {
       var myobject:any={
         token:"",user:{}
       };
+       
       myobject=res;
+      console.log(myobject);
+      
       if (myobject){
+        localStorage.setItem("user",JSON.stringify(myobject.user));
         localStorage.setItem("auth-token",myobject.token); 
         if(myobject.user.role==="CLIENT"){  
             return this.router.navigate(['/']);

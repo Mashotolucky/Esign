@@ -33,7 +33,20 @@ export class AuthService {
     }else{
         return null;
     }
+
+
+
+
     
   }
+  getUser(){
+     //get token from local storage
+     const user = JSON.parse(localStorage.getItem('user'));
+    console.log("usert",user);
+    
+     return user?user:false;
+  }
+
+       
 }
 
