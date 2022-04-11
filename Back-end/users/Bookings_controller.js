@@ -28,7 +28,7 @@ const getBookingsByIntepreterId=async (req,res,next)=>{
         console.log(req.user.id);
          const id = req.user.id && req.user.role===roles.INTEPRETER ? req.user.id: null;
 
-        console.log(id);
+        console.log("Inter",id);
         if (!id) return res.send(401).send({msg:"you are not authorized to access this route"});
 
         const Bookings=await getIntepreterBooking(id);
