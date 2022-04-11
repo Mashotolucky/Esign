@@ -10,6 +10,7 @@ import { UserService } from 'src/app/Services/user.service';
 })
 export class NavbarComponent implements OnInit {
  
+  user: any;
 
   constructor(private authService:AuthService, private router:Router, private onlineService: UserService ) { }
   public is_loggedIn: boolean;
@@ -20,7 +21,7 @@ export class NavbarComponent implements OnInit {
    //alert(this.is_loggedIn);
 
     //.log(this.is_loggedIn);
-      
+    // this.user = this.userService.getUser();
   }
 
   clearuser(){
