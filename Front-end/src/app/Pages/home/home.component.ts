@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -8,18 +9,19 @@ import { UserService } from 'src/app/Services/user.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit ,OnDestroy{
 
   interpretors: any;
 
   constructor(private userService: UserService, public router: Router) { }
-
+   intepreterSub:any;
+   
   ngOnInit(): void {
     this.getAllIntepreters();
   }
 
   getAllIntepreters(): void{
-    this.userService.getAllinterpreter()
+   this.intepreterSub= this.userService.getAllinterpreter()
     .subscribe(data =>{
       this.interpretors = data;
       console.log(data);
@@ -29,6 +31,9 @@ export class HomeComponent implements OnInit {
   setId(id: any): void{
     this.userService.setInterpretorId(id);
     this.router.navigate(['/profile'])
+  }
+  ngOnDestroy(): void {
+      this.intepreterSub.unsubscribe();
   }
 
 }
