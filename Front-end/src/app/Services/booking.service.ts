@@ -18,8 +18,7 @@ export class BookingService {
   getAllbooking(token: any){
     let headers=new HttpHeaders();
     headers=headers.set('Authorization',"Bearer "+token);
-    return this.http.get(this.baseUrl+"users/booking/interpreter/",{headers})
+    return this.http.get(this.baseUrl+"users/booking/intepreter/",{headers})
   }
-
 
 }

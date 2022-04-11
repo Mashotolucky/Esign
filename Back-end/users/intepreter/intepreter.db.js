@@ -89,7 +89,14 @@ const getBookingDb=async (id) => {
 
 const getIntepreterBookingDb=async (id) => {
   try {
-    const { rows: booking } = await pool.query(`select * FROM booking WHERE intepreterid = $1`,[id]);
+
+   const {rows:intepreter} =await pool.query("select intepreter.* from intepreter where userid=$1",[id]);
+
+    const { rows: booking } = await pool.query(`select users.name, users.lastname, users.email,
+    booking.date_, booking.time_, booking.status FROM users, booking 
+    WHERE users.id = $1
+    AND intepreter.userid = users.id
+    AND intepreter.id = booking.intepreterid `,[id]);
     
     return booking;
   } catch (error) {
