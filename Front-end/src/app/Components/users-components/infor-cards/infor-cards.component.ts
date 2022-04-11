@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-infor-cards',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InforCardsComponent implements OnInit {
 
-  constructor() { }
+  user: any;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.getClient();
+  }
+
+  getClient(){
+    this.user = this.userService.getUser();
+    console.log("info", this.user);
+    
   }
 
 }

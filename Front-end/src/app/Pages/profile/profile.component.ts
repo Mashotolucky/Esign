@@ -6,6 +6,7 @@ import { TimePicker } from '@syncfusion/ej2-calendars';
 import { UserService } from 'src/app/Services/user.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookingService } from 'src/app/Services/booking.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class ProfileComponent implements OnInit {
   bookingForm!: FormGroup;
   intepreterID: any;
   data: any;
-  constructor(private userService: UserService, private bookingService: BookingService) { }
+  user: any;
+  constructor(private userService: UserService, private bookingService: BookingService,private activatedRoute:ActivatedRoute) { }
 
 
 
@@ -66,7 +68,18 @@ export class ProfileComponent implements OnInit {
       console.log(error);
       
     })
+
+    this.activatedRoute.params.subscribe(params => {
+      console.log(params);
+      this.user = params;
+
+    
+      
+
+    });
     
   }
+
+
 
 }
