@@ -11,6 +11,7 @@ import { UserService } from 'src/app/Services/user.service';
 export class NavbarComponent implements OnInit {
  
 
+
   constructor(private authService:AuthService, private router:Router, private onlineService: UserService ) { }
   public is_loggedIn: boolean;
   public user:any;

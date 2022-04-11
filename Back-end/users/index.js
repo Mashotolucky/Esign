@@ -12,7 +12,7 @@ router.get("/intepreters/getAll", intepreter_controller.getAll);
 router.put("/intepreter/online",verifyJWT,online_status);
 
 //bookings
-router.get("/booking/intepreter/:id",verifyJWT,getBookingsByIntepreterId);
+router.get("/booking/intepreter/",verifyJWT,getBookingsByIntepreterId);
 
 router.get("/booking/getone/:id",verifyJWT,getBookingsByIntepreterId);
 
