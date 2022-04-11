@@ -13,6 +13,7 @@ const BaseUrl = environment.backend +'/user';
 export class UserService {
 
   intepreterID: any;
+  clickedUser: any;
 
   constructor(private http: HttpClient) { }
 
@@ -57,6 +58,19 @@ export class UserService {
     let headers=new HttpHeaders();
     headers=headers.set('Authorization',"Bearer "+token);
     return this.http.put<any[]>(`http://localhost:4000/api/v1/users/intepreter/online`,data,{headers});
+  }
+
+  user(data: any) {
+    this.clickedUser = data;
+    console.log(this.clickedUser);
+    
+    return this.clickedUser;
+  }
+
+  getUser(){
+    console.log(this.clickedUser);
+    
+    return this.clickedUser;
   }
   
 }
