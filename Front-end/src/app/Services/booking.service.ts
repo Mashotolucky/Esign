@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class BookingService {
 
-  baseUrl = '';
+  baseUrl = 'http://localhost:4000/api/v1/';
   constructor(private http: HttpClient) { }
 
   booking(data: any,token:any){

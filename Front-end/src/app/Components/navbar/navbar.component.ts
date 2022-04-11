@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
  
   user: any;
 
-  constructor(private authService:AuthService, private router:Router, private userService: UserService ) { }
+  constructor(private authService:AuthService, private router:Router, private onlineService: UserService ) { }
   public is_loggedIn: boolean;
   ngOnInit(): void {
 
@@ -21,11 +21,24 @@ export class NavbarComponent implements OnInit {
    //alert(this.is_loggedIn);
 
     //.log(this.is_loggedIn);
-    this.user = this.userService.getUser();
+    // this.user = this.userService.getUser();
   }
 
   clearuser(){
     //sessionStorage.clear();
+
+   
+    let data = {status: false};
+
+    console.log(data);
+    const token=localStorage.getItem("auth-token");
+    this.onlineService.setOniline(data,token)
+    .subscribe(res =>{
+      console.log("offline",res);
+      
+    })
+          
+             
     console.log("hello");
     
     localStorage.removeItem("auth-token");

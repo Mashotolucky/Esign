@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
     });
 
     this.intepreterID = this.userService.getInterpreterId();
-    sessionStorage.setItem("intepreterID",this.intepreterID);
+    localStorage.setItem("intepreterID",this.intepreterID);
   }
 
   simpleAlert() {
@@ -51,11 +51,12 @@ export class ProfileComponent implements OnInit {
 
 
   creatBooking(): void {
-    let id = sessionStorage.getItem("intepreterID")
+    let id = localStorage.getItem("intepreterID")
     this.data = {
       intepreterID: id,
       date_: this.bookingForm.value.date_,
-      time_: this.bookingForm.value.time_
+      time_: this.bookingForm.value.time_,
+      status: true
     }
     console.log(this.data);
 
