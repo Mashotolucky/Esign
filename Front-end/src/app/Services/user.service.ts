@@ -4,7 +4,7 @@ import { User } from '../Models/User';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
-const BaseUrl = environment.backend +'/user';
+const BaseUrl = environment.production? environment.backend +'/users' : environment.devbaseUrl+'/users';
 
 
 @Injectable({
@@ -18,11 +18,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-      return this.http.get<User[]>(`/users`);
+      return this.http.get<User[]>(`${BaseUrl}`);
   }
 
   getAllinterpreter() {
-    return this.http.get<User[]>(`http://localhost:4000/api/v1/users/intepreters/getAll`);
+    return this.http.get<User[]>(`${BaseUrl}/intepreters/getAll`);
   }
 
   setInterpretorId(id:any): void{
@@ -37,27 +37,19 @@ export class UserService {
     return this.intepreterID;
   }
 
-  register(user: User) {
-      return this.http.post(`${BaseUrl}/register`, user);
-  }
-
-  signin(user: User) {
-    return this.http.post(`${BaseUrl}/signin`, user);
-}
-
   delete(id: number) {
-      return this.http.delete(`/users/${id}`);
+      return this.http.delete(`${BaseUrl}/${id}`);
   }
  
   getLanguages():Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:4000/api/v1/users/languages`)
+    return this.http.get<any[]>(`${BaseUrl}/languages`)
 
   }
 
   setOniline(data: any, token: any):Observable<any[]> {
     let headers=new HttpHeaders();
     headers=headers.set('Authorization',"Bearer "+token);
-    return this.http.put<any[]>(`http://localhost:4000/api/v1/users/intepreter/online`,data,{headers});
+    return this.http.put<any[]>(`${BaseUrl}/intepreter/online`,data,{headers});
   }
 
   user(data: any) {
@@ -68,9 +60,8 @@ export class UserService {
   }
 
   getUser(){
-    // console.log(this.clickedUser);
-    
-    return this.clickedUser[0];
+    console.log(this.clickedUser);
+    return this.clickedUser;
   }
   
 }
