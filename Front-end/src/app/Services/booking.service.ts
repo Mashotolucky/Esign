@@ -23,5 +23,4 @@ export class BookingService {
     return this.http.get(this.BaseUrl+"/booking/interpreter/",{headers})
   }
 
-
 }

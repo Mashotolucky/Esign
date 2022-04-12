@@ -33,7 +33,9 @@ export class ProfileComponent implements OnInit {
       time_: new FormControl('', [Validators.required])
     });
 
-    this.intepreterID = this.userService.getInterpreterId();
+    this.intepreterID = this.userService.getUser();
+    this.intepreterID = this.intepreterID.id;
+    console.log(this.intepreterID);
     localStorage.setItem("intepreterID",this.intepreterID);
   }
 
@@ -43,7 +45,7 @@ export class ProfileComponent implements OnInit {
       icon: 'success',
       title: 'Successfully booked',
       showConfirmButton: false,
-      timer: 1500,
+      timer: 1000,
       width: '300px'
     })
 
