@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     //.log(this.is_loggedIn);
 
      this.user=this.authService.getUser()
-     console.log("myuser",this.user)
+    //  console.log("myuser",this.user)
       
   }
 
@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
     const token=localStorage.getItem("auth-token");
     this.onlineService.setOniline(data,token)
     .subscribe(res =>{
-      console.log("offline",res);
+      // console.log("offline",res);
       
     })
           

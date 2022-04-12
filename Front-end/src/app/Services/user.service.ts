@@ -68,9 +68,9 @@ export class UserService {
   }
 
   getUser(){
-    console.log(this.clickedUser);
+    // console.log(this.clickedUser);
     
-    return this.clickedUser;
+    return this.clickedUser[0];
   }
   
 }
