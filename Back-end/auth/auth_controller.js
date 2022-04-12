@@ -62,7 +62,7 @@ const register = async (req, res, next) => {
 
         if (process.env.NODE_ENV !== "dev") {
             await mail.signupMail(user.email, user.lastname);
-          }
+        }
         return res.status(200).send(user);
 
     } catch (error) {
