@@ -124,6 +124,36 @@ const createBookingDb = async ({clientID, intepreterID, date_, time_, status}) =
    }
 }
 
+const getBookingDb = async (id) => {
+
+  try {
+    console.log("clientDB",id);
+
+  const {rows: client} = await pool.query(`select id from client where userid = $1`,[id]);
+  const clientID = client;
+  console.log(clientID);
+    const {rows:booking}= await pool.query(
+      `select * FROM booking, client, users  
+       WHERE booking.clientid = $1 
+       AND `,
+      [clientID]
+    )
+    console.log("BOOKINTID",booking.intepreterid);
+    const {rows: intepreter} = await pool.query(`select userid from intepreter where id = $1`,[booking[0].intepreterid]);
+
+    console.log("INTID",intepreter[0].id);
+    const {rows:user} = await pool.query(`select name , lastname from users where id = $1`,[intepreter[0].id]);
+
+    console.log(booking[0],user[0]);
+
+   return {bookings:booking[0],usr:user[0]};
+
+   } catch (error) {
+     console.log(error.detail);
+     throw new Error(error||"failed to get bookings");
+   }
+}
+
 const deleteBookingDb = async (id) => {
   try {
     const {rows:booking}= await pool.query(
@@ -145,5 +175,6 @@ module.exports={
     createClientDb,
     deleteBookingDb,
     createBookingDb,
+    getBookingDb,
     getLanguages
 }

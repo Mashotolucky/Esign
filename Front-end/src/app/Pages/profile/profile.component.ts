@@ -34,8 +34,8 @@ export class ProfileComponent implements OnInit {
     });
 
     this.intepreterID = this.userService.getUser();
-    this.intepreterID = this.intepreterID.id;
-    console.log(this.intepreterID);
+    
+    // console.log(this.intepreterID);
     localStorage.setItem("intepreterID",this.intepreterID);
   }
 
@@ -53,9 +53,15 @@ export class ProfileComponent implements OnInit {
 
 
   creatBooking(): void {
-    let id = localStorage.getItem("intepreterID")
+    this.activatedRoute.params.subscribe(params => {
+      // console.log(params);
+      this.user = params;
+      this.intepreterID = this.user.id;
+      
+    });
+    var id = localStorage.getItem("intepreterID")
     this.data = {
-      intepreterID: id,
+      intepreterID: parseInt(this.intepreterID),
       date_: this.bookingForm.value.date_,
       time_: this.bookingForm.value.time_,
       status: true
@@ -72,12 +78,11 @@ export class ProfileComponent implements OnInit {
     })
 
     this.activatedRoute.params.subscribe(params => {
-      console.log(params);
+      // console.log(params);
       this.user = params;
+      this.intepreterID = this.user.id;
 
-    
-      
-
+      localStorage.setItem("intepreterID",this.intepreterID);
     });
     
   }

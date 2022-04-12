@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit ,OnDestroy{
    this.intepreterSub= this.userService.getAllinterpreter()
     .subscribe(data =>{
       this.interpretors = data;
-      console.log(data);
+      // console.log(data);
     })
   }
 

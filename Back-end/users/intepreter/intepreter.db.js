@@ -90,13 +90,15 @@ const getBookingDb=async (id) => {
 const getIntepreterBookingDb=async (id) => {
   try {
 
-   const {rows:intepreter} =await pool.query("select intepreter.* from intepreter where userid=$1",[id]);
+   const {rows:intepreter} =await pool.query("select id from intepreter where userid=$1",[id]);
+   const intepreterID = intepreter;
 
-    const { rows: booking } = await pool.query(`select users.name, users.lastname, users.email,
-    booking.date_, booking.time_, booking.status FROM users, booking 
-    WHERE users.id = $1
-    AND intepreter.userid = users.id
-    AND intepreter.id = booking.intepreterid `,[id]);
+
+    const { rows: booking } = await pool.query(`select users.name, users.lastname, booking.date_, booking.time_
+    FROM users, client, booking 
+    WHERE users.id = client.userid
+    AND client.userid = booking.clientid
+    AND booking.intepreterid = $1 `,[id]);
     
     return booking;
   } catch (error) {

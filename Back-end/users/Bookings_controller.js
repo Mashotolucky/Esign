@@ -1,6 +1,6 @@
 //const UserService = require('../users/user.service');
 const {GetAllBookings,getBooking,getIntepreterBooking} = require('./intepreter/intepreter.service');
-const {createBooking,deleteBooking,getClient} =require('./client/client.service');
+const {createBooking,deleteBooking,getClient,getAllClientBooking} =require('./client/client.service');
 const { roles } = require('../helpers/constants');
 
 
@@ -104,10 +104,29 @@ const deleteBookingById=async (req,res,next)=>{
         next(error);
     }
 }
+
+const getClientBooking=async (req,res,next)=>{
+    
+    try {
+        const id = req.user.id && req.user.role===roles.CLIENT ? req.user.id: null;
+        console.log("clientID",id);
+
+        const Bookings=await getAllClientBooking(id);
+
+        if(!Bookings) return res.status(404).send({msg:"not found"});
+
+        return res.status(200).send(Bookings);
+
+    } catch (error) {
+        
+        next(error);
+    }
+}
 module.exports={
     getBookingById,
     CreateBooking,
     getAllBookings,
     deleteBookingById,
+    getClientBooking,
     getBookingsByIntepreterId
 }

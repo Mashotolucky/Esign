@@ -16,7 +16,7 @@ export class ProfileCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-        console.log("profile", params);
+        // console.log("profile", params);
         this.user = params
         this.userService.user(params);
       });
