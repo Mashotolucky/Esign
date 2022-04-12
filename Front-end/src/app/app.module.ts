@@ -20,7 +20,7 @@ import { BookingComponent } from './Modals/booking/booking.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import { InterpreterBookingComponent } from './Components/freelancer-components/interpreter-booking/interpreter-booking.component';
+import { InterpreterBookingComponent } from './Pages/interpreter-booking/interpreter-booking.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 
 //import { CardComponent } from './Components/freelancer-components/card/card.component';

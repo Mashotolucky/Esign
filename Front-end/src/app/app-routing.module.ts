@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 //import { HomeComponent } from './Components/freelancer-components/card/card.component';
-import { InterpreterBookingComponent } from './Components/freelancer-components/interpreter-booking/interpreter-booking.component';
+import { InterpreterBookingComponent } from './Pages/interpreter-booking/interpreter-booking.component';
 import { BookingComponent } from './Pages/booking/booking.component';
 import { UserBookingComponent } from './Components/users-components/user-booking/user-booking.component';
 import { UserProfileComponent } from './Components/users-components/user-profile/user-profile.component';

@@ -69,6 +69,10 @@
 
 }
 
+role:active{
+    background-color: yellowgreen;
+}
+
 .head {
     width: 1192px;
     height: 104px;
@@ -106,6 +110,18 @@ line-height: 16px;
         .btn{
             font-size: 16px;
         }
+        .btnColor{
+            background-color: #29A9AF; 
+        width: 100px ; 
+        height: 60px; 
+        text-decoration-color: white; 
+        }
+        .btnColorSecond{
+            background-color: #B7BBC2; 
+        width: 100px ; 
+        height: 60px; 
+        text-decoration-color: white; 
+        }
         
     }
     // .cardz{
@@ -119,3 +135,24 @@ line-height: 16px;
         min-width: 1000px;
     }
   }
+
+  .btnColor {
+    background-color: #29A9AF; width: 334px ; height: 120px; 
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+  }
+
+  .btnColorSecond {
+    background-color: #B7BBC2; width: 334px ; height: 120px; 
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+
+  }
+
+  
