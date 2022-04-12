@@ -1,7 +1,17 @@
 //const UserService = require('../users/user.service');
-const {GetAllBookings,getBooking,getIntepreterBooking} = require('./intepreter/intepreter.service');
-const {createBooking,deleteBooking,getClient,getAllClientBooking} =require('./client/client.service');
+const {getClientDb} = require('../db/client.db');
+const {
+    createBookingDb,
+    GetAllBookingsDb,
+    getIntepreterBookingDb,
+    getBookingDb,
+    getAllClientBookingDb,
+    deleteBookingDb
+} =require('../db/booking.db');
+
 const { roles } = require('../helpers/constants');
+
+const { getIntepreterDb } = require('../db/intepreter.db');
 
 
 //get all on system 
@@ -9,7 +19,7 @@ const getAllBookings=async(req,res,next)=>{
     try {
     
         console.log("booking control");
-        const Bookings=await GetAllBookings();
+        const Bookings=await GetAllBookingsDb();
 
         if(!Bookings) return res.status(404).send({msg:"not found"});
 
@@ -20,18 +30,25 @@ const getAllBookings=async(req,res,next)=>{
         next(error);
     }
 }
-//get intepreter specific bookings
-const getBookingsByIntepreterId=async (req,res,next)=>{
+//get intepreter bookings by intepreter
+const GetIntepreterBooking=async (req,res,next)=>{
     
     try {
-        // console.log("get book by id");
-        console.log(req.user.id);
+        
+         //check that user is authorized and is intepreter
          const id = req.user.id && req.user.role===roles.INTEPRETER ? req.user.id: null;
 
         console.log("Inter",id);
         if (!id) return res.send(401).send({msg:"you are not authorized to access this route"});
 
-        const Bookings=await getIntepreterBooking(id);
+          //get intepreter by user id 
+        const intepreterId = await getIntepreterDb(id); 
+  
+        if(!intepreterId) return res.status(404).send("user not found");
+
+
+
+        const Bookings=await getIntepreterBookingDb(intepreterId);
 
         if(!Bookings) return res.status(404).send({msg:"not found"});
 
@@ -48,7 +65,7 @@ const getBookingById= async (req,res,next)=>{
     try {
         const id = req.params.id;
 
-        const Bookings= await getBooking(id);
+        const Bookings= await getBookingDb(id);
 
         if(!Bookings) return res.status(404).send({msg:"not found"});
 
@@ -59,12 +76,13 @@ const getBookingById= async (req,res,next)=>{
         next(error);
     }
 }
+
 const CreateBooking= async(req,res,next)=>{
     try {
         const { intepreterID, date_, time_, status} = req.body;
        const  userId = req.user.id && req.user.role===roles.CLIENT ? req.user.id: null;
 
-       const clientID = await getClient(userId);
+       const clientID = await getClientDb(userId);
         
        console.log("client token", req.user);
 
@@ -76,7 +94,7 @@ const CreateBooking= async(req,res,next)=>{
         status: status ? status : null
     }
 
-        const newBooking = await createBooking(data);
+        const newBooking = await createBookingDb(data);
 
         if(!newBooking) return res.status(201).send({msg:"not created"});
 
@@ -88,12 +106,13 @@ const CreateBooking= async(req,res,next)=>{
         next(error);
     }
 }
-const deleteBookingById=async (req,res,next)=>{
+
+const DeleteBooking=async (req,res,next)=>{
     
     try {
         const id = req.params.id;
 
-        const Bookings=await deleteBooking(id);
+        const Bookings=await deleteBookingDb(id);
 
         if(!Bookings) return res.status(404).send({msg:"not found"});
 
@@ -104,14 +123,22 @@ const deleteBookingById=async (req,res,next)=>{
         next(error);
     }
 }
-
+//get  booking by client id 
 const getClientBooking=async (req,res,next)=>{
     
     try {
         const id = req.user.id && req.user.role===roles.CLIENT ? req.user.id: null;
-        console.log("clientID",id);
+        console.log("userid",id);
 
-        const Bookings=await getAllClientBooking(id);
+        //get client by user id 
+        if(!id) return res.status(403).send("unauthorized");
+
+        const clientID = await getClientDb(id); 
+
+        if(!clientID) return res.status(404).send("user not found");
+
+        //get booking by client id
+        const Bookings=await getAllClientBookingDb(clientID);
 
         if(!Bookings) return res.status(404).send({msg:"not found"});
 
@@ -126,7 +153,7 @@ module.exports={
     getBookingById,
     CreateBooking,
     getAllBookings,
-    deleteBookingById,
+    DeleteBooking,
     getClientBooking,
-    getBookingsByIntepreterId
+    GetIntepreterBooking
 }

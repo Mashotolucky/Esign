@@ -2,20 +2,23 @@ require('dotenv').config();
 const constants = require("../helpers/constants");
 const jwt = require('jsonwebtoken');
 const {
-    getUserByEmailDb,
-    changeUserPasswordDb,
-    getUserByIdDb,
-    getAllUsersDb,
-    createUserDb,
-    createResetTokenDb,
-    setTokenStatusDb,
-    getLanguagesDb,
-    createIntepreterDb,
-    updateIntepreterDb,
-    deleteInteprterDb
-  } = require("./user.db");
+  getAllUsersDb,
+  getUserByIdDb,
+  getUserByEmailDb,
+  changeUserPasswordDb,
+  createUserDb,
+  createResetTokenDb,
+  setTokenStatusDb,
+  deleteResetTokenDb,
+  getLanguagesDb,
+  createIntepreterDb,
+  updateIntepreterDb,
+  deleteInteprterDb,
+  getuserByIntepreterIdDb,
+  getUserByClientIdDb
+  } = require("../db/user.db");
 const {createClient,UpdateClient,deleteClient} = require('./client/client.service');
-//const {createIntepreter,UpdateIntepreter,deleteIntepreter}= require('./intepreter/intepreter.service');
+
 const {hashPassword,comparePassword}=require('../helpers/password');
 const {generateToken}=require('../middleware/jwt');
 const mail=require('../helpers/mailer');
@@ -24,19 +27,25 @@ const mail=require('../helpers/mailer');
 
     createUser = async (my_user) => {
       try {
+
+        //check if user exists
         const existing_user= await this.getUserByEmail(my_user.email);
 
+        //if exists 
         if (existing_user) { throw Error("email taken");}
-        
+
+        //encrypt/hash password
         const hashedPassword_= await hashPassword(my_user.password);
-        console.log(typeof hashedPassword_);
+       
+
         const user={
           ...my_user,
           passwordhash: hashedPassword_
         };
-       // console.log(user);
-
+        //create user
         const newuser=await createUserDb(user)
+
+        //check user role and create intepreter or client
         if(newuser.role && newuser.role.toUpperCase() == constants.roles.CLIENT){
 
             const usr = await createClient({userID:newuser.id,langID:user.langID});
@@ -58,20 +67,20 @@ const mail=require('../helpers/mailer');
 
     login= async ({email,password})=>{
       
+
+      //find user if exists
       const user= await this.getUserByEmail(email);
-     // console.log("found",user);
+     
+      //if user not found
       if (!user) { throw Error("user not found check email of password");}
       
-      //console.log("user obj",user);
+      //call function to compare hash with plain user input(password)
       const result =  await comparePassword(password,user.passwordhash);
 
       if(result){
-
-      //create token
-      const token= await generateToken({ userId: user.id, userRole: user.role });
-      //const refreshToken = jwt.sign({ userId: user.id, userRole: user.role }, process.env.REFRESH_TOKEN_SECRET)
-      //store refresh token
-      return {user:user,token};
+        //create token
+        const token= await generateToken({ userId: user.id, userRole: user.role });
+        return {user:user,token};
       }else{
         throw new Error("Password do not match");
       }
@@ -108,7 +117,6 @@ const mail=require('../helpers/mailer');
     getUserByEmail = async (email) => {
       try {
         const user = await getUserByEmailDb(email);
-        
         return user;
       } catch (error) {
         throw error;
@@ -184,7 +192,6 @@ const mail=require('../helpers/mailer');
             return await deleteInteprterDb(id);
 
         }
-
         
       } catch (error) {
         throw error;
@@ -206,9 +213,6 @@ const mail=require('../helpers/mailer');
         throw error;
       }
     };
-    
- 
-
 
   }
   

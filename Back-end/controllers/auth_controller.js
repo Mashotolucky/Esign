@@ -1,14 +1,15 @@
 const UserService = require('../users/user.service');
 const { roles } = require('../helpers/constants');
 const { cloudinary } = require('../cloudinary/cloudinary');
-const uploader = require('../helpers/uploader');
+const uploader = require('../middleware/uploader');
 const fs = require('fs');
 const mail=require('../helpers/mailer');
 const uploadFile = require('../helpers/fileUpload');
 
 const login = async (req, res, next) => {
     try {
-        if (!(req.body && req.body.email && req.body.password)) return res.status(400).json({ message: `fill in all fields`, ...req.body })
+        if (!(req.body && req.body.email && req.body.password))
+         return res.status(400).json({ message: `fill in all fields`, ...req.body })
         const loggedin = await UserService.login(req.body);
         
         res.setHeader('Authorization','Bearer'+ loggedin.token);
@@ -20,11 +21,11 @@ const login = async (req, res, next) => {
 }
 
 const register = async (req, res, next) => {
-    //console.log("req",req.file);
+   
     const { name, password, email, lastname, cellno, role, hourly_rate, langID } = req.body;
 
     let cert_url = "";
-  //console.log(role);
+  
     if (req.file && role && role.toUpperCase() == roles.INTEPRETER) {
         console.log("req",req.file);
         if(req.file.size>10485760){

@@ -34,7 +34,6 @@ const updateIntepreterDb = async ({name,email,lastname,id,cert_url,hourly_rate,a
    }
 
 };
-
 const deleteInteprterDb = async (id) => {
   try {
         const { rows: user } = await pool.query(
@@ -64,48 +63,10 @@ const getAllIntepretersDb=async () => {
     throw error; 
   }
 };
-//bookings
-const GetAllBookingsDb=async () => {
-  try {
-    console.log("booking DB");
-    const { rows: bookings } = await pool.query(`select * FROM booking`);
-  
-    return bookings;
-  } catch (error) {
-    console.log(error);
-    throw error; 
-  }
-};
-
-const getBookingDb=async (id) => {
-  try {
-    const { rows: booking } = await pool.query(`select * FROM bookings WHERE ID = $1`,[id]);
-    return booking;
-  } catch (error) {
-    console.log(error);
-    throw error; 
-  }
-};
-
-const getIntepreterBookingDb=async (id) => {
-  try {
-
-   const {rows:intepreter} =await pool.query("select id from intepreter where userid=$1",[id]);
-   const intepreterID = intepreter;
-
-
-    const { rows: booking } = await pool.query(`select users.name, users.lastname, booking.date_, booking.time_
-    FROM users, client, booking 
-    WHERE users.id = client.userid
-    AND client.userid = booking.clientid
-    AND booking.intepreterid = $1 `,[id]);
-    
-    return booking;
-  } catch (error) {
-    console.log(error);
-    throw error; 
-  }
-};
+const getIntepreterDb=async(id)=>{
+  const {rows:intepreter} =await pool.query("select id from intepreter where userid=$1",[id]);
+  return intepreter;
+}
 const setOnilineDb=async (status,id) => {
   try {
     const { rows: intepreter } = await pool.query(`update intepreter set online_status = $1 WHERE userID = $2 returning online_status`,[status,id]);
@@ -120,8 +81,6 @@ module.exports={
   updateIntepreterDb,
   getAllIntepretersDb,
   createIntepreterDb,
-  GetAllBookingsDb,
-  getBookingDb,
-  getIntepreterBookingDb,
+  getIntepreterDb,
   setOnilineDb
 }
