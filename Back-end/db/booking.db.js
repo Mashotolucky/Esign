@@ -1,4 +1,4 @@
-const {pool} = require('../../config/dbconfig');
+const {pool} = require('../config/dbconfig');
 //bookings
 const GetAllBookingsDb=async () => {
     try{

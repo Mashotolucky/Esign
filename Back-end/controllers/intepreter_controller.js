@@ -1,5 +1,5 @@
 const {  getAllIntepretersDb, setOnilineDb} = require('../db/intepreter.db');
-const { roles } = require('../../helpers/constants');
+const { roles } = require('../helpers/constants');
 
 const getAll=async(req,res,next)=>{
     try {

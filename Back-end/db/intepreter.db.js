@@ -1,4 +1,4 @@
-const {pool} = require('../../config/dbconfig');
+const {pool} = require('../config/dbconfig');
 
 const createIntepreterDb=async({userID,cert_url,hourly_rate})=>{
   try {
@@ -9,7 +9,7 @@ const createIntepreterDb=async({userID,cert_url,hourly_rate})=>{
         returning cert_url,hourly_rate,userID,ID `,[cert_url,hourly_rate,userID]);
       const myintepreter=intepreter.rows[0];
       
-      return {myintepreter}
+      return myintepreter
 
   } catch (error) {
     throw error;

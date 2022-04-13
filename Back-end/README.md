@@ -35,3 +35,33 @@ installed modules
   
 
 
+routes
+```javascript
+base='/api/v1';
+
+//auth
+/*
+login body
+   format:json
+   {
+      "email":string,
+      "password":string
+   }
+*/
+login= base+'/auth/login'
+
+/*
+register body
+   format:json
+   {
+      "name":string,
+      "lastname":string,
+      "email":string,
+      "password":string,
+      "langID":number,       //can be null if role is "INTEPRETER"
+      "pymentmethod":string  //can be null
+   }
+*/
+register=base+'/auth/register/'
+
+```

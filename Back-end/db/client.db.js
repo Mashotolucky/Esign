@@ -1,4 +1,4 @@
-const  {pool} =require("../../config/dbconfig");
+const  {pool} =require("../config/dbconfig");
 
 const createClientDb=async({userID,langID} )=>{
     try {
@@ -90,6 +90,7 @@ const getLanguagesdb = async () =>{
     const {rows: language} = await pool.query(
       `SELECT * FROM language`
     )
+    return language;
   } catch (error) {
     throw error
   }

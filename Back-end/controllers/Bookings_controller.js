@@ -81,22 +81,24 @@ const CreateBooking= async(req,res,next)=>{
     try {
         const { intepreterID, date_, time_, status} = req.body;
        const  userId = req.user.id && req.user.role===roles.CLIENT ? req.user.id: null;
+    
+       if(!userId) return res.status(403).send("forbidden");
 
        const clientID = await getClientDb(userId);
         
        console.log("client token", req.user);
 
        const data = {
-        clientID: clientID? clientID: null,
-        intepreterID: intepreterID ? intepreterID : null,
-        date_: date_ ? date_ : null,
-        time_: time_ ? time_ : null,
-        status: status ? status : null
-    }
-
+            clientID: clientID? clientID: null,
+            intepreterID: intepreterID ? intepreterID : null,
+            date_: date_ ? date_ : null,
+            time_: time_ ? time_ : null,
+            status: status ? status : false
+        }
+          if(!clientID || !intepreterID) return res.status(403).send("booking failed missing field");
         const newBooking = await createBookingDb(data);
 
-        if(!newBooking) return res.status(201).send({msg:"not created"});
+        if(!newBooking) return res.status(201).send({msg:"booking not created try again"});
 
         return res.status(200).send(newBooking);
 
@@ -111,7 +113,8 @@ const DeleteBooking=async (req,res,next)=>{
     
     try {
         const id = req.params.id;
-
+        if(!id) return res.status(403).send("id must be supplied");
+        
         const Bookings=await deleteBookingDb(id);
 
         if(!Bookings) return res.status(404).send({msg:"not found"});

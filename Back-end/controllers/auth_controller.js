@@ -1,4 +1,4 @@
-const UserService = require('../users/user.service');
+const UserService = require('../services/user.service');
 const { roles } = require('../helpers/constants');
 const { cloudinary } = require('../cloudinary/cloudinary');
 const uploader = require('../middleware/uploader');
@@ -22,41 +22,52 @@ const login = async (req, res, next) => {
 
 const register = async (req, res, next) => {
    
+    if(!req.body) return next(new Error("all fields required"));
+
     const { name, password, email, lastname, cellno, role, hourly_rate, langID } = req.body;
 
     let cert_url = "";
-  
-    if (req.file && role && role.toUpperCase() == roles.INTEPRETER) {
-        console.log("req",req.file);
-        if(req.file.size>10485760){
-            return res.status(400).send({msg:"size too large"});
-        }
-        if(!req.file.mimetype === 'application/pdf' ){
-            return res.status(400).send({msg:"wrong file formart expected pdf,doc,jpg,png"});
-        }
-        cert_url = req.file.path ? req.file.path : "";
-        // upload file to cloudinary if req.file exists  use external function await this 
-        cert_url = await uploadFile.fileUpload(cert_url,"certificates");
-        console.log("after filed",cert_url);
+    let data={};
 
-    }
-
-    const data = {
-        name: name ? String(name).trim() : null,
-        password: password ? String(password).trim() : null,
-        email: email ? String(email).trim() : null,
-        lastname: lastname ? String(lastname).trim() : null,
-        cellno: cellno ? String(cellno).trim() : null,
-        role: role ? String(role).trim() : null,
-        cert_url: cert_url ? cert_url : "",
-        langID: langID ? langID : null,
-        hourly_rate: cert_url ? String(hourly_rate).trim() : null
-    }
+   
 
     try {
+        if (req.file && String(role).trim() && String(role).trim().toUpperCase() == roles.INTEPRETER) {
+            console.log("req",req.file);
+            if(req.file.size>10485760){
+                return res.status(400).send({msg:"size too large"});
+            }
+            // upload file to cloudinary if req.file exists  use external function await this 
+            cert_url =await uploadFile.fileUpload(req.file.path,"certificates");
+            
+            console.log("after filed",cert_url);
+            if(!cert_url) return next(new Error("file upload failed"));
+    
+            data = {
+                name: name ? String(name).trim() : null,
+                password: password ? String(password).trim() : null,
+                email: email ? String(email).trim() : null,
+                lastname: lastname ? String(lastname).trim() : null,
+                role: role ,
+                cert_url: cert_url ? cert_url : "",
+                hourly_rate: cert_url ? String(hourly_rate).trim() : null
+            }
+    
+        }else if(!req.file && String(role).trim() && role.toUpperCase()==roles.CLIENT){
+                data = {
+                    name: name ? String(name).trim() : null,
+                    password: password ? String(password).trim() : null,
+                    email: email ? String(email).trim() : null,
+                    lastname: lastname ? String(lastname).trim() : null,
+                    role: role ,
+                    langID: langID ? langID : null,
+                }
+        }
+        if(!data) return next(new Error("all fields required"));
 
         if (!data.role || !data.name || !data.password || !data.email || !data.lastname)
             return res.status(400).json({ message: `missing/empty field found`, ...data })
+
         const user = await UserService.createUser(data);
         
         if (!user) return res.status(500).send("something went wrong");

@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const http= require('http');
+const server=http.createServer(app);
 const { cloudinary } = require('./cloudinary/cloudinary');
 
 if(process.env.NODE_ENV=="dev" ){ 
@@ -42,6 +44,30 @@ app.use((err,req,res,next)=>{
     })
 })
 
-app.listen(Port,()=>{
+server.listen(Port,()=>{
   console.log(`server running on localhost Port:${Port}`);
+})
+
+process.on( 'uncaughtException', err => {
+  console.log(`Uncaught Exception: ${err.message}` )
+  
+  server.close(() => {
+    process.exit(1)
+  })
+ // If server hasn't finished in 1000ms, let's shutdown process
+  setTimeout( () => {
+    process.exit(1)
+  }, 1000).unref() // Don't register timeout on event loop
+ 
+})
+process.on( 'unhandledRejection', (reason, promise) => {
+  console.log( 'Unhandled rejection at', promise,`  reason:${reason}` )
+  server.close(() => {
+    process.exit(1)
+  })
+ // If server hasn't finished in 1000ms, let's shutdown process
+  setTimeout( () => {
+    process.exit(1)
+  }, 1000).unref() // Don't register timeout on event loop
+
 })

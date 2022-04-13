@@ -1,5 +1,5 @@
 const {getLanguagesdb} = require('../db/client.db');
-const { roles } = require('../../helpers/constants');
+const { roles } = require('../helpers/constants');
 
 const getlanduages=async (req,res,next)=>{
     console.log('lang contr');
