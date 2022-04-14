@@ -54,7 +54,8 @@ const getAllIntepretersDb=async () => {
   try {
     const { rows: intepreters } = await pool.query(
       `select * FROM users, intepreter
-        WHERE users.id = intepreter.userid`
+        WHERE users.id = intepreter.userid
+        ORDER BY (CASE WHEN intepreter.online_status THEN 1 END) ASC`
     );
     console.log("kill",intepreters);
     return intepreters;

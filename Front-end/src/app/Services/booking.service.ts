@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class BookingService {
-  BaseUrl = environment.production? environment.backend+'/users' : environment.devbaseUrl+'/users';
+  BaseUrl = environment.production? environment.backend+'/bookings' : environment.devbaseUrl+'/users';
   
   //baseUrl = 'http://localhost:4000/api/v1/';
   constructor(private http: HttpClient) { }
@@ -23,4 +23,7 @@ export class BookingService {
     return this.http.get(this.BaseUrl+"/booking/interpreter/",{headers})
   }
 
+  setBookingStatus(data: any) {
+    return this.http.put(this.BaseUrl+"/booking/update/status", data);
+  }
 }
