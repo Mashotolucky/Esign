@@ -7,14 +7,14 @@
 
 <div class="container">
     <div class="row dflex align-items-center justify-content-evenly">
-      <div class="cards col col-3 my-2">
-        <a class="btn" id="bookings" (click)="changeUser_Type('bookings')"  role="button">Bookings</a>
+      <div class="cards col col-3 my-2" [ngClass]="bookings? 'green' : 'grey'" >
+        <a class="btn"  id="bookings" (click)="changeUser_Type('bookings')"  role="button">Bookings</a>
       </div>
-      <div class="cards col col-3 my-2">
-        <a class="btn" id="streams" (click)="changeUser_Type('streams')" role="button">Streams</a>
+      <div class="cards col col-3 my-2" [ngClass]="streams? 'green' : 'grey'" >
+        <a class="btn"  id="streams" (click)="changeUser_Type('streams')" role="button">Streams</a>
       </div>
-      <div class="cards col col-3 my-2">
-        <a class="btn" id="history" (click)="changeUser_Type('history')" role="button">History</a>
+      <div class="cards col col-3 my-2" [ngClass]="history ? 'green':'grey'">
+        <a class="btn"  id="history" (click)="changeUser_Type('history')" role="button">History</a>
       </div>
     </div>
 </div>
@@ -22,7 +22,7 @@
 <br>
 <div class="container mt-3 overflow-scroll w-60">
            <!-- Booking -->
-    <table class="table table-striped" *ngIf="select == 'bookings'">
+    <table class="table table-striped" *ngIf="bookings">
       <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
         <tr>
           <th>Name</th>
@@ -32,13 +32,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Jn</td>
-          <td>Doe</td>
-          <td>john@example.com</td>
+        <tr *ngFor="let booking of boookings">
+          <td>{{booking.name +' '+ booking.lastname}}</td>
+          <td>{{booking.date}}</td>
+          <td>{{booking.time}}</td>
           <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>Mary</td>
           <td>Moe</td>
           <td>mary@example.com</td>
@@ -49,13 +49,13 @@
           <td>Dooley</td>
           <td>july@example.com</td>
           <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
-        </tr>
+        </tr> -->
         
       </tbody>
     </table>
 
     <!-- Streams -->
-    <table class="table table-striped" *ngIf="select == 'streams'">
+    <table class="table table-striped" *ngIf="streams">
         <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
           <tr>
             <th>Name</th>
@@ -65,13 +65,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Momo</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
+          <tr *ngFor="let stream of streamss">
+            <td>{{stream.name +' '+ stream.lastname}}</td>
+            <td>{{stream.date}}</td>
+            <td>{{stream.time}}</td>
             <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td>Mary</td>
             <td>Moe</td>
             <td>mary@example.com</td>
@@ -83,11 +83,11 @@
             <td>july@example.com</td>
             <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
           </tr>
-          
+           -->
         </tbody>
-      </table>
+    </table>
       <!-- History -->
-      <table class="table table-striped" *ngIf="select == 'history'">
+    <table class="table table-striped" *ngIf="history">
         <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
           <tr>
             <th>Name</th>
@@ -97,13 +97,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
+          <tr *ngFor = "let history of historyss">
+            <td>{{history.name +' '+ history.lastname}}</td>
+            <td>{{history.date}}</td>
+            <td>{{history.time}}</td>
             <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td>Mary</td>
             <td>Moe</td>
             <td>mary@example.com</td>
@@ -114,9 +114,9 @@
             <td>Dooley</td>
             <td>july@example.com</td>
             <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
-          </tr>
+          </tr> -->
           
         </tbody>
-      </table>
+    </table>
   </div>
 

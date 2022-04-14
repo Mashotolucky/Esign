@@ -23,4 +23,23 @@ export class BookingService {
     return this.http.get(this.BaseUrl+"/booking/interpreter/",{headers})
   }
 
+  getAllinterpreterbooking(token: any){
+    let headers=new HttpHeaders();
+    headers=headers.set('Authorization',"Bearer "+token);
+    return this.http.get(this.BaseUrl,{headers})
+  }
+
+  getAllinterpreterstreams(token: any){
+    let headers=new HttpHeaders();
+    headers=headers.set('Authorization',"Bearer "+token);
+    return this.http.get(this.BaseUrl,{headers})
+  }
+
+  getAllinterpreterhistory(token: any){
+    let headers=new HttpHeaders();
+    headers=headers.set('Authorization',"Bearer "+token);
+    return this.http.get(this.BaseUrl,{headers})
+  }
+
+
 }

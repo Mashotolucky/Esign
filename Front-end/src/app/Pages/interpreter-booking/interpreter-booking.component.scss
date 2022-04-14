@@ -136,23 +136,21 @@ line-height: 16px;
     }
   }
 
-  .btnColor {
-    background-color: #29A9AF; width: 334px ; height: 120px; 
+  .buttons{
     border-radius: 8px;
     display: flex;
     flex-direction: row;
     justify-content:center;
     align-items: center;
+    width: 334px ; height: 120px; 
+  }
+  .green {
+    background-color: #29A9AF; 
+    
   }
 
-  .btnColorSecond {
-    background-color: #B7BBC2; width: 334px ; height: 120px; 
-    border-radius: 8px;
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    align-items: center;
-
+  .grey {
+    background-color: #B7BBC2;
   }
 
   
