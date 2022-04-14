@@ -41,5 +41,23 @@ export class BookingService {
     return this.http.get(this.BaseUrl,{headers})
   }
 
+  getAllclientbooking(token: any){
+    let headers=new HttpHeaders();
+    headers=headers.set('Authorization',"Bearer "+token);
+    return this.http.get(this.BaseUrl,{headers})
+  }
+
+  getAllclientstreams(token: any){
+    let headers=new HttpHeaders();
+    headers=headers.set('Authorization',"Bearer "+token);
+    return this.http.get(this.BaseUrl,{headers})
+  }
+
+  getAllclienthistory(token: any){
+    let headers=new HttpHeaders();
+    headers=headers.set('Authorization',"Bearer "+token);
+    return this.http.get(this.BaseUrl,{headers})
+  }
+
 
 }

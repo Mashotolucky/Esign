@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 //import { HomeComponent } from './Components/freelancer-components/card/card.component';
 import { InterpreterBookingComponent } from './Pages/interpreter-booking/interpreter-booking.component';
-import { BookingComponent } from './Pages/booking/booking.component';
+
 import { UserBookingComponent } from './Components/users-components/user-booking/user-booking.component';
 import { UserProfileComponent } from './Components/users-components/user-profile/user-profile.component';
 import { HomeComponent } from './Pages/home/home.component';
@@ -11,6 +11,7 @@ import { ProfileComponent } from './Pages/profile/profile.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import{NavbarComponent} from './Components/navbar/navbar.component';
 import { AuthGuardService } from './Services/auth-guard.service';
+import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
 
 const routes: Routes = [
                         {path: '', component: HomeComponent},
@@ -19,7 +20,7 @@ const routes: Routes = [
                         {path:'login', component: LoginComponent},
                        // {path:'card', component: CardComponent},
                         {path: 'interpreterbooking', component: InterpreterBookingComponent},
-                        {path:'user-booking',component:BookingComponent},
+                        {path: 'clientbooking', component: ClientBookingComponent},
                         {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
                         {path: 'user', component: UserProfileComponent},
                         {path:'nav',component:NavbarComponent}
