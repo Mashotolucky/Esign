@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { User } from '../Models/User';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { interval, Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 
 const BaseUrl = environment.production? environment.backend +'/users' : environment.devbaseUrl+'/users';
 
@@ -22,7 +24,9 @@ export class UserService {
   }
 
   getAllinterpreter() {
-    return this.http.get<User[]>(`${BaseUrl}/intepreters/getAll`);
+    //return this.http.get<User[]>(`${BaseUrl}/intepreters/getAll`);
+   return interval(1000).pipe(switchMap(() => this.http.get<User[]>(`${BaseUrl}/intepreters/getAll`)))
+
   }
 
   setInterpretorId(id:any): void{

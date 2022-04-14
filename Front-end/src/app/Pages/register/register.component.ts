@@ -32,17 +32,6 @@ export class RegisterComponent implements OnInit {
     private userService:UserService,
     private router:Router
     ) { }
-
-//     cellno: null
-// cert_url: null
-// email: "khethokhuhlecmadi@gmail.com"
-// hourly_rate: null
-// langID: null
-// lastname: null
-// message: "missing/empty field found"
-// name: null
-// password: "1234"
-// role:
 languages:any[]
   ngOnInit(): void {
 
@@ -70,9 +59,8 @@ languages:any[]
     else{
       return false;
     }
-    
+  
   }
-
   passwordMatch(): boolean {
     if(this.registerForm.value.confirm_password === this.registerForm.value.password){
       return true;
@@ -82,7 +70,6 @@ languages:any[]
       return false;
     }
   }
-
   messages(): void {
     if(this.fieldsWithData()){
       this.message = "";
@@ -90,9 +77,7 @@ languages:any[]
     else{
       this.message = "Fields cannot be empty"
     }
-     
   }
-
   ifCLIENT(): Boolean{
     if(this.registerForm.value.role === "CLIENT"){
       return true;
@@ -109,9 +94,6 @@ languages:any[]
       return false;
     }
   }
-
-
-
   submit(): void{
     if(this.passwordMatch()) {
       this.messages();
@@ -148,7 +130,6 @@ languages:any[]
            return this.router.navigate(['/login']);
        },
         error: err => {
-
           swal.fire(
             {
                //position: 'top-end',
@@ -162,44 +143,9 @@ languages:any[]
       }
       })
     }  
-    
   }
-
-    // uploadDocument(): void {
-
-    //   this.spinnerState=true
-    //   this.registerForm.value.certificates = this.file;
-    //    console.log(this.registerForm.value.certificates)
-   
-    //    const formData = new FormData()
-    //    formData.append('certificates', this.file)
-    //    console.log(formData.get('certificates'));
-   
-    //    this.fileuploadservice.uploadDocument(this.registerForm.value.certificates).subscribe((data) => {
-    //      // console.log(data, 'uploaded');
-  
-    //       // var dat = data.toString()
-    //       // this.document = document.createElement('document')
-    //       // this.document.setAttribute('src', dat)
-    //      // console.log('this document')
-          
-    //       //console.log(data)
-    //       ///.log('end of documents')
-    //      // this.spinnerState=false
-    //      //  if(document.querySelector('.img-wrapper') != null ) {  
-    //      //   document.querySelector('.img-wrapper')?.appendChild(video)
-    //      //  }
-          
-    //    })
-   
-    //  }
-
      selectThisImage(myEvent: any) {
-      this.file = myEvent.target.files[0];
-      //console.log("the file :",this.file.name);
-      
+      this.file = myEvent.target.files[0]; 
     }
-
-
 }
 
