@@ -80,31 +80,22 @@ error: err => {
       }
     ) 
 }})
-  
-
   }
-
   get f()
   {
     return this.form.controls;
   }
-
   submit()
   {
     //console.log(this.form.value);
   }
-
-
   get email() 
   {
     return this.form.get('email');
 
   }
-
   get password() 
   {
     return this.form.get('password');
   }
-   
-
 }

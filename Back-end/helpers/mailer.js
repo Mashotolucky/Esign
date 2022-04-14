@@ -15,20 +15,19 @@ const transporter = nodemailer.createTransport({
 const url =
   process.env.NODE_ENV === "production"
     ? "#"
-    : "http://localhost:4200";
+    : process.env.host+':'+'/';
 
 const signupMail = async (to, name) => {
   try {
     const message = {
       from: "etlhako@gmail.com",
       to,
-      subject: "Welcome to Esign",
+      subject: `Welcome to Esign`,
       html: html(name),
     };
-
     await transporter.sendMail(message);
   } catch (error) {
-    logger.error(error);
+    console.error(error);
   }
 };
 
@@ -49,8 +48,8 @@ const forgotPasswordMail = async (token, email) => {
     const res = await transporter.sendMail(message);
     return res;
   } catch (error) {
-    logger.error(error);
-    throw new ErrorHandler(500, error.message);
+    console.error(error);
+    throw new Error(error.message);
   }
 };
 
@@ -65,8 +64,8 @@ const resetPasswordMail = async (email) => {
 
     await transporter.sendMail(message);
   } catch (error) {
-    logger.error(error);
-    throw new ErrorHandler(500, error.message);
+    console.error(error);
+    throw new Error(error.message);
   }
 };
 

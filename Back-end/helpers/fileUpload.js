@@ -9,15 +9,10 @@ const fs = require('fs');
                 folder: `${dest_folder}`,
                 resource_type: 'raw'
             });
-
             const path=file_path;
-
             fs.unlinkSync(path);
-
             //take cloudinary response and get url set cert_url to cloudinary url
             return uploadResponse.url;
-
-
         } catch (error) {
             console.log(error.message);
            throw error;
