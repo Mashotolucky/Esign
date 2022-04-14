@@ -25,7 +25,8 @@
     "nodemailer": "^6.4.17",
     "nodemon": "^2.0.15",
     "pg": "^8.5.1",
-    "pino": "^7.9.1"
+    "pino": "^7.9.1",
+    "socket.io": "^4.0.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0"
