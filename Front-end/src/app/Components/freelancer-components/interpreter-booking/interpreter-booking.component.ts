@@ -11,6 +11,7 @@ export class InterpreterBookingComponent implements OnInit {
   constructor(private bookingService: BookingService) { }
 
   bookings: any;
+  data: any;
 
   ngOnInit(): void {
     let token = localStorage.getItem("auth-token");
@@ -24,5 +25,13 @@ export class InterpreterBookingComponent implements OnInit {
     console.log(this.bookings);
   }
 
+
+  updateStatus(){
+    this.bookingService.setBookingStatus(this.data)
+    .subscribe(res =>{
+      console.log(res);
+      
+    })
+  }
    
 }

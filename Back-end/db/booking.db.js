@@ -89,8 +89,19 @@ const getBookingDb=async (id) => {
      }
   }
 
-  const setBookingStatusdb=async(data)=>{
-    
+  const setBookingStatusdb = async(data)=>{
+    try {
+      const {rows:booking}= await pool.query(
+        `UPDATE booking SET status = $1 WHERE id = $2
+        RETURNING id, date_, time_, created_at, updated_at`,
+        [data.status, data.id]
+      )
+     return {bookings:booking[0]};
+  
+     } catch (error) {
+       console.log(error.detail);
+       throw new Error(error||"failed to update booking status");
+     }
   }
   module.exports={
     createBookingDb,
@@ -98,5 +109,6 @@ const getBookingDb=async (id) => {
     getIntepreterBookingDb,
     getBookingDb,
     getAllClientBookingDb,
-    deleteBookingDb
+    deleteBookingDb,
+    setBookingStatusdb
   }
