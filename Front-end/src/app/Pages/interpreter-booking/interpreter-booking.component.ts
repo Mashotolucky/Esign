@@ -14,7 +14,7 @@ export class InterpreterBookingComponent implements OnInit {
   history=false;
   
   public boookings=[
-    {"name":"ep", "lastname":"lp", "date":"11 April 2022", "time":"08:10 AM",}
+    {"name":"lindo", "lastname":"acamia", "date":"11 April 2022", "time":"08:10 AM",}
   ];
 
   public streamss=[

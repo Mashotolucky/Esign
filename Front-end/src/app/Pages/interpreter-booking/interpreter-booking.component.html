@@ -17,41 +17,36 @@
 <br>
 <br>
 <div class="container mt-3 overflow-scroll w-60">
-           <!-- Booking -->
-    <table class="table table-striped" *ngIf="bookings">
-      <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
-        <tr>
-          <th>Name</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let booking of boookings">
-          <td>{{booking.name +' '+ booking.lastname}}</td>
-          <td>{{booking.date}}</td>
-          <td>{{booking.time}}</td>
-          <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
-        </tr>
-        <!-- <tr>
-          <td>Mary</td>
-          <td>Moe</td>
-          <td>mary@example.com</td>
-          <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
-        </tr>
-        <tr>
-          <td>July</td>
-          <td>Dooley</td>
-          <td>july@example.com</td>
-          <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
-        </tr> -->
-        
-      </tbody>
-    </table>
 
+
+  <!-- Booking -->
+  <table class="fixed table table-hover" *ngIf="bookings">
+    <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+      <tbody>
+          <tr *ngFor="let booking of boookings">
+              <td>{{booking.name +' '+ booking.lastname}}</td>
+              <td>{{booking.date}}</td>
+              <td>{{booking.time}}</td>
+              <td style="width:20%">
+              <button id="decline"class="btn btn-outline-danger">
+                Decline
+                </button> &nbsp; 
+                <button id="join"class="btn  accept text-light">
+                  Accept
+                </button>
+              </td>
+               </tr>
+      </tbody>
+  </table>
     <!-- Streams -->
-    <table class="table table-striped" *ngIf="streams">
+    <table class="table table-hover" *ngIf="streams">
         <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
           <tr>
             <th>Name</th>
@@ -65,25 +60,12 @@
             <td>{{stream.name +' '+ stream.lastname}}</td>
             <td>{{stream.date}}</td>
             <td>{{stream.time}}</td>
-            <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
+            <td><button id="join"class="btn text-light">join</button></td>
           </tr>
-          <!-- <tr>
-            <td>Mary</td>
-            <td>Moe</td>
-            <td>mary@example.com</td>
-            <td><button class="btn bg-info text-light">join</button></td>
-          </tr>
-          <tr>
-            <td>Kgomotso</td>
-            <td>Dooley</td>
-            <td>july@example.com</td>
-            <td><button class="btn bg-info text-light">join</button></td>
-          </tr>
-           -->
         </tbody>
     </table>
       <!-- History -->
-    <table class="table table-striped" *ngIf="history">
+    <table class="table table-hover" *ngIf="history">
         <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
           <tr>
             <th >Name</th>
@@ -96,7 +78,7 @@
             <td>{{history.name +' '+ history.lastname}}</td>
             <td>{{history.date}}</td>
             <td>{{history.time}}</td>
-            <td><button class="btn btn-outline-danger">decline</button> &nbsp; &nbsp;<button class="btn bg-info text-light">accept</button></td>
+            <!-- <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td> -->
           </tr>
           <!-- <tr>
             <td>Mary</td>

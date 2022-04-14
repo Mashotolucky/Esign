@@ -14,17 +14,17 @@ role:active{
     background-color: yellowgreen;
 }
 
-.head {
-    width: 1192px;
-    height: 104px;
+// .head {
+//     width: 1192px;
+//     height: 104px;
    
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600px;
-font-size: 15px;
-line-height: 16px;
-}
+// font-family: 'Inter';
+// font-style: normal;
+// font-weight: 600px;
+// font-size: 15px;
+// line-height: 16px;
+// }
 
 .cards{
     background-color: #B7BBC2; 
@@ -71,10 +71,10 @@ line-height: 16px;
     //     font-size: 1rem;
     // }
 
-    .table{
-        overflow-x:auto;
-        min-width: 1000px;
-    }
+    // .table{
+    //     overflow-x:auto;
+    //     min-width: 100px;
+    // }
   }
 
   .buttons{
@@ -93,8 +93,23 @@ line-height: 16px;
   .grey {
     background-color: #B7BBC2;
   }
-  .time{
-      transform: translateX(3rem);
-  }
+ #join{
+     background-color: #29A9AF;
+     transform: translateX(-3rem);
+ }
+ #decline{
+     transform: translateX(-5rem);
+ }
 
+ @media (max-width: 480px){
+    #join{
+        background-color: #29A9AF;
+        transform: translateX(0rem);
+        margin-bottom: 1rem;
+    }
+    #decline{
+        transform: translateX(0rem);
+    }
+   
+ }
   
