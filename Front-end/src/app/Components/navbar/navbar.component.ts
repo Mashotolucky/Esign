@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +11,10 @@ import { AuthService } from 'src/app/Services/auth.service';
 export class NavbarComponent implements OnInit {
  
 
-  constructor(private authService:AuthService, private router:Router ) { }
+
+  constructor(private authService:AuthService, private router:Router, private onlineService: UserService ) { }
   public is_loggedIn: boolean;
+  public user:any;
   ngOnInit(): void {
 
    this.is_loggedIn = this.authService.isLoggedIn();
@@ -19,11 +22,27 @@ export class NavbarComponent implements OnInit {
    //alert(this.is_loggedIn);
 
     //.log(this.is_loggedIn);
+
+     this.user=this.authService.getUser()
+     console.log("myuser",this.user)
       
   }
 
   clearuser(){
     //sessionStorage.clear();
+
+   
+    let data = {status: false};
+
+    console.log(data);
+    const token=localStorage.getItem("auth-token");
+    this.onlineService.setOniline(data,token)
+    .subscribe(res =>{
+      console.log("offline",res);
+      
+    })
+          
+             
     console.log("hello");
     
     localStorage.removeItem("auth-token");
@@ -37,6 +56,13 @@ export class NavbarComponent implements OnInit {
   .then(() => {
     window.location.reload();
   });
+
+
+
   }
+
+
+  
+
 
 }
