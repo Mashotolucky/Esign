@@ -28,6 +28,7 @@ import { UserBookingComponent } from './Components/users-components/user-booking
 import { MediaComponent } from './Components/media/media.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from './Services/auth-guard.service';
+import { VideoCallComponent } from './Pages/video-call/video-call.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { AuthGuardService } from './Services/auth-guard.service';
     UserBookingComponent,
     BookingComponent,
    
-    MediaComponent
+    MediaComponent,
+        VideoCallComponent
   ],
   imports: [
     BrowserModule,
