@@ -12,6 +12,7 @@ helpers      ->helper functions misc
 middleware
 routes
 services?
+video        ->for video calls
 
 installed modules
    "@hapi/joi": for validation
@@ -32,7 +33,8 @@ installed modules
     "nodemailer": for email,
     "pg": postgresql connection instance,
     "nodemon": development server hot reload,
-  
+
+    "socket.io" : for video calls
 
 
 routes

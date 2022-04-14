@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const http= require('http');
-const server=http.createServer(app);
+let server = require( 'http' ).Server( app );
+let io = require( 'socket.io' )( server );
+let stream = require( './video/stream' );
 const { cloudinary } = require('./cloudinary/cloudinary');
 
 if(process.env.NODE_ENV=="dev" ){ 
@@ -43,6 +44,8 @@ app.use((err,req,res,next)=>{
     origin: req.originalurl
     })
 })
+
+io.of( '/stream' ).on( 'connection', stream );
 
 server.listen(Port,()=>{
   console.log(`server running on localhost Port:${Port}`);
