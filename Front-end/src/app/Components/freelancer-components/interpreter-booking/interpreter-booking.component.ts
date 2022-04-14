@@ -14,7 +14,12 @@ export class InterpreterBookingComponent implements OnInit {
 
   ngOnInit(): void {
     let token = localStorage.getItem("auth-token");
-    this.bookings = this.bookingService.getAllbooking(token);
+    console.log(token);
+    
+     this.bookingService.getAllbooking(token)
+     .subscribe(res =>{
+       this.bookings = res;
+     })
 
     console.log(this.bookings);
   }

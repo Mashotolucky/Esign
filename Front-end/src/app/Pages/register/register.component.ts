@@ -126,7 +126,7 @@ languages:any[]
             }
           ) 
         }
-        console.log(res[0]);
+        // console.log(res[0]);
            return this.router.navigate(['/login']);
        },
         error: err => {
