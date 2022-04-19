@@ -32,6 +32,8 @@ import { VideoCallComponent } from './Pages/video-call/video-call.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
+import { StatusPipe } from './Components/Pipes/status.pipe';
+import { TimeFormatPipe } from './Components/Pipes/time-format.pipe';
 
 
 const config: SocketIoConfig = {
@@ -60,11 +62,14 @@ const config: SocketIoConfig = {
     NavbarComponent,
     //CardComponent,
     UserBookingComponent,
+    ClientBookingComponent,
  
    
     MediaComponent,
         VideoCallComponent,
-          ClientBookingComponent
+        StatusPipe,
+        TimeFormatPipe
+          
   ],
   imports: [
     BrowserModule,
