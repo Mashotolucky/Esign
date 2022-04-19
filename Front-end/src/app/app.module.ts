@@ -30,6 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { VideoCallComponent } from './Pages/video-call/video-call.component';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
+import { StatusPipe } from './Components/Pipes/status.pipe';
+import { TimeFormatPipe } from './Components/Pipes/time-format.pipe';
 
 
 @NgModule({
@@ -51,11 +53,14 @@ import { ClientBookingComponent } from './Pages/client-booking/client-booking.co
     NavbarComponent,
     //CardComponent,
     UserBookingComponent,
+    ClientBookingComponent,
  
    
     MediaComponent,
         VideoCallComponent,
-          ClientBookingComponent
+        StatusPipe,
+        TimeFormatPipe
+          
   ],
   imports: [
     BrowserModule,
