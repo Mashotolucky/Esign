@@ -8,22 +8,6 @@
 
 }
 
-role:active{
-    background-color: yellowgreen;
-}
-
-.head {
-    width: 1192px;
-    height: 104px;
-   
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600px;
-font-size: 15px;
-line-height: 16px;
-}
-
 .cards{
     background-color: #B7BBC2; 
     width: 334px ; 
@@ -35,9 +19,7 @@ line-height: 16px;
     justify-content:center;
     align-items: center;
 }
-.cardz{
-    background-color: #29A9AF; width: 334px ; height: 120px; 
-}
+
 
 @media (max-width: 480px) {
     .cards {
@@ -48,31 +30,14 @@ line-height: 16px;
 
         .btn{
             font-size: 16px;
-        }
-        .btnColor{
-            background-color: #29A9AF; 
-        width: 100px ; 
-        height: 60px; 
-        text-decoration-color: white; 
-        }
-        .btnColorSecond{
-            background-color: #B7BBC2; 
-        width: 100px ; 
-        height: 60px; 
-        text-decoration-color: white; 
-        }
-        
+        }   
     }
-    // .cardz{
-    //     background-color: #29A9AF; width: 100px ; height: 60px; 
-    //     text-decoration-color: white;
-    //     font-size: 1rem;
-    // }
+   
 
-    .table{
-        overflow-x:auto;
-        min-width: 1000px;
-    }
+    // .table{
+    //     overflow-x:auto;
+    //     min-width: 1000px;
+    // }
   }
 
   .buttons{
@@ -91,8 +56,16 @@ line-height: 16px;
   .grey {
     background-color: #B7BBC2;
   }
-  .time{
-      transform: translateX(3rem);
+  #join {
+    background-color: #29a9af;
+    transform: translateX(0rem);
   }
 
+  @media (max-width: 480px) {
+    #join {
+      background-color: #29a9af;
+      transform: translateX(0rem);
+      margin-bottom: 1rem;
+    }
   
+  }

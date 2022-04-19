@@ -20,8 +20,8 @@
 
 
   <!-- Booking -->
-  <table class="fixed table table-hover" *ngIf="bookings">
-    <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
+  <table class="table table-striped" *ngIf="bookings">
+    <thead class="head" style=" overflow-y: scroll;">
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Date</th>
@@ -38,7 +38,7 @@
               <button id="decline"class="btn btn-outline-danger">
                 Decline
                 </button> &nbsp; 
-                <button id="join"class="btn  accept text-light">
+                <button id="accept"class="btn  accept text-light">
                   Accept
                 </button>
               </td>
@@ -46,8 +46,8 @@
       </tbody>
   </table>
     <!-- Streams -->
-    <table class="table table-hover" *ngIf="streams">
-        <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
+    <table class="table table-striped" *ngIf="streams">
+        <thead class="head" style=" overflow-y: scroll;">
           <tr>
             <th>Name</th>
             <th>Date</th>
@@ -65,8 +65,8 @@
         </tbody>
     </table>
       <!-- History -->
-    <table class="table table-hover" *ngIf="history">
-        <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
+    <table class="table table-striped" *ngIf="history">
+        <thead class="head" style=" overflow-y: scroll;">
           <tr>
             <th >Name</th>
             <th>Date</th>

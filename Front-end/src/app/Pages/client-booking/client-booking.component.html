@@ -18,8 +18,8 @@
 <br>
 <div class="container mt-3 overflow-scroll w-60">
            <!-- Booking -->
-    <table class="table table-striped" *ngIf="bookings">
-      <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
+       <table class="table table-striped" *ngIf="bookings">
+      <thead class="head" style=" overflow-y: scroll;">
         <tr>
           <th>Name</th>
           <th>Date</th>
@@ -32,7 +32,8 @@
           <td>{{booking.name +' '+ booking.lastname}}</td>
           <td>{{booking.date}}</td>
           <td>{{booking.time}}</td>
-          <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
+          <td id="pending">pending</td>
+         
         </tr>
         <!-- <tr>
           <td>Mary</td>
@@ -52,7 +53,7 @@
 
     <!-- Streams -->
     <table class="table table-striped" *ngIf="streams">
-        <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
+        <thead class="head" style="  overflow-y: scroll;">
           <tr>
             <th>Name</th>
             <th>Date</th>
@@ -65,7 +66,7 @@
             <td>{{stream.name +' '+ stream.lastname}}</td>
             <td>{{stream.date}}</td>
             <td>{{stream.time}}</td>
-            <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
+            <td><button id="join"class="btn text-light">join</button></td>
           </tr>
           <!-- <tr>
             <td>Mary</td>
@@ -83,8 +84,8 @@
         </tbody>
     </table>
       <!-- History -->
-    <table class="table table-striped" *ngIf="history">
-        <thead class="head" style="background-color: #F4F7FC;  overflow-y: scroll;">
+      <table class="table table-striped" *ngIf="history">
+        <thead class="head" style=" overflow-y: scroll;">
           <tr>
             <th >Name</th>
             <th>Date</th>
@@ -96,7 +97,7 @@
             <td>{{history.name +' '+ history.lastname}}</td>
             <td>{{history.date}}</td>
             <td>{{history.time}}</td>
-            <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
+            <!-- <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td> -->
           </tr>
           <!-- <tr>
             <td>Mary</td>
