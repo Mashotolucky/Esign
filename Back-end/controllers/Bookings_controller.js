@@ -6,7 +6,8 @@ const {
     getIntepreterBookingDb,
     getBookingDb,
     getAllClientBookingDb,
-    deleteBookingDb
+    deleteBookingDb,
+    setBookingStatusdb
 } =require('../db/booking.db');
 
 const { roles } = require('../helpers/constants');
@@ -152,11 +153,29 @@ const getClientBooking=async (req,res,next)=>{
         next(error);
     }
 }
+
+const setBookingStatus=async (req,res,next)=>{
+    
+    try {
+        const data = req.body;
+        console.log(data);
+        if(!data.id) return res.status(403).send("not found");
+        
+        const Bookings=await setBookingStatusdb(data);
+
+        return res.status(200).send(Bookings);
+
+    } catch (error) {
+        
+        next(error);
+    }
+}
 module.exports={
     getBookingById,
     CreateBooking,
     getAllBookings,
     DeleteBooking,
     getClientBooking,
+    setBookingStatus,
     GetIntepreterBooking
 }

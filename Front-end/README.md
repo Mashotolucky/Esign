@@ -25,3 +25,15 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## modules installed
+    "bootstrap": "^5.1.3", -> ui
+    "daisyui": "^2.6.4",
+    "jquery": "^3.6.0",
+    "ngx-socket-io": "^4.1.0",
+    "popper.js": "^1.16.1",
+    "rxjs": "~6.6.0",
+    "sweetalert2": "^11.4.8",
+    "timepicker": "^1.13.18",
+    "tslib": "^2.1.0",
+    "zone.js": "~0.11.4"
