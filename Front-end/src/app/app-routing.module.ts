@@ -13,6 +13,7 @@ import{NavbarComponent} from './Components/navbar/navbar.component';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { VideoCallComponent } from './Pages/video-call/video-call.component';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
+import { EditProfileComponent } from './Pages/edit-profile/edit-profile.component';
 
 const routes: Routes = [
                         {path: '', component: HomeComponent},
@@ -25,7 +26,8 @@ const routes: Routes = [
                         {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
                         {path: 'user', component: UserProfileComponent},
                         {path:'nav',component:NavbarComponent},
-                        {path: 'stream', component: VideoCallComponent}
+                        {path: 'stream', component: VideoCallComponent},
+                        {path: 'editprofile', component:EditProfileComponent}
                       ];
 
 @NgModule({
