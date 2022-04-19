@@ -1,4 +1,4 @@
-*structure
+## structure
 
 
 main app runs from server.js 
@@ -14,7 +14,7 @@ routes
 services?
 video        ->for video calls
 
-installed modules
+## installed modules
    "@hapi/joi": for validation
     "bcrypt": " for password encryption/hashing ,
 
@@ -35,9 +35,28 @@ installed modules
     "nodemon": development server hot reload,
 
     "socket.io" : for video calls
-
-
-routes
+```json
+{
+   "@hapi/joi": "^15.0.3",
+    "bcrypt": "^5.0.0",
+    "cloudinary": "^1.29.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.3",
+    "file-system": "^1.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.2",
+    "multer": "^1.4.4",
+    "nodemailer": "^6.4.17",
+    "nodemon": "^2.0.15",
+    "pg": "^8.5.1",
+    "pino": "^7.9.1",
+    "socket.io": "^4.0.0"
+}
+```
+## routes
 ```javascript
 base='/api/v1';
 
