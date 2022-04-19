@@ -30,10 +30,10 @@
       </tr>
     </thead>
       <tbody>
-          <tr *ngFor="let booking of boookings">
+          <tr *ngFor="let booking of IntepreterBoookings">
               <td>{{booking.name +' '+ booking.lastname}}</td>
-              <td>{{booking.date}}</td>
-              <td>{{booking.time}}</td>
+              <td>{{booking.date_ | date: 'fullDate'}}</td>
+              <td>{{booking.time_}}</td>
               <td style="width:20%">
               <button id="decline"class="btn btn-outline-danger">
                 Decline

@@ -13,9 +13,7 @@ export class ClientBookingComponent implements OnInit {
   streams=false;
   history=false;
   
-  public boookings=[
-    {"name":"ep", "lastname":"lp", "date":"11 April 2022", "time":"08:10 AM",}
-  ];
+  clientBookings: any;
 
   public streamss=[
     {"name":"lahlie", "lastname":"momo", "date":"14 April 2022", "time":"09:10 AM",}
@@ -57,6 +55,9 @@ export class ClientBookingComponent implements OnInit {
       //call bookings service
       this.bookingsService.getAllclientbooking(token).subscribe({
         next:(results)=>{
+          this.clientBookings = results;
+          this.clientBookings = this.clientBookings.bookings
+         console.log(this.clientBookings);
          
         },
         error:(error)=>{
