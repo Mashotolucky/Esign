@@ -16,11 +16,11 @@ import { LogsComponent } from './Components/users-components/logs/logs.component
 import { ProfileComponent } from './Pages/profile/profile.component';
 import { ProfileCardComponent } from './Components/users-components/profile-card/profile-card.component';
 import { InforCardsComponent } from './Components/users-components/infor-cards/infor-cards.component';
-import { BookingComponent } from './Modals/booking/booking.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-import { InterpreterBookingComponent } from './Components/freelancer-components/interpreter-booking/interpreter-booking.component';
+import { InterpreterBookingComponent } from './Pages/interpreter-booking/interpreter-booking.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 
 //import { CardComponent } from './Components/freelancer-components/card/card.component';
@@ -29,6 +29,7 @@ import { MediaComponent } from './Components/media/media.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { VideoCallComponent } from './Pages/video-call/video-call.component';
+import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
 
 
 @NgModule({
@@ -46,15 +47,15 @@ import { VideoCallComponent } from './Pages/video-call/video-call.component';
     ProfileComponent,
     ProfileCardComponent,
     InforCardsComponent,
-    BookingComponent,
     InterpreterBookingComponent,
     NavbarComponent,
     //CardComponent,
     UserBookingComponent,
-    BookingComponent,
+ 
    
     MediaComponent,
-        VideoCallComponent
+        VideoCallComponent,
+          ClientBookingComponent
   ],
   imports: [
     BrowserModule,
