@@ -29,6 +29,18 @@ app.get('/api/v1/test',(req,res)=>{
 //handle all app routes
 app.use("/api/v1/",esign_routes);
 
+io.on('connection', socket => {
+
+  console.log('new connection'); 
+  
+socket.on('disconnect', () => console.log('disconnected')); 
+
+})
+
+io.of( '/stream' ).on( 'connection', stream );
+
+io.attach(server); 
+
 //404 resource not found
 app.use((req,res)=>{
   const error=new Error(`Resource not found`);
@@ -45,7 +57,6 @@ app.use((err,req,res,next)=>{
     })
 })
 
-io.of( '/stream' ).on( 'connection', stream );
 
 server.listen(Port,()=>{
   console.log(`server running on localhost Port:${Port}`);

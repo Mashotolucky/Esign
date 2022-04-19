@@ -8,7 +8,8 @@ const verifyJWT = async (req, res, next) => {
   if (authHeader) {
     const token = authHeader.split(' ')[1];
     try {
-      const decodedToken = jwt.verify(token, process.env.SECRET_KEY);  
+      const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+      
       req.user = {
         id: decodedToken.userId,
         role: decodedToken.userRole,
