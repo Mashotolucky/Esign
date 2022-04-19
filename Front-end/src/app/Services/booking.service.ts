@@ -23,7 +23,6 @@ export class BookingService {
     return this.http.get(this.BaseUrl+"/booking/interpreter/",{headers})
   }
 
-<<<<<<< HEAD
   getAllinterpreterbooking(token: any){
     let headers=new HttpHeaders();
     headers=headers.set('Authorization',"Bearer "+token);
@@ -43,9 +42,7 @@ export class BookingService {
   }
 
 
-=======
   setBookingStatus(data: any) {
     return this.http.put(this.BaseUrl+"/booking/update/status", data);
   }
->>>>>>> 36bf7f74ebcb16c7c0a1ba7057c9863e249877a9
 }
