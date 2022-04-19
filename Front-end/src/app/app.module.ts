@@ -29,8 +29,17 @@ import { MediaComponent } from './Components/media/media.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { VideoCallComponent } from './Pages/video-call/video-call.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
 
+
+const config: SocketIoConfig = {
+	url: environment.socketUrl, // socket server url;
+	options: {
+		transports: ['websocket']
+	}
+}
 
 @NgModule({
   declarations: [
@@ -63,6 +72,7 @@ import { ClientBookingComponent } from './Pages/client-booking/client-booking.co
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    SocketIoModule.forRoot(config),
     HttpClientModule
   ],
   providers: [AuthGuardService],

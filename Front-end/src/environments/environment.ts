@@ -12,7 +12,8 @@ export const environment = {
   production: false,
   baseUrl:`${BaseUrl}`,
   backend:`${Backend}`,
-  devbaseUrl
+  devbaseUrl,
+  socketUrl:"http://localhost:4000/stream"
 }
 
 /*

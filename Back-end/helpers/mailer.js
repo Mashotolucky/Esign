@@ -20,12 +20,13 @@ const url =
 const signupMail = async (to, name) => {
   try {
     const message = {
-      from: "etlhako@gmail.com",
+      from: `${process.env.SMTP_FROM}`,
       to,
       subject: `Welcome to Esign`,
       html: html(name),
     };
     await transporter.sendMail(message);
+    
   } catch (error) {
     console.error(error);
   }
