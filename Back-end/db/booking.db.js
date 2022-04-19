@@ -37,6 +37,21 @@ const getBookingDb=async (id) => {
     }
   };
 
+  const getClientBookingDb=async (id) => {
+    try {
+      console.log("clientIDdb: ",id);
+      const { rows: booking } = await pool.query(`
+      select * FROM booking,client,users  
+         WHERE booking.clientid = $1 
+         AND booking.intepreterid = intepreter.id
+         AND users.id = client.userId`,[id]);
+      return booking;
+    } catch (error) {
+      console.log("CLIENTerr",error);
+      throw error; 
+    }
+  };
+
 
   const createBookingDb = async ({clientID, intepreterID, date_, time_, status}) => {
     try {
@@ -67,7 +82,7 @@ const getBookingDb=async (id) => {
          AND users.id = intepreter.userId`,
         [id]
       )
-     return {bookings:booking[0]};
+     return {bookings:booking};
   
      } catch (error) {
        console.log(error.detail);
@@ -109,6 +124,7 @@ const getBookingDb=async (id) => {
     getIntepreterBookingDb,
     getBookingDb,
     getAllClientBookingDb,
+    getClientBookingDb,
     deleteBookingDb,
     setBookingStatusdb
   }

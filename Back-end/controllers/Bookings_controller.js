@@ -6,6 +6,7 @@ const {
     getIntepreterBookingDb,
     getBookingDb,
     getAllClientBookingDb,
+    getClientBookingDb,
     deleteBookingDb,
     setBookingStatusdb
 } =require('../db/booking.db');
@@ -60,6 +61,36 @@ const GetIntepreterBooking=async (req,res,next)=>{
         next(error);
     }
 }
+
+//get clients bookings by client
+const GetClientBooking=async (req,res,next)=>{
+    
+    try {
+        
+         //check that user is authorized and is client
+         const id = req.user.id && req.user.role===roles.CLIENT ? req.user.id: null;
+
+        console.log("Client",id);
+        if (!id) return res.send(401).send({msg:"you are not authorized to access this route"});
+
+          //get client by user id 
+        const clientId = await getClientDb(id); 
+  
+        if(!clientId) return res.status(404).send("user not found");
+
+
+
+        const Bookings=await getClientBookingDb(clientId);
+
+        if(!Bookings) return res.status(404).send({msg:"not found"});
+
+        return res.status(200).send(Bookings);
+
+    } catch (error) {
+        console.log("ClientbokingConErr:",error);
+        next(error);
+    }
+}
 //get individual booking by booking id
 const getBookingById= async (req,res,next)=>{
     
@@ -94,7 +125,7 @@ const CreateBooking= async(req,res,next)=>{
             intepreterID: intepreterID ? intepreterID : null,
             date_: date_ ? date_ : null,
             time_: time_ ? time_ : null,
-            status: status ? status : false
+            status: status ? status : null
         }
           if(!clientID || !intepreterID) return res.status(403).send("booking failed missing field");
         const newBooking = await createBookingDb(data);

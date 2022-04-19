@@ -13,9 +13,7 @@ export class InterpreterBookingComponent implements OnInit {
   streams=false;
   history=false;
   
-  public boookings=[
-    {"name":"lindo", "lastname":"acamia", "date":"11 April 2022", "time":"08:10 AM",}
-  ];
+  IntepreterBoookings : any;
 
   public streamss=[
     {"name":"lahlie", "lastname":"momo", "date":"14 April 2022", "time":"09:10 AM",}
@@ -57,7 +55,8 @@ export class InterpreterBookingComponent implements OnInit {
       //call bookings service
       this.bookingsService.getAllinterpreterbooking(token).subscribe({
         next:(results)=>{
-         
+          this.IntepreterBoookings = results;
+          console.log(this.IntepreterBoookings );
         },
         error:(error)=>{
          // this.bookings=false;

@@ -26,7 +26,7 @@ export class BookingService {
   getAllinterpreterbooking(token: any){
     let headers=new HttpHeaders();
     headers=headers.set('Authorization',"Bearer "+token);
-    return this.http.get(this.BaseUrl,{headers})
+    return this.http.get(this.BaseUrl+"/booking/intepreter/",{headers})
   }
 
   getAllinterpreterstreams(token: any){
@@ -44,7 +44,7 @@ export class BookingService {
   getAllclientbooking(token: any){
     let headers=new HttpHeaders();
     headers=headers.set('Authorization',"Bearer "+token);
-    return this.http.get(this.BaseUrl,{headers})
+    return this.http.get(this.BaseUrl+"/booking/client/",{headers})
   }
 
   getAllclientstreams(token: any){

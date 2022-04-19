@@ -39,7 +39,7 @@
       <tbody>
         <tr *ngFor="let booking of bookings">
           <td>{{booking.name}} {{booking.lastname}}</td>
-          <td>{{booking.date_}}</td>
+          <td>{{booking.date_ | date:fullDate}}</td>
           <td>{{booking.time_}}</td>
           <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
         </tr>
