@@ -61,8 +61,12 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  btnClick() {
+    this.router.navigate(['/editprofile']).then(()=>{
+      window.location.reload();
+    })
+  };
 
-  
 
 
 }

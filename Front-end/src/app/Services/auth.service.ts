@@ -10,6 +10,7 @@ import { map, take } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+  [x: string]: any;
 
   constructor(private http: HttpClient
   //   , private httpOptions: {headers: HttpHeaders} = {

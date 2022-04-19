@@ -46,14 +46,26 @@ $avatar-size: 100px;
   .btn{
     background-color: #29A9AF;
     margin-left: 1rem;
+    width: 100px;
+    color: white;
 }
   
-
+#edit{
+  background-color: #1ebe46;
+  margin-left: 1rem;
+  width: 100px;
+}
 @media screen and (max-width: 540px) {
   .btn {
       width: 150px;
       background-color: #29A9AF;
       margin-left: 7rem;
+      
+  }
+  #edit{
+    width: 150px;
+    background-color:#1ebe46;
+    margin-left: 7rem;
   }
 }
 
