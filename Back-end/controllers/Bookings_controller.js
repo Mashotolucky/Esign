@@ -125,7 +125,7 @@ const CreateBooking= async(req,res,next)=>{
             intepreterID: intepreterID ? intepreterID : null,
             date_: date_ ? date_ : null,
             time_: time_ ? time_ : null,
-            status: status ? status : false
+            status: status ? status : null
         }
           if(!clientID || !intepreterID) return res.status(403).send("booking failed missing field");
         const newBooking = await createBookingDb(data);
