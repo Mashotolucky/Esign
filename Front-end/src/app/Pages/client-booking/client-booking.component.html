@@ -17,37 +17,43 @@
 <br>
 <br>
 <div class="container mt-3 overflow-scroll w-60">
-
-
-  <!-- Booking -->
-  <table class="table table-striped" *ngIf="bookings">
-    <thead class="head" style=" overflow-y: scroll;">
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Date</th>
-        <th scope="col">Time</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
+           <!-- Booking -->
+       <table class="table table-striped" *ngIf="bookings">
+      <thead class="head" style=" overflow-y: scroll;">
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
       <tbody>
-          <tr *ngFor="let booking of boookings">
-              <td>{{booking.name +' '+ booking.lastname}}</td>
-              <td>{{booking.date}}</td>
-              <td>{{booking.time}}</td>
-              <td style="width:20%">
-              <button id="decline"class="btn btn-outline-danger">
-                Decline
-                </button> &nbsp; 
-                <button id="accept"class="btn  accept text-light">
-                  Accept
-                </button>
-              </td>
-               </tr>
+        <tr *ngFor="let booking of boookings">
+          <td>{{booking.name +' '+ booking.lastname}}</td>
+          <td>{{booking.date}}</td>
+          <td>{{booking.time}}</td>
+          <td id="pending">pending</td>
+         
+        </tr>
+        <!-- <tr>
+          <td>Mary</td>
+          <td>Moe</td>
+          <td>mary@example.com</td>
+          <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
+        </tr>
+        <tr>
+          <td>July</td>
+          <td>Dooley</td>
+          <td>july@example.com</td>
+          <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
+        </tr> -->
+        
       </tbody>
-  </table>
+    </table>
+
     <!-- Streams -->
     <table class="table table-striped" *ngIf="streams">
-        <thead class="head" style=" overflow-y: scroll;">
+        <thead class="head" style="  overflow-y: scroll;">
           <tr>
             <th>Name</th>
             <th>Date</th>
@@ -62,10 +68,23 @@
             <td>{{stream.time}}</td>
             <td><button id="join"class="btn text-light">join</button></td>
           </tr>
+          <!-- <tr>
+            <td>Mary</td>
+            <td>Moe</td>
+            <td>mary@example.com</td>
+            <td><button class="btn bg-info text-light">join</button></td>
+          </tr>
+          <tr>
+            <td>Kgomotso</td>
+            <td>Dooley</td>
+            <td>july@example.com</td>
+            <td><button class="btn bg-info text-light">join</button></td>
+          </tr>
+           -->
         </tbody>
     </table>
       <!-- History -->
-    <table class="table table-striped" *ngIf="history">
+      <table class="table table-striped" *ngIf="history">
         <thead class="head" style=" overflow-y: scroll;">
           <tr>
             <th >Name</th>

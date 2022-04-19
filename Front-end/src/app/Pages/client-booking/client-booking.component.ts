@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { BookingService } from 'src/app/Services/booking.service';
 
 @Component({
-  selector: 'app-interpreter-booking',
-  templateUrl: './interpreter-booking.component.html',
-  styleUrls: ['./interpreter-booking.component.scss']
+  selector: 'app-client-booking',
+  templateUrl: './client-booking.component.html',
+  styleUrls: ['./client-booking.component.scss']
 })
-export class InterpreterBookingComponent implements OnInit {
+export class ClientBookingComponent implements OnInit {
   select = ' ';
   count = 0;
   bookings=false;
@@ -14,7 +14,7 @@ export class InterpreterBookingComponent implements OnInit {
   history=false;
   
   public boookings=[
-    {"name":"lindo", "lastname":"acamia", "date":"11 April 2022", "time":"08:10 AM",}
+    {"name":"ep", "lastname":"lp", "date":"11 April 2022", "time":"08:10 AM",}
   ];
 
   public streamss=[
@@ -55,7 +55,7 @@ export class InterpreterBookingComponent implements OnInit {
       const token=localStorage.getItem("auth-token")
       
       //call bookings service
-      this.bookingsService.getAllinterpreterbooking(token).subscribe({
+      this.bookingsService.getAllclientbooking(token).subscribe({
         next:(results)=>{
          
         },
@@ -72,7 +72,7 @@ export class InterpreterBookingComponent implements OnInit {
       const token=localStorage.getItem("auth-token")
       
       //call bookings service
-      this.bookingsService.getAllinterpreterstreams(token).subscribe({
+      this.bookingsService.getAllclientstreams(token).subscribe({
         next:(results)=>{
          
         },
@@ -89,7 +89,7 @@ export class InterpreterBookingComponent implements OnInit {
       const token=localStorage.getItem("auth-token")
       
       //call bookings service
-      this.bookingsService.getAllinterpreterhistory(token).subscribe({
+      this.bookingsService.getAllclienthistory(token).subscribe({
         next:(results)=>{
          
         },
@@ -122,14 +122,14 @@ export class InterpreterBookingComponent implements OnInit {
     }
 
 
-    let color = document.querySelector(`#${user_type}`);
-    console.log(color);
+    // let color = document.querySelector(`#${user_type}`);
+    // console.log(color);
 
-    if(color != null){
-      if(user_type == 'history'){
+    // if(color != null){
+    //   if(user_type == 'history'){
         
-      }
-    } 
+    //   }
+    // } 
   }
 
   

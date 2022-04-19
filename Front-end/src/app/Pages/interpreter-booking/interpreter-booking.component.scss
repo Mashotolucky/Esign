@@ -1,17 +1,19 @@
-// .btn{
-    
-//     color: white;
-//     text-align: center;
-//     font-size: 36px;
-//     font-family: 'Sansita';
-//     position: absolute;
+//the font style of the three buttons
+.cards .btn {
+  color: white;
+  text-align: center;
+  font-size: 36px;
+  font-family: "Sansita";
+  position: absolute;
+}
 
+// role:active{
+//     background-color: yellowgreen;
 // }
 
 // .head {
 //     width: 1192px;
 //     height: 104px;
-   
 
 // font-family: 'Inter';
 // font-style: normal;
@@ -20,137 +22,102 @@
 // line-height: 16px;
 // }
 
-// .cards{
-//     background-color: #B7BBC2; 
-//     width: 334px ; 
-//     height: 120px; 
-//     text-decoration-color: white;
-//     border-radius: 8px;
-//     display: flex;
-//     flex-direction: row;
-//     justify-content:center;
-//     align-items: center;
-// }
-// .cardz{
-//     background-color: #29A9AF; width: 334px ; height: 120px; 
-// }
-
-// @media (max-width: 480px) {
-//     .cards {
-//         background-color: #B7BBC2; 
-//         width: 100px ; 
-//         height: 60px; 
-//         text-decoration-color: white;
-
-//         .btn{
-//             font-size: 16px;
-//         }
-        
-//     }
-//     // .cardz{
-//     //     background-color: #29A9AF; width: 100px ; height: 60px; 
-//     //     text-decoration-color: white;
-//     //     font-size: 1rem;
-//     // }
-
-//     .table{
-//         overflow-x:auto;
-//         min-width: 1000px;
-//     }
-//   }
-
-.cards .btn{
-    
-    color: white;
-    text-align: center;
-    font-size: 36px;
-    font-family: 'Sansita';
-    position: absolute;
-
-}
-
-role:active{
-    background-color: yellowgreen;
-}
-
-.head {
-    width: 1192px;
-    height: 104px;
-   
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600px;
-font-size: 15px;
-line-height: 16px;
-}
-
-.cards{
-    background-color: #B7BBC2; 
-    width: 334px ; 
-    height: 120px; 
-    text-decoration-color: white;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    align-items: center;
-}
-.cardz{
-    background-color: #29A9AF; width: 334px ; height: 120px; 
+.cards {
+  background-color: #b7bbc2;
+  width: 334px;
+  height: 120px;
+  text-decoration-color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 480px) {
-    .cards {
-        background-color: #B7BBC2; 
-        width: 100px ; 
-        height: 60px; 
-        text-decoration-color: white;
+  .cards {
+    background-color: #b7bbc2;
+    width: 100px;
+    height: 60px;
+    text-decoration-color: white;
 
-        .btn{
-            font-size: 16px;
-        }
-        .btnColor{
-            background-color: #29A9AF; 
-        width: 100px ; 
-        height: 60px; 
-        text-decoration-color: white; 
-        }
-        .btnColorSecond{
-            background-color: #B7BBC2; 
-        width: 100px ; 
-        height: 60px; 
-        text-decoration-color: white; 
-        }
-        
+    .btn {
+      font-size: 16px;
     }
-    // .cardz{
-    //     background-color: #29A9AF; width: 100px ; height: 60px; 
-    //     text-decoration-color: white;
-    //     font-size: 1rem;
+    // .btnColor{
+    //     background-color: #29A9AF;
+    // width: 100px ;
+    // height: 60px;
+    // text-decoration-color: white;
     // }
+    // .btnColorSecond{
+    //     background-color: #B7BBC2;
+    // width: 100px ;
+    // height: 60px;
+    // text-decoration-color: white;
+    // }
+  }
+  // .cardz{
+  //     background-color: #29A9AF; width: 100px ; height: 60px;
+  //     text-decoration-color: white;
+  //     font-size: 1rem;
+  // }
 
-    .table{
-        overflow-x:auto;
-        min-width: 1000px;
-    }
+  .table {
+    overflow-x: auto;
+    min-width: 100px;
+  }
+}
+
+// .buttons {
+//   border-radius: 8px;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+//   width: 334px;
+//   height: 120px;
+// }
+//toggling the buttons to be blue when clicked(booking, streams, history)
+.green {
+  background-color: #29a9af;
+}
+
+.grey {
+  background-color: #b7bbc2;
+}
+
+//stream action button on the table
+#join {
+  background-color: #29a9af;
+  transform: translateX(0rem);
+}
+
+//booking action, one of button on the table
+#decline {
+  transform: translateX(-5rem);
+ 
+}
+#accept{
+    background-color: #29a9af;
+    transform: translateX(-3rem);  
+}
+
+@media (max-width: 480px) {
+  #join {
+    background-color: #29a9af;
+    transform: translateX(0rem);
+    margin-bottom: 1rem;
+  }
+  #decline {
+    transform: translateX(0rem);
   }
 
-  .buttons{
-    border-radius: 8px;
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    align-items: center;
-    width: 334px ; height: 120px; 
-  }
-  .green {
-    background-color: #29A9AF; 
-    
-  }
+  #accept{
+    background-color: #29a9af;
+    transform: translateX(0rem);
+    margin-bottom: 1rem; 
+}
 
-  .grey {
-    background-color: #B7BBC2;
-  }
+}
 
-  
