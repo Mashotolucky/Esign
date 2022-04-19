@@ -28,6 +28,6 @@ const verifyJWT = async (req, res, next) => {
 
 const generateToken = async(data) => {
   console.log(process.env.SECRET_KEY);
-  return jwt.sign({ userId:data.userId, userRole: data.userRole }, process.env.SECRET_KEY,{ expiresIn: '1h' })
+  return jwt.sign({ userId:data.userId, userRole: data.userRole }, process.env.SECRET_KEY,{ expiresIn: '24h' })
 };
 module.exports = { verifyJWT, generateToken };

@@ -37,22 +37,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>John</td>
-          <td>Doe</td>
-          <td>john@example.com</td>
-          <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
-        </tr>
-        <tr>
-          <td>Mary</td>
-          <td>Moe</td>
-          <td>mary@example.com</td>
-          <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
-        </tr>
-        <tr>
-          <td>July</td>
-          <td>Dooley</td>
-          <td>july@example.com</td>
+        <tr *ngFor="let booking of bookings">
+          <td>{{booking.name}} {{booking.lastname}}</td>
+          <td>{{booking.date_}}</td>
+          <td>{{booking.time_}}</td>
           <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
         </tr>
         

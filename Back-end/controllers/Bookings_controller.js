@@ -56,7 +56,7 @@ const GetIntepreterBooking=async (req,res,next)=>{
         return res.status(200).send(Bookings);
 
     } catch (error) {
-        console.log(error);
+        console.log("bokingConErr:",error);
         next(error);
     }
 }

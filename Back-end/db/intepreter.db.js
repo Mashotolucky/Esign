@@ -66,11 +66,13 @@ const getAllIntepretersDb=async () => {
 };
 const getIntepreterDb=async(id)=>{
   const {rows:intepreter} =await pool.query("select id from intepreter where userid=$1",[id]);
-  return intepreter;
+  console.log("intDBid",intepreter[0].id);
+  return intepreter[0].id;
 }
 const setOnilineDb=async (status,id) => {
   try {
     const { rows: intepreter } = await pool.query(`update intepreter set online_status = $1 WHERE userID = $2 returning online_status`,[status,id]);
+    console.log(intepreter[0]);
     return intepreter[0];
   } catch (error) {
     console.log(error);
