@@ -24,7 +24,7 @@ const getBookingDb=async (id) => {
   
   const getIntepreterBookingDb=async (id) => {
     try {
-
+      console.log("intIDdb: ",id);
       const { rows: booking } = await pool.query(`
       select * FROM booking,client,users  
          WHERE booking.intepreterid = $1 
@@ -32,7 +32,7 @@ const getBookingDb=async (id) => {
          AND users.id = client.userId`,[id]);
       return booking;
     } catch (error) {
-      console.log(error);
+      console.log("err",error);
       throw error; 
     }
   };
