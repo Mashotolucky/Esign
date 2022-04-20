@@ -131,6 +131,11 @@ export class InterpreterBookingComponent implements OnInit {
     } 
   }
 
-  
+  setStatus(data: boolean){
+    this.bookingsService.setBookingStatus(data)
+    .subscribe(res => {
+      console.log(res);
+    })
+  }
 
 }
