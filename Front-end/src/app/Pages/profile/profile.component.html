@@ -4,7 +4,7 @@
     <div class="col right">
       <app-profile-card></app-profile-card>
       <app-infor-cards></app-infor-cards>
-      <div class="text-center mt-5">
+      <div class="text-center mt-5"  *ngIf="!isInterpreter()">
         <button type="button" class="btn p-1 ps-5 px-5 text-light" id="proceed" data-bs-toggle="modal"
           data-bs-target="#book">
           Proceed

@@ -34,7 +34,7 @@ import { environment } from 'src/environments/environment';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
 import { StatusPipe } from './Pipes/status.pipe';
 import { TimeFormatPipe } from './Pipes/time-format.pipe';
-import { EditProfileComponent } from './Pages/edit-profile/edit-profile.component';
+
 
 
 
@@ -71,7 +71,7 @@ const config: SocketIoConfig = {
         VideoCallComponent,
         StatusPipe,
         TimeFormatPipe,
-        EditProfileComponent
+       
           
   ],
   imports: [

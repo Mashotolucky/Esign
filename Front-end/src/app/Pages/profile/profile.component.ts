@@ -7,6 +7,7 @@ import { UserService } from 'src/app/Services/user.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookingService } from 'src/app/Services/booking.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/Services/auth.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class ProfileComponent implements OnInit {
   intepreterID: any;
   data: any;
   user: any;
-  constructor(private userService: UserService, private bookingService: BookingService,private activatedRoute:ActivatedRoute, private router: Router) { }
+  userLogged: any;
+  constructor(private userService: UserService, private bookingService: BookingService,private activatedRoute:ActivatedRoute, private router: Router, private authService: AuthService) { }
 
 
 
@@ -32,11 +34,32 @@ export class ProfileComponent implements OnInit {
       date_: new FormControl('', [Validators.required]),
       time_: new FormControl('', [Validators.required])
     });
+this.userLogged = this.authService.getUser()
+   console.log(this.userLogged.role);
+
+   
+  //  ifINTEPRETER(): Boolean{
+  //   if(this.userLogged.value.role === "INTEPRETER"){
+  //     return true;
+  //   }
+  //   else{
+  //     return false;
+  //   }
+  // }
+
 
     this.intepreterID = this.userService.getUser();
     
     // console.log(this.intepreterID);
     localStorage.setItem("intepreterID",this.intepreterID);
+  }
+
+
+  isInterpreter(): boolean{
+    if(this.userLogged.role === 'CLIENT'){
+      return true
+    }
+    return false
   }
 
   simpleAlert() {
@@ -91,3 +114,11 @@ export class ProfileComponent implements OnInit {
 
 
 }
+// function isInterpreter() {
+//   throw new Error('Function not implemented.');
+// }
+
+// function isInterpreter() {
+//   throw new Error('Function not implemented.');
+// }
+
