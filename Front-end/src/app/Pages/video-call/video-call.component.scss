@@ -1,16 +1,22 @@
 .remote-video{
-    width:100%;
-    height:auto;
-    max-height: 90vh;
-    position: relative
+    position: relative;
+    width:100vw;
+    height: auto;
+    // position: fixed;
+    // margin-right: 2rem;
+    right: 0;
+    left: 0;
+    bottom: 4;
+    top: -2;
 }
 .remote-video-controls{
-    position:absolute;
+   
+    position: fixed;
     bottom: 0;
     background-color:rgba(0, 0, 0, 0.5);
-    z-index:300000;
+    // z-index:300000;
     padding: 10px;
-    width: 100%;
+    // width: 100%;
     text-align: center;
     visibility: hidden;
 }
@@ -25,8 +31,8 @@
     visibility: visible;
 }
 .local-video{
-    bottom: 0;
-    left: 0;
+    bottom: 2rem;
+    right: 8rem;
     position: fixed;
     width:15vw;
 }

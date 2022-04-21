@@ -31,8 +31,8 @@
         <tr *ngFor="let booking of clientBookings">
           <td>{{booking.name +' '+ booking.lastname}}</td>
           <td>{{booking.date_ | date: 'fullDate'}}</td>
-          <td>{{booking.time_ }}</td>
-          <td id="pending">{{booking.status}}</td>
+          <td>{{booking.time_ | timeFormat}}</td>
+          <td id="pending">{{booking.status | status}}</td>
          
         </tr>
         <!-- <tr>

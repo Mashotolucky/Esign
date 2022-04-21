@@ -6,7 +6,7 @@ import { TimePicker } from '@syncfusion/ej2-calendars';
 import { UserService } from 'src/app/Services/user.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookingService } from 'src/app/Services/booking.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   intepreterID: any;
   data: any;
   user: any;
-  constructor(private userService: UserService, private bookingService: BookingService,private activatedRoute:ActivatedRoute) { }
+  constructor(private userService: UserService, private bookingService: BookingService,private activatedRoute:ActivatedRoute, private router: Router) { }
 
 
 
@@ -58,13 +58,14 @@ export class ProfileComponent implements OnInit {
       this.user = params;
       this.intepreterID = this.user.id;
       
+      this.router.navigate['/clientbooking'];
     });
     var id = localStorage.getItem("intepreterID")
     this.data = {
       intepreterID: parseInt(this.intepreterID),
       date_: this.bookingForm.value.date_,
       time_: this.bookingForm.value.time_,
-      status: true
+      status: null
     }
     console.log(this.data);
 

@@ -16,29 +16,31 @@ export class VideoCallComponent implements OnInit , OnDestroy {
   
   @ViewChild('myVideo', {static: true}) video: ElementRef<HTMLVideoElement>;
   @ViewChild('theirVideo', {static: true}) theirvideo: ElementRef<HTMLVideoElement>;
-
-  // var randomNumber = `__${h.generateRandomString()}__${h.generateRandomString()}__`;
-
   myStream:MediaStream;
   constraints={
     video: true,
-    audio: false
+    audio: {
+        echoCancellation: true,
+        noiseSuppression: true
+    }
   }
-  
   /*
-  *{ audio: true, video: { facingMode: { exact: "environment" } } }
-  *
+  *{ audio: true, video: { facingMode: { exact: "environment" } } } rear camera view
   */
 
   ngOnInit(): void {
    this.onStart(); // for test 
-   //this.getMedia(this.constraints);
+   //this.getAndSetMedia(this.constraints);
   }
-  async getMedia(constraints) {
+  async getAndSetMedia(constraints) {
+
     let stream: MediaStream;
+
     try {
         if(isPlatformBrowser(this._platform) && 'mediaDevices' in navigator) {
+
             stream = await navigator.mediaDevices.getUserMedia(constraints);
+
             /* use the stream */
             const _video = this.video.nativeElement;
             _video.srcObject = stream;
@@ -49,6 +51,41 @@ export class VideoCallComponent implements OnInit , OnDestroy {
       throw err;
     }
   }
+
+  getQString( url = '', keyToReturn = '' ) {
+    url = url ? url : location.href;
+    let queryStrings = decodeURIComponent( url ).split( '#', 2 )[0].split( '?', 2 )[1];
+
+    if ( queryStrings ) {
+        let splittedQStrings = queryStrings.split( '&' );
+
+        if ( splittedQStrings.length ) {
+            let queryStringObj = {};
+
+            splittedQStrings.forEach( function ( keyValuePair ) {
+                let keyValue = keyValuePair.split( '=', 2 );
+
+                if ( keyValue.length ) {
+                    queryStringObj[keyValue[0]] = keyValue[1];
+                }
+            } );
+
+            return keyToReturn ? ( queryStringObj[keyToReturn] ? queryStringObj[keyToReturn] : null ) : queryStringObj;
+        }
+
+        return null;
+    }
+
+    return null;
+  }
+  generateRandomString() {
+    const crypto = new Crypto(); 
+  
+    let array = new Uint32Array(1);
+    
+    return crypto.getRandomValues(array);
+  }
+
   onStart(){
     if(isPlatformBrowser(this._platform) && 'mediaDevices' in navigator) {
       navigator.mediaDevices.getUserMedia({video: true}).then((ms: MediaStream) => {
