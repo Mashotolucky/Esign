@@ -8,7 +8,7 @@ import {isPlatformBrowser} from '@angular/common';
   styleUrls: ['./video-call.component.scss']
 })
 
-export class VideoCallComponent implements OnInit , OnDestroy {
+export class VideoCallComponent implements OnInit {
 
   constructor(@Inject(PLATFORM_ID) private _platform: Object) { }
   navigator:Navigator;
@@ -29,91 +29,21 @@ export class VideoCallComponent implements OnInit , OnDestroy {
   */
 
   ngOnInit(): void {
-   this.onStart(); // for test 
-   //this.getAndSetMedia(this.constraints);
-  }
-  async getAndSetMedia(constraints) {
-
-    let stream: MediaStream;
-
-    try {
-        if(isPlatformBrowser(this._platform) && 'mediaDevices' in navigator) {
-
-            stream = await navigator.mediaDevices.getUserMedia(constraints);
-
-            /* use the stream */
-            const _video = this.video.nativeElement;
-            _video.srcObject = stream;
-            _video.play(); 
-        }
-    } catch(err) {
-      /* handle the error */
-      throw err;
-    }
-  }
-
-  getQString( url = '', keyToReturn = '' ) {
-    url = url ? url : location.href;
-    let queryStrings = decodeURIComponent( url ).split( '#', 2 )[0].split( '?', 2 )[1];
-
-    if ( queryStrings ) {
-        let splittedQStrings = queryStrings.split( '&' );
-
-        if ( splittedQStrings.length ) {
-            let queryStringObj = {};
-
-            splittedQStrings.forEach( function ( keyValuePair ) {
-                let keyValue = keyValuePair.split( '=', 2 );
-
-                if ( keyValue.length ) {
-                    queryStringObj[keyValue[0]] = keyValue[1];
-                }
-            } );
-
-            return keyToReturn ? ( queryStringObj[keyToReturn] ? queryStringObj[keyToReturn] : null ) : queryStringObj;
-        }
-
-        return null;
-    }
-
-    return null;
-  }
-  generateRandomString() {
-    const crypto = new Crypto(); 
-  
-    let array = new Uint32Array(1);
-    
-    return crypto.getRandomValues(array);
+   
   }
 
   onStart(){
     if(isPlatformBrowser(this._platform) && 'mediaDevices' in navigator) {
-      navigator.mediaDevices.getUserMedia({video: true}).then((ms: MediaStream) => {
+      navigator.mediaDevices.getUserMedia(this.constraints).then((ms: MediaStream) => {
         const _video = this.video.nativeElement;
         _video.srcObject = ms;
-        _video.play(); 
-        this.onConnection()
+        _video.play();
+        //fetch remote streams
       });
     }
   }
-  onConnection(){
-    if(isPlatformBrowser(this._platform) && 'mediaDevices' in navigator) {
-      navigator.mediaDevices.getUserMedia({video: true}).then((ms: MediaStream) => {
-        const _video = this.theirvideo.nativeElement;
-        _video.srcObject = ms;
-        _video.play(); 
-      });
-    }
-  }
-
-  onStop() {
-    this.video.nativeElement.pause();
-    (this.video.nativeElement.srcObject as MediaStream).getVideoTracks()[0].stop();
-    this.video.nativeElement.srcObject = null;
-  }
-
-  ngOnDestroy() {
-    (this.video.nativeElement.srcObject as MediaStream).getVideoTracks()[0].stop();
-    this.video.nativeElement.srcObject = null;
- }
 }
+
+
+
+
