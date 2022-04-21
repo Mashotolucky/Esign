@@ -67,6 +67,12 @@ export class UserService {
     console.log(this.clickedUser);
     return this.clickedUser;
   }
+
+  updateIntepreter(data: any, token: any):Observable<any[]> {
+    let headers=new HttpHeaders();
+    headers=headers.set('Authorization',"Bearer "+token);
+    return this.http.put<any[]>(`${BaseUrl}/intepreter/update`,data,{headers});
+  }
   
 }
 

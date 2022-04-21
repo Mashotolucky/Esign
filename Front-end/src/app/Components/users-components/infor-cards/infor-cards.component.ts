@@ -1,4 +1,6 @@
+import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/Services/user.service';
 
@@ -8,7 +10,7 @@ import { UserService } from 'src/app/Services/user.service';
   styleUrls: ['./infor-cards.component.scss']
 })
 export class InforCardsComponent implements OnInit {
-
+ editForm: FormGroup;
   user: any;
   intepreterID: any;
 
@@ -16,6 +18,10 @@ export class InforCardsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getClient();
+
+    this.editForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+    });
   }
 
   getClient(){
@@ -27,6 +33,15 @@ export class InforCardsComponent implements OnInit {
       localStorage.setItem("intepreterID",this.intepreterID);
     });
     
+  }
+
+  interpreterEdit(){
+    this.userService.updateIntepreter(this.editForm.value,this.intepreterID).subscribe(res=>{
+     console.log(res) 
+    }, error =>{
+      console.log(error);
+      
+    })
   }
 
 
