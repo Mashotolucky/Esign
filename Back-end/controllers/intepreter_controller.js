@@ -1,4 +1,4 @@
-const {  getAllIntepretersDb, setOnilineDb} = require('../db/intepreter.db');
+const {  getAllIntepretersDb, setOnilineDb, updateIntepreterDb} = require('../db/intepreter.db');
 const { roles } = require('../helpers/constants');
 
 const getAll=async(req,res,next)=>{
@@ -20,7 +20,18 @@ const online_status=async (req,res,next)=>{
         next(error);
     }
 }
+const updateIntepreter=async(req,res,next)=>{
+    try {
+        const id = req.user.id && req.user.role===roles.INTEPRETER ? req.user.id: null;
+        const {name,email,lastname,cert_url,hourly_rate,active_status}=req.body;
+        const status=await updateIntepreterDb({name,email,lastname,id,cert_url,hourly_rate,active_status});
+        return res.status(200).send(status);
+    } catch (error) {
+        next(error);
+    }
+}
 module.exports={
     getAll,
-    online_status
+    online_status,
+    updateIntepreter
 }
