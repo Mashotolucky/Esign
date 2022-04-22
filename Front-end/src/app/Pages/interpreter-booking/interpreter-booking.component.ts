@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BookingService } from 'src/app/Services/booking.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-interpreter-booking',
@@ -26,7 +28,7 @@ export class InterpreterBookingComponent implements OnInit {
 
 
   
-  constructor(private bookingsService:BookingService) { }
+  constructor(private bookingsService:BookingService, private router: Router) { }
 
 
 
@@ -124,14 +126,7 @@ export class InterpreterBookingComponent implements OnInit {
     }
 
 
-    let color = document.querySelector(`#${user_type}`);
-    console.log(color);
-
-    if(color != null){
-      if(user_type == 'history'){
-        
-      }
-    } 
+  
   }
 
   setStatus(status: boolean,id: any){
@@ -139,6 +134,19 @@ export class InterpreterBookingComponent implements OnInit {
     .subscribe(res => {
       console.log(res);
     })
+  }
+
+  joinstream(id:any){
+     if(!id) return Swal.fire({
+          icon: 'error',
+          title: 'can not join stream at this point',
+          showConfirmButton: false,
+          timer: 1000,
+          width: '300px'
+      })
+    
+   this.router.navigate(['stream',{state:{id}}])
+
   }
 
 }
