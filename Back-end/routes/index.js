@@ -7,7 +7,7 @@ const bookings = require('./booking');
 
 
 router.use("/auth",uploader("certificates"),auth);
-router.use("/users", users);
+router.use("/users",uploader("images"),users);
 router.use("/bookings",bookings);
 
 module.exports = router;
