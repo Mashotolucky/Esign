@@ -32,6 +32,11 @@ export class HomeComponent implements OnInit ,OnDestroy{
     this.userService.setInterpretorId(id);
     this.router.navigate(['/profile'])
   }
+
+  viewProfile(interpreter: any){
+    this.router.navigate(['/profile',{state:{interpreter}}]);
+  }
+  
   ngOnDestroy(): void {
       this.intepreterSub.unsubscribe();
   }
