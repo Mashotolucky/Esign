@@ -17,22 +17,33 @@ export class NavbarComponent implements OnInit {
   public user:any;
   userLogged:any;
   isintepreterLoggedIn:any;
+  role: any;
+
   // userWho: any;
   ngOnInit(): void {
 
    this.is_loggedIn = this.authService.isLoggedIn();
    
    //alert(this.is_loggedIn);
-   this.userLogged = this.authService.getUser()
-    console.log(this.userLogged.role);
+   this.userLogged = this.authService.getUser();
+   this.role = this.userLogged.role
+    console.log(this.role);
     //.log(this.is_loggedIn);
     this.isintepreterLoggedIn = this.userLogged.role === 'CLIENT'? false :true;
      this.user=this.authService.getUser()
-    //  console.log("myuser",this.user)
+     console.log("myuser",this.user)
 
   //   this.userWho= this.authService.getUser()
   //  console.log(this.userWho.role);
       
+  }
+
+  GetRole(){
+    if(this.role === 'CLIENT'){
+      return true;
+    }
+
+    return false
   }
 
   clearuser(){
