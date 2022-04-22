@@ -14,6 +14,8 @@ const getAll=async(req,res,next)=>{
 const online_status=async (req,res,next)=>{
     try {
         const id = req.user.id && req.user.role===roles.INTEPRETER ? req.user.id: null;
+        if (!id) return res.send(401).send({msg:"you are not authorized to access this route"});
+
         const status=await setOnilineDb(req.body.status,id);
         return res.status(200).send(status);
     } catch (error) {
@@ -23,6 +25,9 @@ const online_status=async (req,res,next)=>{
 const updateIntepreter=async(req,res,next)=>{
     try {
         const id = req.user.id && req.user.role===roles.INTEPRETER ? req.user.id: null;
+        console.log(id);
+        if (!id) return res.send(401).send({msg:"you are not authorized to access this route"});
+
         const {name,email,lastname,cert_url,hourly_rate,active_status}=req.body;
         const status=await updateIntepreterDb({name,email,lastname,id,cert_url,hourly_rate,active_status});
         return res.status(200).send(status);

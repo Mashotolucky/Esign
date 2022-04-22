@@ -14,6 +14,7 @@ const verifyJWT = async (req, res, next) => {
         id: decodedToken.userId,
         role: decodedToken.userRole,
       };
+      console.log(req.user);
       next();
     } catch (err) {
       res.status(401).json({
