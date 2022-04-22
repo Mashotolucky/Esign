@@ -73,7 +73,7 @@
 }
 
 .container {
-    position: relative;
+    position: fixed;
     overflow: hidden;
 }
 
@@ -82,11 +82,11 @@
     height: 100%;
     min-height: 100%;
     position: absolute;
-    top:300px;
+    top: 36rem;
     bottom: 0;
-    left: 200px;
+    left: 60rem;
     z-index: 2;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .over video {
