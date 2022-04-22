@@ -1,5 +1,5 @@
-<div id="app">
-        <form *ngIf="!conversation" [formGroup]="conversationFormGroup" (ngSubmit)="getOrcreateConversation()">
+
+        <form class="text-center" *ngIf="!conversation" [formGroup]="conversationFormGroup" (ngSubmit)="getOrcreateConversation()">
             <mat-form-field>
                 <mat-label>Conversation Name</mat-label>
                 <input type="text" matInput placeholder="abcd" formControlName="name">
@@ -9,9 +9,9 @@
         
         <div *ngIf="conversation" class="container">
             <div id="remote-container" class="fullscreen">
+
             </div>
             <div id="local-container" [ngClass]="{'over':remotesCounter>0}">
                 <video #localVideo autoplay controls playsinline></video>
             </div>
         </div>
-    </div>
