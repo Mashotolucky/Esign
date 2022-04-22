@@ -26,10 +26,31 @@ const getBookingDb=async (id) => {
     try {
       console.log("intIDdb: ",id);
       const { rows: booking } = await pool.query(`
-      select * FROM booking,client,users  
+      select booking.id, booking.clientid, booking.intepreterid, booking.date_, booking.time_ ,booking.status,
+      users.name, users.lastname 
+      FROM booking, client ,users
          WHERE booking.intepreterid = $1 
          AND booking.clientid = client.id
-         AND users.id = client.userId`,[id]);
+         AND users.id = client.userId
+         AND booking.status IS NULL`,[id]);
+      return booking;
+    } catch (error) {
+      console.log("err",error);
+      throw error; 
+    }
+  };
+
+  const getIntepreterStreamDb=async (id) => {
+    try {
+      console.log("intIDdb: ",id);
+      const { rows: booking } = await pool.query(`
+      select booking.id, booking.clientid, booking.intepreterid, booking.date_, booking.time_ ,booking.status,
+      users.name, users.lastname 
+      FROM booking, client ,users
+         WHERE booking.intepreterid = $1 
+         AND booking.clientid = client.id
+         AND users.id = client.userId
+         AND booking.status = true`,[id]);
       return booking;
     } catch (error) {
       console.log("err",error);
@@ -108,7 +129,7 @@ const getBookingDb=async (id) => {
     try {
       const {rows:booking}= await pool.query(
         `UPDATE booking SET status = $1 WHERE id = $2
-        RETURNING id, date_, time_, created_at, updated_at`,
+        RETURNING id, status, date_, time_, created_at, updated_at`,
         [data.status, data.id]
       )
      return {bookings:booking[0]};
@@ -122,6 +143,7 @@ const getBookingDb=async (id) => {
     createBookingDb,
     GetAllBookingsDb,
     getIntepreterBookingDb,
+    getIntepreterStreamDb,
     getBookingDb,
     getAllClientBookingDb,
     getClientBookingDb,
