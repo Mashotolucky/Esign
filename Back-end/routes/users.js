@@ -6,7 +6,7 @@ const {getlanduages}=require('../controllers/client_controller');
 router.get("/intepreters/getAll", getAll);
 router.put("/intepreter/online",verifyJWT,online_status);
 
-router.put("/intepreter/update",updateIntepreter)
+router.put("/intepreter/update",verifyJWT,updateIntepreter)
 
 router.get("/languages",getlanduages);
 

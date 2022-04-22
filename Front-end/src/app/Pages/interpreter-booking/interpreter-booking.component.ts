@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BookingService } from 'src/app/Services/booking.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-interpreter-booking',
@@ -14,6 +16,7 @@ export class InterpreterBookingComponent implements OnInit {
   history=false;
   
   IntepreterBoookings : any;
+  IntepreterStreams: any;
 
   public streamss=[
     {"name":"lahlie", "lastname":"momo", "date":"14 April 2022", "time":"09:10 AM",}
@@ -25,7 +28,7 @@ export class InterpreterBookingComponent implements OnInit {
 
 
   
-  constructor(private bookingsService:BookingService) { }
+  constructor(private bookingsService:BookingService, private router: Router) { }
 
 
 
@@ -56,7 +59,7 @@ export class InterpreterBookingComponent implements OnInit {
       this.bookingsService.getAllinterpreterbooking(token).subscribe({
         next:(results)=>{
           this.IntepreterBoookings = results;
-          console.log(this.IntepreterBoookings );
+          console.log(this.IntepreterBoookings);
         },
         error:(error)=>{
          // this.bookings=false;
@@ -73,7 +76,9 @@ export class InterpreterBookingComponent implements OnInit {
       //call bookings service
       this.bookingsService.getAllinterpreterstreams(token).subscribe({
         next:(results)=>{
-         
+          this.IntepreterStreams = results;
+          console.log(this.IntepreterStreams);
+          
         },
         error:(error)=>{
          // this.streams=false;
@@ -121,21 +126,27 @@ export class InterpreterBookingComponent implements OnInit {
     }
 
 
-    let color = document.querySelector(`#${user_type}`);
-    console.log(color);
-
-    if(color != null){
-      if(user_type == 'history'){
-        
-      }
-    } 
+  
   }
 
-  setStatus(data: boolean){
-    this.bookingsService.setBookingStatus(data)
+  setStatus(status: boolean,id: any){
+    this.bookingsService.setBookingStatus(status,id)
     .subscribe(res => {
       console.log(res);
     })
+  }
+
+  joinstream(id:any){
+     if(!id) return Swal.fire({
+          icon: 'error',
+          title: 'can not join stream at this point',
+          showConfirmButton: false,
+          timer: 1000,
+          width: '300px'
+      })
+    
+   this.router.navigate(['stream',{state:{id}}])
+
   }
 
 }

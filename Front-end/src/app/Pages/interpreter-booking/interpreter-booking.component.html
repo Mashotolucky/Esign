@@ -35,10 +35,10 @@
               <td>{{booking.date_ | date: 'fullDate'}}</td>
               <td>{{booking.time_}}</td>
               <td style="width:20%">
-              <button id="decline"class="btn btn-outline-danger" click="setStatus(false)">
+              <button id="decline"class="btn btn-outline-danger" (click)="setStatus(false, booking.id)">
                 Decline
                 </button> &nbsp; 
-                <button id="accept"class="btn  accept text-light" click="setStatus(true)">
+                <button id="accept"class="btn  accept text-light" (click)="setStatus(true,booking.id)">
                   Accept
                 </button>
               </td>
@@ -56,11 +56,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let stream of streamss">
+          <tr *ngFor="let stream of IntepreterStreams">
             <td>{{stream.name +' '+ stream.lastname}}</td>
-            <td>{{stream.date}}</td>
-            <td>{{stream.time}}</td>
-            <td><button id="join"class="btn text-light">join</button></td>
+            <td>{{stream.date_ | date: 'fullDate'}}</td>
+            <td>{{stream.time_}}</td>
+            <td><button id="join"class="btn text-light" (click)="joinstream(stream.id)">join</button></td>
           </tr>
         </tbody>
     </table>

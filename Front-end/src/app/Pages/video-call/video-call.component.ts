@@ -2,23 +2,23 @@ import { Component, OnInit, ViewChild ,PLATFORM_ID,ElementRef, Inject, OnDestroy
 import { Socket } from 'ngx-socket-io';  
 import {isPlatformBrowser} from '@angular/common';
 
+import { FormBuilder, FormControl, Validators } from '@angular/forms'
+
+import { Conversation, UserAgent, Session, Stream } from '@apirtc/apirtc'
 @Component({
   selector: 'app-video-call',
   templateUrl: './video-call.component.html',
   styleUrls: ['./video-call.component.scss']
 })
 
-export class VideoCallComponent implements OnInit , OnDestroy {
+export class VideoCallComponent implements OnInit {
 
-  constructor(@Inject(PLATFORM_ID) private _platform: Object) { }
+  constructor(@Inject(PLATFORM_ID) private _platform: Object,private fb: FormBuilder) { }
   navigator:Navigator;
-  socketId:any;
-  
-  @ViewChild('myVideo', {static: true}) video: ElementRef<HTMLVideoElement>;
-  @ViewChild('theirVideo', {static: true}) theirvideo: ElementRef<HTMLVideoElement>;
+ 
   myStream:MediaStream;
   constraints={
-    video: true,
+    video: { facingMode: { exact: "environment" } },
     audio: {
         echoCancellation: true,
         noiseSuppression: true
@@ -29,91 +29,112 @@ export class VideoCallComponent implements OnInit , OnDestroy {
   */
 
   ngOnInit(): void {
-   this.onStart(); // for test 
-   //this.getAndSetMedia(this.constraints);
+
+   
   }
-  async getAndSetMedia(constraints) {
+  @ViewChild("localVideo") videoRef: ElementRef;
 
-    let stream: MediaStream;
+  conversationFormGroup = this.fb.group({
+    name: this.fb.control('', [Validators.required])
+  });
 
-    try {
-        if(isPlatformBrowser(this._platform) && 'mediaDevices' in navigator) {
-
-            stream = await navigator.mediaDevices.getUserMedia(constraints);
-
-            /* use the stream */
-            const _video = this.video.nativeElement;
-            _video.srcObject = stream;
-            _video.play(); 
-        }
-    } catch(err) {
-      /* handle the error */
-      throw err;
-    }
-  }
-
-  getQString( url = '', keyToReturn = '' ) {
-    url = url ? url : location.href;
-    let queryStrings = decodeURIComponent( url ).split( '#', 2 )[0].split( '?', 2 )[1];
-
-    if ( queryStrings ) {
-        let splittedQStrings = queryStrings.split( '&' );
-
-        if ( splittedQStrings.length ) {
-            let queryStringObj = {};
-
-            splittedQStrings.forEach( function ( keyValuePair ) {
-                let keyValue = keyValuePair.split( '=', 2 );
-
-                if ( keyValue.length ) {
-                    queryStringObj[keyValue[0]] = keyValue[1];
-                }
-            } );
-
-            return keyToReturn ? ( queryStringObj[keyToReturn] ? queryStringObj[keyToReturn] : null ) : queryStringObj;
-        }
-
-        return null;
-    }
-
-    return null;
-  }
-  generateRandomString() {
-    const crypto = new Crypto(); 
   
-    let array = new Uint32Array(1);
+
+  get conversationNameFc(): FormControl {
+    return this.conversationFormGroup.get('name') as FormControl;
+  }
+
+  conversation: any;
+  remotesCounter = 0;
+
+  getOrcreateConversation() {
+    var localStream = null;
+    //CREATE USER AGENT
+    var userAgent = new UserAgent({
+      uri: 'apiKey:myDemoApiKey'
+    });
+    // REGISTER
     
-    return crypto.getRandomValues(array);
-  }
+    userAgent.register().then((session: Session) => {
 
-  onStart(){
-    if(isPlatformBrowser(this._platform) && 'mediaDevices' in navigator) {
-      navigator.mediaDevices.getUserMedia({video: true}).then((ms: MediaStream) => {
-        const _video = this.video.nativeElement;
-        _video.srcObject = ms;
-        _video.play(); 
-        this.onConnection()
+      
+      // CREATE CONVERSATION
+      
+      const conversation: Conversation = session.getConversation(this.conversationNameFc.value);
+      this.conversation = conversation;
+
+      
+      //  ADD EVENT LISTENER : WHEN NEW STREAM IS AVAILABLE IN CONVERSATION
+      
+      conversation.on('streamListChanged', (streamInfo: any) => {
+        console.log("streamListChanged :", streamInfo);
+        if (streamInfo.listEventType === 'added') {
+          if (streamInfo.isRemote === true) {
+            conversation.subscribeToMedia(streamInfo.streamId)
+              .then((stream: Stream) => {
+                console.log('subscribeToMedia success', stream);
+              }).catch((err) => {
+                console.error('subscribeToMedia error', err);
+              });
+          }
+        }
       });
-    }
-  }
-  onConnection(){
-    if(isPlatformBrowser(this._platform) && 'mediaDevices' in navigator) {
-      navigator.mediaDevices.getUserMedia({video: true}).then((ms: MediaStream) => {
-        const _video = this.theirvideo.nativeElement;
-        _video.srcObject = ms;
-        _video.play(); 
+      
+      //  ADD EVENT LISTENER : WHEN STREAM IS ADDED/REMOVED TO/FROM THE CONVERSATION
+    
+      conversation.on('streamAdded', (stream: Stream) => {
+        this.remotesCounter += 1;
+        stream.addInDiv('remote-container', 'remote-media-' + stream.streamId, {width:'100%'}, false);
+      }).on('streamRemoved', (stream: any) => {
+        this.remotesCounter -= 1;
+        stream.removeFromDiv('remote-container', 'remote-media-' + stream.streamId);
       });
-    }
-  }
 
-  onStop() {
-    this.video.nativeElement.pause();
-    (this.video.nativeElement.srcObject as MediaStream).getVideoTracks()[0].stop();
-    this.video.nativeElement.srcObject = null;
-  }
+  
+      // CREATE LOCAL STREAM
+      
+      userAgent.createStream({
+        constraints: {
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true
+           },
+          video: true
+        }
+      })
+        .then((stream: Stream) => {
 
-  ngOnDestroy() {
-    (this.video.nativeElement.srcObject as MediaStream).getVideoTracks()[0].stop();
-    this.video.nativeElement.srcObject = null;
- }
+          console.log('createStream :', stream);
+
+          // Save local stream
+          localStream = stream;
+
+          // Display stream
+          localStream.attachToElement(this.videoRef.nativeElement);
+
+          
+          // JOIN CONVERSATION
+          
+          conversation.join()
+            .then(() => {
+              
+              // PUBLISH LOCAL STREAM
+              
+              conversation.publish(localStream).then((stream: Stream) => {
+                console.log('published', stream);
+              }).catch((err: any) => {
+                console.error('publish error', err);
+              });
+            }).catch((err: any) => {
+              console.error('Conversation join error', err);
+            });
+        }).catch((err: any) => {
+          console.error('create stream error', err);
+        });
+    });
+  }
 }
+
+
+
+

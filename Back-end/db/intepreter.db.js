@@ -15,13 +15,13 @@ const createIntepreterDb=async({userID,cert_url,hourly_rate})=>{
     throw error;
   }
 };
-const updateIntepreterDb = async ({name,email,lastname,id,cert_url,hourly_rate,active_status}) => {
+const updateIntepreterDb = async ({name,lastname,id,hourly_rate,img_url}) => {
    try {
      console.log(id);
     const { rows: user } = await pool.query(
-      `UPDATE users set name = $1, email = $2, lastname = $3 
-        where id = $4 returning name, email, lastname, id`,
-      [name, email, lastname, id]
+      `UPDATE users set name = $1,image_url = $2,lastname = $3
+        where ID = $4 returning name, email, lastname, ID`,
+      [name, img_url, lastname, id]
     );
     const myuser=user[0];
 

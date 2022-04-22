@@ -4,6 +4,7 @@ const {
     createBookingDb,
     GetAllBookingsDb,
     getIntepreterBookingDb,
+    getIntepreterStreamDb,
     getBookingDb,
     getAllClientBookingDb,
     getClientBookingDb,
@@ -58,6 +59,36 @@ const GetIntepreterBooking=async (req,res,next)=>{
 
     } catch (error) {
         console.log("bokingConErr:",error);
+        next(error);
+    }
+}
+
+//get intepreter bookings by intepreter
+const GetIntepreterStreams=async (req,res,next)=>{
+    
+    try {
+        
+         //check that user is authorized and is intepreter
+         const id = req.user.id && req.user.role===roles.INTEPRETER ? req.user.id: null;
+
+        console.log("Inter",id);
+        if (!id) return res.send(401).send({msg:"you are not authorized to access this route"});
+
+          //get intepreter by user id 
+        const intepreterId = await getIntepreterDb(id); 
+  
+        if(!intepreterId) return res.status(404).send("user not found");
+
+
+
+        const Bookings=await getIntepreterStreamDb(intepreterId);
+
+        if(!Bookings) return res.status(404).send({msg:"not found"});
+
+        return res.status(200).send(Bookings);
+
+    } catch (error) {
+        console.log("stream Err:",error);
         next(error);
     }
 }
@@ -208,5 +239,6 @@ module.exports={
     DeleteBooking,
     getClientBooking,
     setBookingStatus,
-    GetIntepreterBooking
+    GetIntepreterBooking,
+    GetIntepreterStreams
 }

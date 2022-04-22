@@ -51,13 +51,13 @@ const changeUserPasswordDb = async (hashedPassword, email) => {
     email,
   ]);
 };
-const createUserDb=async({ name, passwordhash, email, lastname,role})=>{
+const createUserDb=async({ name, passwordhash, email, lastname,role, image_url})=>{
   try {
     const usr= await pool.query(
-      `INSERT INTO users(name, passwordhash, email, lastname, role)
-       VALUES($1, $2, $3, $4, $5) 
+      `INSERT INTO users(name, passwordhash, email, lastname, role,image_url)
+       VALUES($1, $2, $3, $4, $5,$6) 
        returning ID, name, email,image_url, lastname, role, created_at`,
-   [name, passwordhash, email, lastname,role]);
+   [name, passwordhash, email, lastname,role,image_url]);
     const myuser=usr.rows[0];
      return myuser;
     }catch(err){

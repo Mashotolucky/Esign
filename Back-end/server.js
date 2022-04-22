@@ -4,20 +4,28 @@ const cors = require('cors');
 let server = require( 'http' ).Server( app );
 let io = require( 'socket.io' )( server );
 let stream = require( './video/stream' );
+const rateLimit = require('express-rate-limit');
 const { cloudinary } = require('./cloudinary/cloudinary');
+const helmet = require('helmet');
 
 if(process.env.NODE_ENV=="dev" ){ 
     const morgan =require('morgan');
     app.use(morgan("dev"))
 }
-
+const limiter = rateLimit({
+	windowMs: 2 * 60 * 1000, // 2 minutes
+	max: 10, // Limit each IP to 10 requests per `window` (here, per 2 minutes)
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+})
 
 const Port=process.env.PORT || 4314;
-
 const esign_routes = require('./routes');
 
-
+app.use(helmet());
 app.use(cors());
+// Apply the rate limiting middleware to all requests
+app.use(limiter);
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
@@ -28,18 +36,6 @@ app.get('/api/v1/test',(req,res)=>{
 
 //handle all app routes
 app.use("/api/v1/",esign_routes);
-
-io.on('connection', socket => {
-
-  console.log('new connection'); 
-  
-socket.on('disconnect', () => console.log('disconnected')); 
-
-})
-
-io.of( '/stream' ).on( 'connection', stream );
-
-io.attach(server); 
 
 //404 resource not found
 app.use((req,res)=>{

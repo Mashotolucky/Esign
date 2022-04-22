@@ -49,6 +49,7 @@ const register = async (req, res, next) => {
                 email: email ? String(email).trim() : null,
                 lastname: lastname ? String(lastname).trim() : null,
                 role: role ,
+                image_url:"https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png",
                 cert_url: cert_url ? cert_url : "",
                 hourly_rate: cert_url ? String(hourly_rate).trim() : null
             }
@@ -60,6 +61,7 @@ const register = async (req, res, next) => {
                     email: email ? String(email).trim() : null,
                     lastname: lastname ? String(lastname).trim() : null,
                     role: role ,
+                    image_url:"https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png",
                     langID: langID ? langID : null,
                 }
         }
