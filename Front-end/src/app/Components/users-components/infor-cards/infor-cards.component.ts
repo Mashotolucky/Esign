@@ -30,6 +30,8 @@ export class InforCardsComponent implements OnInit {
   constructor(private userService: UserService, private activatedRoute:ActivatedRoute, private authService:AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+     console.log(this.user);
+      
     this.getClient();
     this.userLogged = this.authService.getUser()
     console.log(this.userLogged.role);
@@ -73,16 +75,13 @@ export class InforCardsComponent implements OnInit {
     //   console.log(params);
     //   this.user = params;
     //   console.log(this.user);
-      
-     
     // });
 
-    this.user = localStorage.getItem("user");
+    //this.user = localStorage.getItem("user");
     this.intepreterID = this.user.id
     localStorage.setItem("intepreterID",this.intepreterID);
 
     console.log(this.user);
-    
     
   }
 
