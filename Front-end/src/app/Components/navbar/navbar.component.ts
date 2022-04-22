@@ -15,16 +15,23 @@ export class NavbarComponent implements OnInit {
   constructor(private authService:AuthService, private router:Router, private onlineService: UserService ) { }
   public is_loggedIn: boolean;
   public user:any;
+  userLogged:any;
+  isintepreterLoggedIn:any;
+  // userWho: any;
   ngOnInit(): void {
 
    this.is_loggedIn = this.authService.isLoggedIn();
    
    //alert(this.is_loggedIn);
-
+   this.userLogged = this.authService.getUser()
+    console.log(this.userLogged.role);
     //.log(this.is_loggedIn);
-
+    this.isintepreterLoggedIn = this.userLogged.role === 'CLIENT'? false :true;
      this.user=this.authService.getUser()
     //  console.log("myuser",this.user)
+
+  //   this.userWho= this.authService.getUser()
+  //  console.log(this.userWho.role);
       
   }
 
@@ -62,11 +69,19 @@ export class NavbarComponent implements OnInit {
   }
 
   btnClick() {
-    this.router.navigate(['/editprofile']).then(()=>{
+    this.router.navigate(['/profile']).then(()=>{
       window.location.reload();
     })
   };
 
+
+  // isInterpreter(){
+  //   if(this.userWho.role === 'CLIENT'){
+      
+  //     return this.router.navigate(['/clientbooking']);
+  //   }
+  //   return this.router.navigate(['/interpreterbooking']);
+  // }
 
 
 }

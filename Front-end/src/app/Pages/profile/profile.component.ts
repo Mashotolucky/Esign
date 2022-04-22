@@ -20,33 +20,33 @@ export class ProfileComponent implements OnInit {
   bookingForm!: FormGroup;
   intepreterID: any;
   data: any;
-  user: any;
+  Interpreter: any;
   userLogged: any;
+  isclientLoggedIn:boolean;
   constructor(private userService: UserService, private bookingService: BookingService,private activatedRoute:ActivatedRoute, private router: Router, private authService: AuthService) { }
 
 
 
   ngOnInit(): void {
-    //   let timeObj: TimePicker = new TimePicker({ step:45, placeholder: 'Select a time'
-    // });
-    // timeObj.appendTo('#timepicker');
+  
+    this.activatedRoute.params.subscribe(params => {
+      console.log(params);
+      this.Interpreter = params;
+      this.intepreterID = this.Interpreter.id;
+      
+      //this.router.navigate['/clientbooking'];
+    });
+
+
+
     this.bookingForm = new FormGroup({
       date_: new FormControl('', [Validators.required]),
       time_: new FormControl('', [Validators.required])
     });
-this.userLogged = this.authService.getUser()
+    this.userLogged = this.authService.getUser()
    console.log(this.userLogged.role);
 
-   
-  //  ifINTEPRETER(): Boolean{
-  //   if(this.userLogged.value.role === "INTEPRETER"){
-  //     return true;
-  //   }
-  //   else{
-  //     return false;
-  //   }
-  // }
-
+   this.isclientLoggedIn=this.userLogged.role === 'CLIENT'?true:false;
 
     this.intepreterID = this.userService.getUser();
     
@@ -57,9 +57,9 @@ this.userLogged = this.authService.getUser()
 
   isInterpreter(): boolean{
     if(this.userLogged.role === 'CLIENT'){
-      return true
+      return false
     }
-    return false
+    return true
   }
 
   simpleAlert() {
@@ -78,8 +78,8 @@ this.userLogged = this.authService.getUser()
   creatBooking(): void {
     this.activatedRoute.params.subscribe(params => {
       // console.log(params);
-      this.user = params;
-      this.intepreterID = this.user.id;
+      this.Interpreter = params;
+      this.intepreterID = this.Interpreter.id;
       
       this.router.navigate['/clientbooking'];
     });
@@ -101,14 +101,16 @@ this.userLogged = this.authService.getUser()
       
     })
 
-    this.activatedRoute.params.subscribe(params => {
-      // console.log(params);
-      this.user = params;
-      this.intepreterID = this.user.id;
+    // this.activatedRoute.params.subscribe(params => {
+    //   // console.log(params);
+    //   // this.Interpreter = params;
+    //   this.intepreterID = this.Interpreter.id;
+
+    //   localStorage.setItem("intepreterID",this.intepreterID);
+    // });
+    this.intepreterID = this.Interpreter.id;
 
       localStorage.setItem("intepreterID",this.intepreterID);
-    });
-    
   }
 
 
