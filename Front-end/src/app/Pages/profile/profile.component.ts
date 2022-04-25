@@ -4,10 +4,11 @@ import Swal from 'sweetalert2'
 enableRipple(true);
 import { TimePicker } from '@syncfusion/ej2-calendars';
 import { UserService } from 'src/app/Services/user.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookingService } from 'src/app/Services/booking.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
+import { timestamp } from 'rxjs/operators';
 
 
 @Component({
@@ -23,6 +24,18 @@ export class ProfileComponent implements OnInit {
   Interpreter: any;
   userLogged: any;
   isclientLoggedIn:boolean;
+
+  dateValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    if (control?.value) {
+        const today = new Date();
+        const dateToCheck = new Date(control.value);
+        if (dateToCheck < today) {
+            return {'Invalid date': true}
+        }
+    }
+    return null;
+}
+
   constructor(private userService: UserService, private bookingService: BookingService,private activatedRoute:ActivatedRoute, private router: Router, private authService: AuthService) {
     // this.Interpreter=this.router.getCurrentNavigation().extras.state?this.router.getCurrentNavigation().extras.state.int:null;
 
@@ -31,7 +44,10 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-  this.Interpreter = JSON.parse(localStorage.getItem('user'));;
+    let todayDate = Date.now();
+    console.log(todayDate );
+  // this.Interpreter = JSON.parse(localStorage.getItem('user'));
+  this.Interpreter =   JSON.parse(localStorage.getItem("Interpreter"));
   console.log(this.Interpreter);
   
     // this.activatedRoute.params.subscribe(params => {
@@ -46,10 +62,10 @@ export class ProfileComponent implements OnInit {
    
 
     this.bookingForm = new FormGroup({
-      date_: new FormControl('', [Validators.required]),
+      date_: new FormControl('', [Validators.required,this.dateValidator]),
       time_: new FormControl('', [Validators.required])
     });
-    this.userLogged = this.authService.getUser()
+    this.userLogged = this.authService.getUser();
    console.log(this.userLogged.role);
 
    this.isclientLoggedIn=this.userLogged.role === 'CLIENT'?true:false;
@@ -80,7 +96,7 @@ export class ProfileComponent implements OnInit {
 
   }
 
-
+ 
   creatBooking(): void {
     this.activatedRoute.params.subscribe(params => {
       // console.log(params);
@@ -90,6 +106,10 @@ export class ProfileComponent implements OnInit {
       this.router.navigate['/clientbooking'];
     });
     var id = localStorage.getItem("intepreterID")
+    let todayDate = Date.now();
+    console.log(todayDate );
+    let timeStamp = timestamp
+    
     this.data = {
       intepreterID: parseInt(id),
       date_: this.bookingForm.value.date_,
@@ -99,13 +119,17 @@ export class ProfileComponent implements OnInit {
     console.log(this.data);
 
     let token = localStorage.getItem("auth-token");
-    this.bookingService.booking(this.data,token)
-    .subscribe(res =>{
-      this.simpleAlert();
-    },error =>{
-      console.log(error);
-      
-    })
+    
+    if(this.dateValidator){
+      this.bookingService.booking(this.data,token)
+          .subscribe(res =>{
+            this.simpleAlert();
+          },error =>{
+            console.log(error);
+            
+          })
+
+    } 
 
     // this.activatedRoute.params.subscribe(params => {
     //   // console.log(params);

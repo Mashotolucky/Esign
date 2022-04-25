@@ -24,7 +24,7 @@ router.get("/booking/intepreter/",verifyJWT,GetIntepreterBooking);
 
 router.get("/stream/intepreter/",verifyJWT,GetIntepreterStreams);
 
-// router.get("/stream/client/",verifyJWT,GetClientStreams);
+router.get("/stream/client/",verifyJWT,GetClientStreams);
 
 router.put("/booking/update/status",setBookingStatus);
 

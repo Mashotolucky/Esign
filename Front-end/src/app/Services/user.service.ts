@@ -59,6 +59,7 @@ export class UserService {
 
   user(data: any) {
     this.clickedUser = data;
+    localStorage.setItem("Interpreter",JSON.stringify(this.clickedUser));
     console.log(this.clickedUser);
   }
 
