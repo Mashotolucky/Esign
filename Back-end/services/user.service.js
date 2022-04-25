@@ -46,7 +46,7 @@ const { createIntepreterDb, updateIntepreterDb, deleteInteprterDb } = require('.
         }else
         if(newuser.role && newuser.role.toUpperCase() == roles.INTEPRETER){
 
-            return await createIntepreterDb({userID:newuser.id,cert_url:user.cert_url,hourly_rate:user.hourly_rate});
+            return await createIntepreterDb({userID:newuser.id,cert_url:user.cert_url,hourly_rate:user.hourly_rate, langs:user.intlangs});
 
         }else{
           throw Error("role is empty or not defined");

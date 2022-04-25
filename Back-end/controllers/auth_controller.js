@@ -24,7 +24,16 @@ const register = async (req, res, next) => {
    
     if(!req.body) return next(new Error("all fields required"));
 
-    const { name, password, email, lastname, cellno, role, hourly_rate, langID } = req.body;
+    const { name, password, email, lastname, intlangs, role, hourly_rate, langID } = req.body;
+
+
+
+     console.log("languages", intlangs);
+
+     let intepreterLanguages=[];
+     intepreterLanguages=intlangs.split(',');
+
+     console.log("arry",intepreterLanguages);
 
     let cert_url = "";
     let data={};
@@ -38,7 +47,7 @@ const register = async (req, res, next) => {
                 return res.status(400).send({msg:"size too large"});
             }
             // upload file to cloudinary if req.file exists  use external function await this 
-            cert_url =await uploadFile.fileUpload(req.file.path,"certificates");
+            cert_url =await uploadFile.fileUpload(req.file.path,"certificates",'raw');
             
         
             if(!cert_url) return next(new Error("file upload failed"));
@@ -51,7 +60,8 @@ const register = async (req, res, next) => {
                 role: role ,
                 image_url:"https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png",
                 cert_url: cert_url ? cert_url : "",
-                hourly_rate: cert_url ? String(hourly_rate).trim() : null
+                hourly_rate: cert_url ? String(hourly_rate).trim() : null,
+                intlangs: intepreterLanguages
             }
     
         }else if(!req.file && String(role).trim() && role.toUpperCase()==roles.CLIENT){

@@ -18,41 +18,60 @@
                         <option value="INTEPRETER">INTEPRETER</option>
                     </select>
                     <div class="mb-4">
-                        
+                        <div class="input-group form-group mb-2">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
                         <input class="form-control" type="text" 
                         id="firstname"
                         formControlName="name"
                          placeholder="First Name">
                         </div>
-                        <div class="mb-4">
-                            <input class="form-control" type="text" 
-                            formControlName="lastname" 
-                            id="lastname" 
-                            placeholder="Last Name">
                         </div>
                         <div class="mb-4">
-                            <input class="form-control" type="email"
-                            id="email"
-                            formControlName="email"
-                            placeholder="Email">
+                            <div class="input-group form-group mb-2">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                <input class="form-control" type="text" 
+                                formControlName="lastname" 
+                                id="lastname" 
+                                placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="input-group form-group mb-2">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input class="form-control" type="email"
+                                id="email"
+                                formControlName="email"
+                                placeholder="Email">
+                            </div>
                         </div>
                         <select class="form-select mb-4 form-control" *ngIf="ifCLIENT()" aria-label="Default select example"formControlName="langID">
                                 <option [selected]="true" value="user-type">language type</option>
                                 <option *ngFor="let opt of languages" [value]="opt.id" >{{opt.name_}}</option>
                         </select>
+                        <select class="form-select mb-4 form-control" multiple *ngIf="ifINTEPRETER()" (change)="changeSelect($event.target.value)"  aria-label="Default select example" >
+                            <!-- <option [selected]="true" value="user-type">language type</option> -->
+                            <option *ngFor="let opt of languages" [value]="opt.id" >{{opt.name_}}</option>
+                        </select>
+                        
 
                         <div class="mb-4">
-                            <input class="form-control" type="password"
+                            <div class="input-group form-group mb-2">
+                                <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                <input class="form-control" type="password"
                             id="password" 
                             formControlName="password"
                             placeholder="Password">
+                            </div>
                         </div>
     
                         <div class="mb-4">
-                            <input class="form-control"type="password"
+                            <div class="input-group form-group mb-2">
+                                <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                <input class="form-control"type="password"
                             id="confirm_password" 
                             formControlName="confirm_password"
                             placeholder="Confirm password">
+                            </div>
                              <div class="details text-danger" *ngIf="fieldsWithData()">{{message}}</div>
                             <span class="details text-danger" *ngIf="!passwordMatch()" >{{passwordMessage}}</span> 
                         </div>

@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   passwordMessage: any = '';
   password_matched: boolean = false;
   strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+  interpreterLangs:any=[];
 
   file: any = '';
   spinnerState:boolean=false;
@@ -30,7 +31,9 @@ export class RegisterComponent implements OnInit {
     private userService:UserService,
     private router:Router
     ) { }
-languages:any[]
+    
+  languages:any[]
+
   ngOnInit(): void {
 
    this.userService.getLanguages().subscribe(res=>{
@@ -47,7 +50,8 @@ languages:any[]
       confirm_password: new FormControl(''),
       certificates: new FormControl(''),
       langID: new FormControl(''),
-      hourly_rate: new FormControl('')
+      hourly_rate: new FormControl(''),
+      interpreterLangs: new FormControl([])
   });
   }
   fieldsWithData(): boolean{
@@ -105,8 +109,9 @@ languages:any[]
       formData.append('hourly_rate', this.registerForm.value.hourly_rate);
       formData.append('langID', this.registerForm.value.langID);
       formData.append('role', this.registerForm.value.role);
-
-     console.log(formData.get("langID"));
+      formData.append('intlangs',this.interpreterLangs)
+    // console.log(formData.get("langID"));
+     console.log(formData.get("intlangs"));
      
       this.registerService.register(formData)
       .subscribe({
@@ -132,7 +137,7 @@ languages:any[]
             {
                //position: 'top-end',
               icon: 'error',
-              title: err.error.message,
+              title: err.error.message||"something went wrong",
               showConfirmButton: false,
               timer: 1900,
                width: '300px'
@@ -144,6 +149,14 @@ languages:any[]
   }
      selectThisImage(myEvent: any) {
       this.file = myEvent.target.files[0]; 
+    }
+    changeSelect(value:any){
+      if(this.interpreterLangs.indexOf(value) === -1) {
+        this.interpreterLangs.push(value);
+        console.log(this.interpreterLangs);
+    }
+    
+      console.log(this.interpreterLangs)
     }
 }
 

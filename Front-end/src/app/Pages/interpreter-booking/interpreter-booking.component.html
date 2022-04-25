@@ -2,17 +2,17 @@
 
 
 <div class="container">
-    <div class="row dflex align-items-center justify-content-evenly">
-      <div class="cards col col-3 my-2" [ngClass]="bookings? 'green' : 'grey'" >
-        <a class="btn"  id="bookings" (click)="changeUser_Type('bookings')"  role="button">Bookings</a>
-      </div>
-      <div class="cards col col-3 my-2" [ngClass]="streams? 'green' : 'grey'" >
-        <a class="btn"  id="streams" (click)="changeUser_Type('streams')" role="button">Streams</a>
-      </div>
-      <div class="cards col col-3 my-2" [ngClass]="history ? 'green':'grey'">
-        <a class="btn"  id="history" (click)="changeUser_Type('history')" role="button">History</a>
-      </div>
+  <div class="row dflex align-items-center justify-content-evenly">
+    <div class="cards col col-3 my-2" [ngClass]="bookings? 'green' : 'grey'" (click)="changeUser_Type('bookings')"  role="button" >
+      <a class="btn"  id="bookings" >Bookings</a>
     </div>
+    <div class="cards col col-3 my-2" [ngClass]="streams? 'green' : 'grey'" (click)="changeUser_Type('streams')" role="button">
+      <a class="btn"  id="streams" >Streams</a>
+    </div>
+    <div class="cards col col-3 my-2" [ngClass]="history ? 'green':'grey'" (click)="changeUser_Type('history')" role="button">
+      <a class="btn"  id="history" >History</a>
+    </div>
+  </div>
 </div>
 <br>
 <br>
@@ -23,10 +23,10 @@
   <table class="table table-striped" *ngIf="bookings">
     <thead class="head" style=" overflow-y: scroll;">
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Date</th>
-        <th scope="col">Time</th>
-        <th scope="col">Action</th>
+        <th >Name</th>
+        <th >Date</th>
+        <th >Time</th>
+        <th >Action</th>
       </tr>
     </thead>
       <tbody>
