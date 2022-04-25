@@ -13,7 +13,7 @@ if(process.env.NODE_ENV=="dev" ){
     app.use(morgan("dev"))
 }
 const limiter = rateLimit({
-	windowMs: 2 * 60 * 1000, // 2 minutes
+	windowMs: 1 * 60 * 1000, // 2 minutes
 	max: 100, // Limit each IP to 10 requests per `window` (here, per 2 minutes)
 	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
@@ -54,7 +54,7 @@ app.use((err,req,res,next)=>{
 })
 
 
-server.listen(Port,()=>{
+server.listen(Port,"0.0.0.0",()=>{
   console.log(`server running on localhost Port:${Port}`);
 })
 

@@ -24,12 +24,15 @@ export class ProfileComponent implements OnInit {
   userLogged: any;
   isclientLoggedIn:boolean;
   constructor(private userService: UserService, private bookingService: BookingService,private activatedRoute:ActivatedRoute, private router: Router, private authService: AuthService) {
-    this.Interpreter=this.router.getCurrentNavigation().extras.state?this.router.getCurrentNavigation().extras.state.int:null;
+    // this.Interpreter=this.router.getCurrentNavigation().extras.state?this.router.getCurrentNavigation().extras.state.int:null;
+
   }
 
 
 
   ngOnInit(): void {
+  this.Interpreter = JSON.parse(localStorage.getItem('user'));;
+  console.log(this.Interpreter);
   
     // this.activatedRoute.params.subscribe(params => {
     //   console.log("obj",params);

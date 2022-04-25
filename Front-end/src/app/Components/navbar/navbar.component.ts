@@ -33,6 +33,8 @@ export class NavbarComponent implements OnInit {
      this.user=this.authService.getUser()
      console.log("myuser",this.user)
 
+     
+
   //   this.userWho= this.authService.getUser()
   //  console.log(this.userWho.role);
       
@@ -80,10 +82,16 @@ export class NavbarComponent implements OnInit {
   }
 
   btnClick() {
-    this.router.navigate(['/profile']).then(()=>{
-      window.location.reload();
+    this.router.navigate(['/profil']).then(()=>{
+      // window.location.reload();
+      this.onlineService.setLoggedUser(this.user);
+
     })
   };
+
+  profile(){
+    this.onlineService.setLoggedUser(this.user);
+  }
 
 
   // isInterpreter(){

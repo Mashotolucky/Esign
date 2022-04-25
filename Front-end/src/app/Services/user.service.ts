@@ -16,6 +16,7 @@ export class UserService {
 
   intepreterID: any;
   clickedUser: any;
+  loggedUser: any;
 
   constructor(private http: HttpClient) { }
 
@@ -65,6 +66,18 @@ export class UserService {
     console.log(this.clickedUser);
     return this.clickedUser;
   }
+
+  setLoggedUser(data: any){
+    this.loggedUser = data;
+    console.log(this.loggedUser);
+  }
+
+  getLoggedUser(){
+    console.log(this.loggedUser);
+    
+    return this.loggedUser;
+  }
+
 
   updateIntepreter(data: any, token: any):Observable<any[]> {
     let headers=new HttpHeaders();

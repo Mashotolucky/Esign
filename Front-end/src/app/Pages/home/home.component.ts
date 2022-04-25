@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit ,OnDestroy{
     console.log(interpreter);
     
     this.router.navigate(['/profile'],{state:{int:interpreter}});
+    this.userService.user(interpreter);
   }
   
   ngOnDestroy(): void {
