@@ -72,14 +72,19 @@ const getAllClientDb=async () => {
     }
 }
 const getClientDb = async (id) => {
+   
   try {
     const { rows: clients } = await pool.query(
     `select id FROM client 
       WHERE userid = $1`,
       [id]
     );
-    return clients[0].id;
+    console.log(clients);
+    if(clients.length>0)
+      return clients[0].id;
+    return 0;
   } catch (error) {
+    console.log("CLIENTID Errr",error);
     throw error;
   }
 }

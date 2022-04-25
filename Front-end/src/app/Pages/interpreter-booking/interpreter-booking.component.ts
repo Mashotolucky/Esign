@@ -11,20 +11,20 @@ import Swal from 'sweetalert2';
 export class InterpreterBookingComponent implements OnInit {
   select = ' ';
   count = 0;
-  bookings=false;
+  bookings=true;
   streams=false;
   history=false;
   
   IntepreterBoookings : any;
   IntepreterStreams: any;
 
-  public streamss=[
-    {"name":"lahlie", "lastname":"momo", "date":"14 April 2022", "time":"09:10 AM",}
-  ];
+  // public streamss=[
+  //   {"name":"lahlie", "lastname":"momo", "date":"14 April 2022", "time":"09:10 AM",}
+  // ];
 
-  public historyss=[
-    {"name":"Mash", "lastname":"mashy", "date":"10 April 2022", "time":"11:11 AM",}
-  ];
+  // public historyss=[
+  //   {"name":"Mash", "lastname":"mashy", "date":"10 April 2022", "time":"11:11 AM",}
+  // ];
 
 
   
@@ -89,7 +89,7 @@ export class InterpreterBookingComponent implements OnInit {
     }
 
     if(user_type=="history"){
-      //fetch token from seesion or localstorage
+      //fetch token from session or localstorage
       const token=localStorage.getItem("auth-token")
       
       //call bookings service
@@ -104,7 +104,7 @@ export class InterpreterBookingComponent implements OnInit {
 
       //assign bookings array 
     }
-
+//A switch that allows only one table to be visible when one of the buttons is being clicked
 
     switch(user_type){
       case "streams":

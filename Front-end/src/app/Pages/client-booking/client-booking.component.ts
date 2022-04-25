@@ -14,7 +14,7 @@ export class ClientBookingComponent implements OnInit {
   history=false;
   
   clientBookings: any;
-
+  clientStreams: any;
   public streamss=[
     {"name":"lahlie", "lastname":"momo", "date":"14 April 2022", "time":"09:10 AM",}
   ];
@@ -69,20 +69,20 @@ export class ClientBookingComponent implements OnInit {
     }
 
     if(user_type=="streams"){
-      //fetch token from seesion or localstorage
-      const token=localStorage.getItem("auth-token")
+           //fetch token from seesion or localstorage
+           const token=localStorage.getItem("auth-token")
       
-      //call bookings service
-      this.bookingsService.getAllclientstreams(token).subscribe({
-        next:(results)=>{
-         
-        },
-        error:(error)=>{
-         // this.streams=false;
-        }
-      });
-
-      //assign bookings array 
+           //call bookings service
+           this.bookingsService.getAllclientstreams(token).subscribe({
+             next:(results)=>{
+               this.clientStreams = results;
+               console.log(this.clientStreams);
+               
+             },
+             error:(error)=>{
+              
+             }
+           });
     }
 
     if(user_type=="history"){
