@@ -10,12 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-=======
     "@hapi/joi": "^15.0.3",
     "bcrypt": "^5.0.0",
     "cloudinary": "^1.29.0",
->>>>>>> develop
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
