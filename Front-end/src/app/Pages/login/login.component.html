@@ -6,22 +6,28 @@
         <div class="col col-12 col-lg-6 border-start mt-2">
             
             <h3 class="text-center display-4 mb-5">
-                login
+                Login
             </h3>
             <div class="container w-55 ">
                 <form class="text-center" [formGroup]="form" (ngSubmit)="onSubmit()">
                     <div class="mb-4">
-                        <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email" formControlName="email" required>
+                            <div class="input-group form-group mb-2">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email" formControlName="email" required>
+                            </div>
                          <div *ngIf="(email?.dirty || email?.touched) && email?.errors" class="errors">
-                            <span *ngIf="email?.errors" class="text_color">Email is required</span>
-                            <span *ngIf="email?.errors?.email" class="text_color">Email is invalid</span>  
+                            <span *ngIf="email?.errors" class="text_color">Email is required, </span>
+                            <span *ngIf="email?.errors?.email" class="text_color">email is invalid</span>  
                         </div>
                     </div>
                     <div class="mb-4">
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName="password" required>
+                        <div class="input-group form-group mb-2">
+                            <span class="input-group-text"><i class="fa fa-key"></i></span>
+                            <input type="password" class="form-control" id="exampleInputPassword1 " placeholder="Password" formControlName="password" required>
+                        </div>
                         <div *ngIf="(password?.dirty || password?.touched) && password?.invalid" class="errors">
-                            <span *ngIf="password?.errors?.required" class="text_color">Password is required</span>
-                            <span *ngIf="password?.errors?.required">Password is invalid</span>
+                            <span *ngIf="password?.errors?.required" class="text_color">Password is required, </span>
+                            <span *ngIf="password?.errors?.required">password is invalid</span>
                         </div>
                     
                     </div>
