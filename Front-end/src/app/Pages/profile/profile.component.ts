@@ -23,21 +23,24 @@ export class ProfileComponent implements OnInit {
   Interpreter: any;
   userLogged: any;
   isclientLoggedIn:boolean;
-  constructor(private userService: UserService, private bookingService: BookingService,private activatedRoute:ActivatedRoute, private router: Router, private authService: AuthService) { }
+  constructor(private userService: UserService, private bookingService: BookingService,private activatedRoute:ActivatedRoute, private router: Router, private authService: AuthService) {
+    this.Interpreter=this.router.getCurrentNavigation().extras.state?this.router.getCurrentNavigation().extras.state.int:null;
+  }
 
 
 
   ngOnInit(): void {
   
-    this.activatedRoute.params.subscribe(params => {
-      console.log(params);
-      this.Interpreter = params;
-      this.intepreterID = this.Interpreter.id;
+    // this.activatedRoute.params.subscribe(params => {
+    //   console.log("obj",params);
+    //   this.Interpreter = params;
+    //   this.intepreterID = this.Interpreter.id;
       
-      //this.router.navigate['/clientbooking'];
-    });
+    //   //this.router.navigate['/clientbooking'];
+    // });
 
-
+   console.log(this.Interpreter.email);
+   
 
     this.bookingForm = new FormGroup({
       date_: new FormControl('', [Validators.required]),

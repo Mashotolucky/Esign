@@ -34,7 +34,9 @@ export class HomeComponent implements OnInit ,OnDestroy{
   }
 
   viewProfile(interpreter: any){
-    this.router.navigate(['/profile',{state:{interpreter}}]);
+    console.log(interpreter);
+    
+    this.router.navigate(['/profile'],{state:{int:interpreter}});
   }
   
   ngOnDestroy(): void {
