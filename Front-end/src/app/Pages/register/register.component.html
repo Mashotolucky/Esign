@@ -48,6 +48,11 @@
                                 <option [selected]="true" value="user-type">language type</option>
                                 <option *ngFor="let opt of languages" [value]="opt.id" >{{opt.name_}}</option>
                         </select>
+                        <select class="form-select mb-4 form-control" multiple *ngIf="ifINTEPRETER()" (change)="changeSelect($event.target.value)"  aria-label="Default select example" >
+                            <!-- <option [selected]="true" value="user-type">language type</option> -->
+                            <option *ngFor="let opt of languages" [value]="opt.id" >{{opt.name_}}</option>
+                        </select>
+                        
 
                         <div class="mb-4">
                             <div class="input-group form-group mb-2">

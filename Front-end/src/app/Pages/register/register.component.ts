@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   passwordMessage: any = '';
   password_matched: boolean = false;
   strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+  interpreterLangs:any=[];
 
   file: any = '';
   spinnerState:boolean=false;
@@ -47,7 +48,8 @@ languages:any[]
       confirm_password: new FormControl(''),
       certificates: new FormControl(''),
       langID: new FormControl(''),
-      hourly_rate: new FormControl('')
+      hourly_rate: new FormControl(''),
+      interpreterLangs: new FormControl([])
   });
   }
   fieldsWithData(): boolean{
@@ -105,7 +107,7 @@ languages:any[]
       formData.append('hourly_rate', this.registerForm.value.hourly_rate);
       formData.append('langID', this.registerForm.value.langID);
       formData.append('role', this.registerForm.value.role);
-
+      formData.append('intlangs',this.interpreterLangs)
      console.log(formData.get("langID"));
      
       this.registerService.register(formData)
@@ -144,6 +146,14 @@ languages:any[]
   }
      selectThisImage(myEvent: any) {
       this.file = myEvent.target.files[0]; 
+    }
+    changeSelect(value:any){
+      if(this.interpreterLangs.indexOf(value) === -1) {
+        this.interpreterLangs.push(value);
+        console.log(this.interpreterLangs);
+    }
+    
+      console.log(this.interpreterLangs)
     }
 }
 

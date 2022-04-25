@@ -37,3 +37,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
     "timepicker": "^1.13.18",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
+    "@syncfusion/ej2-angular-calendars": "^19.4.56",
+    "@apirtc/apirtc": "^4.7.2-rc.6",
+    "bootstrap": "^5.1.3",
+    "daisyui": "^2.6.4",
+   

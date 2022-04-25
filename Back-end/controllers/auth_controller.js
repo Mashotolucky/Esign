@@ -24,7 +24,7 @@ const register = async (req, res, next) => {
    
     if(!req.body) return next(new Error("all fields required"));
 
-    const { name, password, email, lastname, cellno, role, hourly_rate, langID } = req.body;
+    const { name, password, email, lastname, intlangs, role, hourly_rate, langID } = req.body;
 
     let cert_url = "";
     let data={};
@@ -51,7 +51,8 @@ const register = async (req, res, next) => {
                 role: role ,
                 image_url:"https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png",
                 cert_url: cert_url ? cert_url : "",
-                hourly_rate: cert_url ? String(hourly_rate).trim() : null
+                hourly_rate: cert_url ? String(hourly_rate).trim() : null,
+                intlangs: intlangs && null
             }
     
         }else if(!req.file && String(role).trim() && role.toUpperCase()==roles.CLIENT){
