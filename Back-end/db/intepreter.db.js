@@ -1,15 +1,21 @@
 const {pool} = require('../config/dbconfig');
 
-const createIntepreterDb=async({userID,cert_url,hourly_rate})=>{
+const createIntepreterDb=async({userID,cert_url,hourly_rate,langs})=>{
   try {
-
+  console.log(langs);
       const intepreter= await pool.query(
         `INSERT INTO intepreter(cert_url,hourly_rate,userID)
         VALUES($1,$2,$3) 
         returning cert_url,hourly_rate,userID,ID `,[cert_url,hourly_rate,userID]);
       const myintepreter=intepreter.rows[0];
-      
-      return myintepreter
+      languages=langs;
+      if(languages)
+          languages.forEach(async (lanuageid) => {
+            const intepretLangs= await pool.query(`INSERT INTO intepreter_lang(intepreterID,langID) VALUES($1,$2)`,[myintepreter.ID,lanuageid])
+          });
+ 
+
+      return myintepreter;
 
   } catch (error) {
     throw error;

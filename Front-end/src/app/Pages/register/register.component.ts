@@ -31,7 +31,9 @@ export class RegisterComponent implements OnInit {
     private userService:UserService,
     private router:Router
     ) { }
-languages:any[]
+    
+  languages:any[]
+
   ngOnInit(): void {
 
    this.userService.getLanguages().subscribe(res=>{
@@ -108,7 +110,8 @@ languages:any[]
       formData.append('langID', this.registerForm.value.langID);
       formData.append('role', this.registerForm.value.role);
       formData.append('intlangs',this.interpreterLangs)
-     console.log(formData.get("langID"));
+    // console.log(formData.get("langID"));
+     console.log(formData.get("intlangs"));
      
       this.registerService.register(formData)
       .subscribe({
@@ -134,7 +137,7 @@ languages:any[]
             {
                //position: 'top-end',
               icon: 'error',
-              title: err.error.message,
+              title: err.error.message||"something went wrong",
               showConfirmButton: false,
               timer: 1900,
                width: '300px'

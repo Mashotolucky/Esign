@@ -13,18 +13,20 @@ if(process.env.NODE_ENV=="dev" ){
     app.use(morgan("dev"))
 }
 const limiter = rateLimit({
-	windowMs: 2 * 60 * 1000, // 2 minutes
+	windowMs: 10 * 60 * 1000, // 10 minutes
 	max: 100, // Limit each IP to 10 requests per `window` (here, per 2 minutes)
 	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 })
-
+const options={
+  origin:'*'
+}
 const Port=process.env.PORT || 4314;
 const esign_routes = require('./routes');
 
 app.use(helmet());
-app.use(cors());
-// Apply the rate limiting middleware to all requests
+app.use(cors(options));
+// remember to Apply the rate limiting middleware to all requests
 app.use(limiter);
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));

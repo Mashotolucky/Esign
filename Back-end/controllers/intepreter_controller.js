@@ -32,7 +32,7 @@ const updateIntepreter=async(req,res,next)=>{
        //upload picture if exists
        if(!req.file) return res.status(404).send({msg:"file missing"});
 
-        const img_url= await fileUpload(req.file.path, "images");
+        const img_url= await fileUpload(req.file.path, "images",'image');
 
         const {name,lastname,hourly_rate}=req.body;
 
