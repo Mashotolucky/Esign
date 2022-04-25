@@ -78,7 +78,6 @@ const getClientDb = async (id) => {
       WHERE userid = $1`,
       [id]
     );
-    console.log("db id: ",clients);
     return clients[0].id;
   } catch (error) {
     throw error;

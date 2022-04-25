@@ -17,7 +17,7 @@ const createIntepreterDb=async({userID,cert_url,hourly_rate})=>{
 };
 const updateIntepreterDb = async ({name,lastname,id,hourly_rate,img_url}) => {
    try {
-     console.log(id);
+    
     const { rows: user } = await pool.query(
       `UPDATE users set name = $1,image_url = $2,lastname = $3
         where ID = $4 returning name, email, lastname, ID`,
@@ -58,7 +58,7 @@ const getAllIntepretersDb=async () => {
         WHERE users.id = intepreter.userid
         ORDER BY (CASE WHEN intepreter.online_status THEN 1 END) ASC`
     );
-    console.log("kill",intepreters);
+    
     return intepreters;
   } catch (error) {
     console.log(error);
@@ -67,13 +67,13 @@ const getAllIntepretersDb=async () => {
 };
 const getIntepreterDb=async(id)=>{
   const {rows:intepreter} =await pool.query("select id from intepreter where userid=$1",[id]);
-  console.log("intDBid",intepreter[0].id);
+  
   return intepreter[0].id;
 }
 const setOnilineDb=async (status,id) => {
   try {
     const { rows: intepreter } = await pool.query(`update intepreter set online_status = $1 WHERE userID = $2 returning online_status`,[status,id]);
-    console.log(intepreter[0]);
+    
     return intepreter[0];
   } catch (error) {
     console.log(error);
