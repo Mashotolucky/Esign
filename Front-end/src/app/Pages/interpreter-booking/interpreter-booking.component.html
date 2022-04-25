@@ -1,0 +1,97 @@
+<app-navbar></app-navbar>
+
+
+<div class="container">
+  <div class="row dflex align-items-center justify-content-evenly">
+    <div class="cards col col-3 my-2" [ngClass]="bookings? 'green' : 'grey'" (click)="changeUser_Type('bookings')"  role="button" >
+      <a class="btn"  id="bookings" >Bookings</a>
+    </div>
+    <div class="cards col col-3 my-2" [ngClass]="streams? 'green' : 'grey'" (click)="changeUser_Type('streams')" role="button">
+      <a class="btn"  id="streams" >Streams</a>
+    </div>
+    <div class="cards col col-3 my-2" [ngClass]="history ? 'green':'grey'" (click)="changeUser_Type('history')" role="button">
+      <a class="btn"  id="history" >History</a>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="container mt-3 overflow-scroll w-60">
+
+
+  <!-- Booking -->
+  <table class="table table-striped" *ngIf="bookings">
+    <thead class="head" style=" overflow-y: scroll;">
+      <tr>
+        <th >Name</th>
+        <th >Date</th>
+        <th >Time</th>
+        <th >Action</th>
+      </tr>
+    </thead>
+      <tbody>
+          <tr *ngFor="let booking of IntepreterBoookings">
+              <td>{{booking.name +' '+ booking.lastname}}</td>
+              <td>{{booking.date_ | date: 'fullDate'}}</td>
+              <td>{{booking.time_}}</td>
+              <td style="width:20%">
+              <button id="decline"class="btn btn-outline-danger" (click)="setStatus(false, booking.id)">
+                Decline
+                </button> &nbsp; 
+                <button id="accept"class="btn  accept text-light" (click)="setStatus(true,booking.id)">
+                  Accept
+                </button>
+              </td>
+               </tr>
+      </tbody>
+  </table>
+    <!-- Streams -->
+    <table class="table table-striped" *ngIf="streams">
+        <thead class="head" style=" overflow-y: scroll;">
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let stream of IntepreterStreams">
+            <td>{{stream.name +' '+ stream.lastname}}</td>
+            <td>{{stream.date_ | date: 'fullDate'}}</td>
+            <td>{{stream.time_}}</td>
+            <td><button id="join"class="btn text-light" (click)="joinstream(stream.id)">join</button></td>
+          </tr>
+        </tbody>
+    </table>
+      <!-- History -->
+    <table class="table table-striped" *ngIf="history">
+        <thead class="head" style=" overflow-y: scroll;">
+          <tr>
+            <th >Name</th>
+            <th>Date</th>
+            <th class="time">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let history of historyss">
+            <td>{{history.name +' '+ history.lastname}}</td>
+            <td>{{history.date}}</td>
+            <td>{{history.time}}</td>
+            <!-- <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td> -->
+          </tr>
+          <!-- <tr>
+            <td>Mary</td>
+            <td>Moe</td>
+            <td>mary@example.com</td>
+          </tr>
+          <tr>
+            <td>July</td>
+            <td>Dooley</td>
+            <td>july@example.com</td>
+            <td><button class="btn btn-outline-danger">decline</button> &nbsp; <button class="btn bg-info text-light">accept</button></td>
+          </tr> -->
+          
+        </tbody>
+    </table>
+  </div>

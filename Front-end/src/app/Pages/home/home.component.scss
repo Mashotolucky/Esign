@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansita&display=swap');
+
+
+// @media(min-width: 1025px) {
+  .btn{
+    background-color: #29A9AF;
+    margin-left: 1rem;
+    width: 140px;
+    margin: auto;
+  }
+  
+// }
+
+
+@media screen and (max-width: 540px) {
+  .btn {
+      width: 150px;
+      background-color: #29A9AF;
+  }
+}
+
+  // .btn{
+  //   @media (min-width: 450px){
+  //     .btn{
+  //       margin-left: 1rem;
+  //     }
+      
+  //   }
+  //   background-color: #29A9AF;
+  //   margin-left: 1rem;
+  // }
+.navbar{
+  background-color: #E3E0E0;
+  
+}
+.card{
+  background-color: #E3E0E0;
+}
+
+.container
+{
+  margin-top: 2.8cm;
+}
+.avatar{
+  transform: scale(0.75);
+  //clip-path: circle();
+}
+h1,button{
+  font-family: Sansita;
+}
+.checked{
+  color: orange;
+}
+
+.led-red-on {
+  margin: 20px auto;
+  width: 12px;
+  height: 12px;
+  background-color: red;
+  border-radius: 50%;
+  transform: translateX(8rem)
+}
+.led-green {
+  margin: 20px auto;
+  width: 12px;
+  height: 12px;
+  background-color: green;
+  border-radius: 50%;
+  transform: translateX(8rem)
+}
+@media screen and (max-width: 540px) {
+  .led-green {
+    transform: translateX(10rem) 
+  }
+}
+@media screen and (max-width: 540px) {
+  .led-red-on{
+    transform: translateX(10rem) 
+  }
+}

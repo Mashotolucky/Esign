@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<div class="container-fluid mx-auto">
+  <div class="row ps-1">
+    <div class="col right">
+      <app-profile-card [user]="Interpreter"></app-profile-card>
+      <app-infor-cards [user]="Interpreter"></app-infor-cards>
+      <div class="text-center mt-5"  *ngIf="isclientLoggedIn">
+        <button type="button" class="btn p-1 ps-5 px-5 text-light" id="proceed" data-bs-toggle="modal"
+          data-bs-target="#book">
+          Proceed
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="modal fade col" id="book" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="bookingForm">
+            <input class="date" type="date" id="modaldate" name="modaldate"  formControlName="date_" />
+            <br /><br />
+            <input class="time" type="time" name="time" formControlName="time_" /><i class="bi bi-clock"></i>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+        
+          <button (click)="creatBooking()" type="button" class="btn-1" data-bs-dismiss="modal" routerLink="/clientbooking">
+            Create booking
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

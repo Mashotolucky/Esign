@@ -1,1 +1,35 @@
-<p>home works!</p>
+<app-navbar></app-navbar>
+
+      <div class="container align-items-sm-stretch">
+          <div class="row row-cols-1 row-cols-lg-4 g-4">
+              <div class="col" *ngFor="let interpreter of interpretors">
+                <div class="card">
+                  <!--ONLINE/OFFLINE STATUS-->
+                  <div [ngClass]="interpreter.online_status ? 'led-green' : 'led-red-on '" ></div>
+                  <div class="avatar text-center">
+                    <img class= "img-fluid rounded-circle" width="200" height="200" src={{interpreter.image_url}}/>
+                  </div>
+            
+                  
+                  <div class="card-body">
+                    <h1 class="text-center fw-bold">{{interpreter.name}} {{interpreter.lastname}}</h1>
+                    <p class="card-text text-center fw-bold" *ngIf="!interpreter.languages">SOUTH AFRICAN SIGN LANGUAGE</p>
+                    <p class="card-text text-center fw-bold" *ngIf="interpreter.languages">{{interpreter.languages[0]}}</p>
+                    <div class="text-center pb-2">
+                      <!-- <span class="fa fa-star checked" *ngFor="let i of [1,2,3,5]"></span> -->
+                    </div>
+                    
+                    
+                   <div class="text-center">
+                     <button class="btn text-light" (click)="viewProfile(interpreter)">view profile</button>
+                    </div>
+                  
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  
+      
+  
+  

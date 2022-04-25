@@ -10,6 +10,7 @@
 
 #submit{
     background-color: #29A9AF;
+   
 }
 
 .form-control{
@@ -28,4 +29,10 @@ a {
     color: white;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  @media screen and (max-width:540px){
+    .border-start{
+     border: none !important;
+    }
   }

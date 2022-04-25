@@ -1,0 +1,35 @@
+.card-body{
+    background:#f5f3f3 ;
+    
+}
+
+.col{
+    $grid-gutter-width: 1.1rem 
+}
+// .editing{
+//     transform: translateX(75px);
+//  margin-bottom: 10rem;
+    
+// }
+
+
+// @media screen and (min-width: 300px) {
+//      .editing{
+//         transform: translateX(300px); /* New width for default modal */
+//     }
+// }
+
+.form-control{
+    background-color: #cecece;
+}
+
+::placeholder{
+    color: solid black;
+}
+#submit{
+    background-color: #29A9AF;
+}
+#modal-title{
+    
+}
+

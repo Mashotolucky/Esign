@@ -1,3 +1,4 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { errorCodes } = require('../helpers/constants');
 
@@ -7,28 +8,28 @@ const verifyJWT = async (req, res, next) => {
   if (authHeader) {
     const token = authHeader.split(' ')[1];
     try {
-      const decodedToken = await jwt.verify(token, process.env.SECRET_KEY);
+      const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+      
       req.user = {
         id: decodedToken.userId,
         role: decodedToken.userRole,
       };
+      console.log(req.user);
       next();
     } catch (err) {
-      console.log(err);
       res.status(401).json({
-        errorCode: errorCodes.INVALID_TOKEN,
-        message: 'Invalid token',
+        message: err || 'Invalid token ',
       });
     }
   } else {
     res.status(401).json({
-      errorCode: errorCodes.NO_AUTH_HEADER,
       message: 'Authorization header missing',
     });
   }
 };
 
-const generateToken = (data) => jwt.sign({ userId: data.id, userRole: data.role }, process.env.SECRET_KEY);
-
-
+const generateToken = async(data) => {
+  console.log(process.env.SECRET_KEY);
+  return jwt.sign({ userId:data.userId, userRole: data.userRole }, process.env.SECRET_KEY,{ expiresIn: '24h' })
+};
 module.exports = { verifyJWT, generateToken };

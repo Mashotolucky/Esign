@@ -1,0 +1,27 @@
+
+        <form class="text-center" *ngIf="!conversation" [formGroup]="conversationFormGroup" (ngSubmit)="getOrcreateConversation()">
+            <mat-form-field>
+                <mat-label>Conversation Name</mat-label>
+                <input type="text" matInput placeholder="abcd" formControlName="name">
+            </mat-form-field>&nbsp;
+            <button mat-raised-button color="primary" type="submit" [disabled]="!conversationFormGroup.valid" title="Get Or Create Conversation">GetOrCreateConversation</button>
+        </form>
+        
+        <div *ngIf="conversation" class="container">
+            <app-navbar></app-navbar>
+            <div id="remote-container" class="fullscreen">
+
+            </div>
+            <div id="local-container" [ngClass]="{'over':remotesCounter>0}">
+                <i class="fa fa-phone" style="font-size:48px;color:red"></i>
+                <i class='fa fa-volume-up' id="vol" style='font-size:48px;color:black'></i>
+                
+                
+                
+                <video #localVideo autoplay controls playsinline></video>
+            </div>
+           
+        </div>
+      
+
+        

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #E3E0E0;">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #E3E0E0;">
     <div class="container-fluid">
         <a href="#" class="navbar-brand">
             <img src="../../../assets/ADesign.webp"  height="60" alt="">
@@ -6,24 +6,67 @@
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <!-- <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link active">Home</a>
-                <a href="#" class="nav-item nav-link">Profile</a>
-                <a href="#" class="nav-item nav-link">Messages</a>
-                <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a>
-            </div> -->
-            <div class="navbar-nav ms-auto">
-                <a href="#" class="nav-item nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="black" class="bi bi-bell-fill" viewBox="0 0 16 16">
+        <div class="collapse navbar-collapse" id="navbarCollapse" *ngIf="is_loggedIn">     
+            <div class="navbar-nav ms-auto" >
+                <a *ngIf="!GetRole()" routerLink="/interpreterbooking" class="nav-item nav-link text-dark"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="black" class="bi bi-bell-fill" viewBox="0 0 16 16">
                     <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-                  </svg></a>
+                  </svg>Notification</a>
 
-                  <a href="#" class="nav-item nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="black" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <a *ngIf="GetRole()" routerLink="/clientbooking" class="nav-item nav-link text-dark"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="black" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                  </svg>Notification</a>
+
+                  <a routerLink="/profile" (click)="profile()" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#" class="nav-item nav-link text-dark"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="black" class="bi bi-person-circle" viewBox="0 0 16 16" >
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                  </svg></a>
+                  </svg> Profile</a>
+                  
                   <br>
             </div>
+
         </div>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse" *ngIf="!is_loggedIn">
+        
+          <div class="login text-light">
+            <button type="submit" class="btn mt-3 px-1 text-light" id="submit" routerLink='/login'>
+               Login
+            </button>
+          </div>
+       
+          <div class="sign text-light">
+            <button type="submit" class="btn mt-3 px-1 text-light" id="submit" routerLink='/register'>
+              Signup
+            </button>
+            
+          </div>
+      </div>
     </div>
 </nav>
+
+ <div class="modal fade position-reletive" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-left position-absolute top-1 end-0">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5> 
+        </div>
+        <div class="modal-body">
+            <form action="/action_page.php">
+                <div class="avatar">
+                    <img class="responsive" alt="nature"src="../../../../assets/download (1).jpeg">
+                </div>
+                <h1 class="text-center">{{user.name}} {{user.lastname}}</h1>
+                <p class="text-center text-wrap">{{user.email}}</p>
+
+                <div class="text-center">
+                  <button class="btn mt-3 ms-3" id="edit" (click)="btnClick()" *ngIf="isintepreterLoggedIn">
+                    Profile
+                    </button>
+                     &nbsp;
+                     <button class="btn mt-3 ms-3" id= "submit" (click)="clearuser()">Sign out</button>
+                <i class="fas fa-sign-out-alt"></i>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
