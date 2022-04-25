@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
-import { FileuploadserviceService } from 'src/app/Services/fileuploadservice.service';
 import { RegisterService } from 'src/app/Services/register.service';
 import {Router} from '@angular/router'; 
 // import { UserService } from 'src/app/Services/user.service';
@@ -27,7 +26,6 @@ export class RegisterComponent implements OnInit {
   spinnerState:boolean=false;
 
   constructor(private fb : FormBuilder,
-    private fileuploadservice: FileuploadserviceService,
     private registerService: RegisterService,
     private userService:UserService,
     private router:Router
