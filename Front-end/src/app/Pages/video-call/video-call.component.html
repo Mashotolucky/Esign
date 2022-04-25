@@ -8,10 +8,13 @@
         </form>
         
         <div *ngIf="conversation" class="container">
+            <app-navbar></app-navbar>
             <div id="remote-container" class="fullscreen">
 
             </div>
             <div id="local-container" [ngClass]="{'over':remotesCounter>0}">
+                <i class="fa fa-phone" style="font-size:48px;color:red"></i>
+                
                 <video #localVideo autoplay controls playsinline></video>
             </div>
         </div>

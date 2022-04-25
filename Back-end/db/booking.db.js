@@ -2,7 +2,7 @@ const {pool} = require('../config/dbconfig');
 //bookings
 const GetAllBookingsDb=async () => {
     try{
-      console.log("booking DB");
+    
       const { rows: bookings } = await pool.query(`select * FROM booking`);
       return bookings;
     } catch (error) {
@@ -24,7 +24,7 @@ const getBookingDb=async (id) => {
   
   const getIntepreterBookingDb=async (id) => {
     try {
-      console.log("intIDdb: ",id);
+    
       const { rows: booking } = await pool.query(`
       select booking.id, booking.clientid, booking.intepreterid, booking.date_, booking.time_ ,booking.status,
       users.name, users.lastname 
@@ -42,7 +42,7 @@ const getBookingDb=async (id) => {
 
   const getIntepreterStreamDb=async (id) => {
     try {
-      console.log("intIDdb: ",id);
+      
       const { rows: booking } = await pool.query(`
       select booking.id, booking.clientid, booking.intepreterid, booking.date_, booking.time_ ,booking.status,
       users.name, users.lastname 
@@ -60,7 +60,7 @@ const getBookingDb=async (id) => {
 
   const getClientBookingDb=async (id) => {
     try {
-      console.log("clientIDdb: ",id);
+      
       const { rows: booking } = await pool.query(`
       select * FROM booking,client,users  
          WHERE booking.clientid = $1 
@@ -76,7 +76,7 @@ const getBookingDb=async (id) => {
 
   const createBookingDb = async ({clientID, intepreterID, date_, time_, status}) => {
     try {
-      console.log("DB booking");
+      
       const {rows:booking}= await pool.query(
        `INSERT INTO booking(clientID, intepreterID, date_, time_, status)
         VALUES($1,$2,$3,$4,$5) 
@@ -95,7 +95,7 @@ const getBookingDb=async (id) => {
   const getAllClientBookingDb = async (id) => {
   
     try {
-      console.log("clientid",id);
+      
       const {rows:booking}= await pool.query(
         `select * FROM booking,intepreter,users  
          WHERE booking.clientid = $1 

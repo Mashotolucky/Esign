@@ -88,7 +88,7 @@ export class ProfileComponent implements OnInit {
     });
     var id = localStorage.getItem("intepreterID")
     this.data = {
-      intepreterID: parseInt(this.intepreterID),
+      intepreterID: parseInt(id),
       date_: this.bookingForm.value.date_,
       time_: this.bookingForm.value.time_,
       status: null

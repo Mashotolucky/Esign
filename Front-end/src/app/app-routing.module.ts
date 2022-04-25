@@ -16,16 +16,14 @@ import { ClientBookingComponent } from './Pages/client-booking/client-booking.co
 
 
 const routes: Routes = [
+                        {path:'nav',component:NavbarComponent},
                         {path: '', component: HomeComponent},
                         {path: 'login', component: LoginComponent},
                         {path:'register', component: RegisterComponent},
-                        {path:'login', component: LoginComponent},
-                       // {path:'card', component: CardComponent},
                         {path: 'interpreterbooking', component: InterpreterBookingComponent},
                         {path: 'clientbooking', component: ClientBookingComponent},
                         {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
-                        {path: 'user', component: UserProfileComponent},
-                        {path:'nav',component:NavbarComponent},
+                        // {path: 'user', component: UserProfileComponent},
                         {path: 'stream', component: VideoCallComponent},
                       
                       ];
