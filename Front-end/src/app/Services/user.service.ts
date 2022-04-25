@@ -59,8 +59,6 @@ export class UserService {
   user(data: any) {
     this.clickedUser = data;
     console.log(this.clickedUser);
-    
-    return this.clickedUser;
   }
 
   getUser(){
