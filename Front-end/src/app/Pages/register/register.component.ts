@@ -107,7 +107,7 @@ languages:any[]
       formData.append('hourly_rate', this.registerForm.value.hourly_rate);
       formData.append('langID', this.registerForm.value.langID);
       formData.append('role', this.registerForm.value.role);
-
+      formData.append('intlangs',this.interpreterLangs)
      console.log(formData.get("langID"));
      
       this.registerService.register(formData)
