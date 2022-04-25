@@ -8,10 +8,11 @@ const createIntepreterDb=async({userID,cert_url,hourly_rate,langs})=>{
         VALUES($1,$2,$3) 
         returning cert_url,hourly_rate,userID,ID `,[cert_url,hourly_rate,userID]);
       const myintepreter=intepreter.rows[0];
+      console.log(myintepreter);
       languages=langs;
       if(languages)
           languages.forEach(async (lanuageid) => {
-            const intepretLangs= await pool.query(`INSERT INTO intepreter_lang(intepreterID,langID) VALUES($1,$2)`,[myintepreter.ID,lanuageid])
+            const intepretLangs= await pool.query(`INSERT INTO intepreter_lang(intepreterID,langID) VALUES($1,$2)`,[myintepreter.id,parseInt(lanuageid)])
           });
  
 
