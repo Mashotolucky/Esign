@@ -2,12 +2,12 @@ const { cloudinary } = require('../cloudinary/cloudinary');
 const fs = require('fs');
 
 
-    const fileUpload = async (file_path, dest_folder) => {
+    const fileUpload = async (file_path, dest_folder,resource_type) => {
         try {
             console.log(dest_folder);
             const uploadResponse = await cloudinary.uploader.upload(file_path, {
                 folder: `${dest_folder}`,
-                resource_type: 'raw'
+                resource_type: `${resource_type}`
             });
             const path=file_path;
             fs.unlinkSync(path);
