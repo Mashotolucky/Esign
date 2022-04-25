@@ -15,7 +15,7 @@ const getAll=async(req,res,next)=>{
 const online_status=async (req,res,next)=>{
     try {
         const id = req.user.id && req.user.role===roles.INTEPRETER ? req.user.id: null;
-        console.log("Client",id);
+     
         if (!id) return res.send(401).send({msg:"you are not authorized to access this route"});
         const status=await setOnilineDb(req.body.status,id);
         return res.status(200).send(status);
@@ -26,7 +26,7 @@ const online_status=async (req,res,next)=>{
 const updateIntepreter=async(req,res,next)=>{
     try {
         const id = req.user.id && req.user.role===roles.INTEPRETER ? req.user.id: null;
-        console.log("Client",id);
+     
         if (!id) return res.send(401).send({msg:"you are not authorized to access this route"});
 
        //upload picture if exists

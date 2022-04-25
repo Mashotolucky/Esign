@@ -33,14 +33,14 @@ const register = async (req, res, next) => {
 
     try {
         if (req.file && String(role).trim() && String(role).trim().toUpperCase() == roles.INTEPRETER) {
-            console.log("req",req.file);
+       
             if(req.file.size>10485760){
                 return res.status(400).send({msg:"size too large"});
             }
             // upload file to cloudinary if req.file exists  use external function await this 
             cert_url =await uploadFile.fileUpload(req.file.path,"certificates");
             
-            console.log("after filed",cert_url);
+        
             if(!cert_url) return next(new Error("file upload failed"));
     
             data = {
@@ -75,7 +75,7 @@ const register = async (req, res, next) => {
         if (!user) return res.status(500).send("something went wrong");
 
         if (process.env.NODE_ENV !== "dev") {
-            await mail.signupMail(user.email, user.lastname);
+            await mail.signupMail({name:user.name, appname:process.env.APP_NAME,url:req.headers.host});
         }
         return res.status(200).send(user);
 
