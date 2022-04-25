@@ -52,7 +52,7 @@ export class BookingService {
   getAllclientstreams(token: any){
     let headers=new HttpHeaders();
     headers=headers.set('Authorization',"Bearer "+token);
-    return this.http.get(this.BaseUrl,{headers})
+    return this.http.get(this.BaseUrl+"/stream/intepreter/",{headers})
   }
 
   getAllclienthistory(token: any){

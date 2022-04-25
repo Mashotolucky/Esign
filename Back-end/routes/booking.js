@@ -10,7 +10,8 @@ const {
     setBookingStatus,
     DeleteBooking,
     GetIntepreterBooking,
-    GetIntepreterStreams
+    GetIntepreterStreams,
+    GetClientStreams
 }=require('../controllers/Bookings_controller');
 
 router.get("/booking/getall", getAllBookings);
@@ -22,6 +23,8 @@ router.get("/booking/client/",verifyJWT,getClientBooking);
 router.get("/booking/intepreter/",verifyJWT,GetIntepreterBooking);
 
 router.get("/stream/intepreter/",verifyJWT,GetIntepreterStreams);
+
+// router.get("/stream/client/",verifyJWT,GetClientStreams);
 
 router.put("/booking/update/status",setBookingStatus);
 
