@@ -1,7 +1,13 @@
+
+body{
+    
+}
 .intSpam{
     color: #29A9AF;
 }
-.container-fluid{
-    background-color: #ebeeee;
-    height: 100%;
+.container-flui{
+    position: relative;
+    background-image: url("../../../assets/signs.jpeg");
+    background-repeat:no-repeat;
+    background-size:100% 100vh;
 }

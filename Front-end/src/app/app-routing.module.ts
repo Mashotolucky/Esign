@@ -17,9 +17,9 @@ import { LandingComponent } from './Pages/landing/landing.component';
 
 
 const routes: Routes = [
-                        {path:'',component: LandingComponent},
+                        {path:'landing',component: LandingComponent},
                         {path:'nav',component:NavbarComponent},
-                        {path: 'home', component: HomeComponent},
+                        {path: '', component: HomeComponent},
                         {path: 'login', component: LoginComponent},
                         {path:'register', component: RegisterComponent},
                         {path: 'interpreterbooking', component: InterpreterBookingComponent},

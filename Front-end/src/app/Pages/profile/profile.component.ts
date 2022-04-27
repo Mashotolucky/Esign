@@ -71,9 +71,18 @@ export class ProfileComponent implements OnInit {
    this.isclientLoggedIn=this.userLogged.role === 'CLIENT'?true:false;
 
     this.intepreterID = this.userService.getUser();
-    
+    console.log("interId",this.intepreterID.id)
     // console.log(this.intepreterID);
     localStorage.setItem("intepreterID",this.intepreterID);
+
+    let token = localStorage.getItem("auth-token");
+    this.bookingService.getAllbookingSlot(token,this.intepreterID.id)
+    .subscribe(res =>{
+      res.forEach(element => {
+        
+      });
+      
+    })
   }
 
 
@@ -97,11 +106,12 @@ export class ProfileComponent implements OnInit {
   }
 
  
-  creatBooking(): void {
+  async creatBooking() {
     this.activatedRoute.params.subscribe(params => {
       // console.log(params);
       this.Interpreter = params;
       this.intepreterID = this.Interpreter.id;
+      console.log(this.intepreterID);
       
       this.router.navigate['/clientbooking'];
     });
@@ -120,8 +130,24 @@ export class ProfileComponent implements OnInit {
 
     let token = localStorage.getItem("auth-token");
     
-    if(this.dateValidator){
-      this.bookingService.booking(this.data,token)
+    this.bookingService.getAllbookingSlot(token,id)
+    .subscribe(res =>{
+       res.forEach(element => {
+        console.log(element);
+        
+         if((this.bookingForm.value.date_ === element.date_) && (this.bookingForm.value.time_ === element.time_)){
+          Swal.fire(
+            {
+              icon: 'error',
+              title: "Slot Already taken",
+              showConfirmButton: false,
+              timer: 1900,
+               width: '300px'
+            }
+          ) 
+        }
+        else{
+          this.bookingService.booking(this.data,token)
           .subscribe(res =>{
             this.simpleAlert();
           },error =>{
@@ -129,7 +155,12 @@ export class ProfileComponent implements OnInit {
             
           })
 
-    } 
+        }
+      });
+      
+    })
+
+    
 
     // this.activatedRoute.params.subscribe(params => {
     //   // console.log(params);
@@ -144,6 +175,23 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  bookingSlot(){
+    let token = localStorage.getItem("auth-token");
+
+     this.bookingService.getAllbookingSlot(token,this.intepreterID.id)
+    .subscribe(res =>{
+      res.forEach(element => {
+        if((this.bookingForm.value.date_ === element.date_) && (this.bookingForm.value.time_ === element.time_)){
+          return true
+        }
+        else{
+          return false;
+        }
+      });
+      
+    })
+   
+  }
 
 }
 // function isInterpreter() {
