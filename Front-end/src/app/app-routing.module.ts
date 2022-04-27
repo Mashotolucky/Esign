@@ -13,18 +13,20 @@ import{NavbarComponent} from './Components/navbar/navbar.component';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { VideoCallComponent } from './Pages/video-call/video-call.component';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
+import { LandingComponent } from './Pages/landing/landing.component';
 
 
 const routes: Routes = [
+                        {path:'',component: LandingComponent},
                         {path:'nav',component:NavbarComponent},
-                        {path: '', component: HomeComponent},
+                        {path: 'home', component: HomeComponent},
                         {path: 'login', component: LoginComponent},
                         {path:'register', component: RegisterComponent},
                         {path: 'interpreterbooking', component: InterpreterBookingComponent},
                         {path: 'clientbooking', component: ClientBookingComponent},
                         {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
                         // {path: 'user', component: UserProfileComponent},
-                        {path: 'stream', component: VideoCallComponent},
+                        {path: 'stream/:id', component: VideoCallComponent},
                       
                       ];
 

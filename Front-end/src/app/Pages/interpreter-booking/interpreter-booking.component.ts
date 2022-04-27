@@ -137,16 +137,17 @@ export class InterpreterBookingComponent implements OnInit {
   }
 
   joinstream(id:any){
-     if(!id) return Swal.fire({
-          icon: 'error',
-          title: 'can not join stream at this point',
-          showConfirmButton: false,
-          timer: 1000,
-          width: '300px'
-      })
-    
-   this.router.navigate(['stream',{state:{id}}])
+    if(!id) return Swal.fire({
+         icon: 'error',
+         title: 'can not join stream at this point',
+         showConfirmButton: false,
+         timer: 1000,
+         width: '300px'
+     })
+   console.log(id);
+   
+  this.router.navigate(['/stream',id])
 
-  }
+ }
 
 }

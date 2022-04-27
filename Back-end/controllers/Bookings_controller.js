@@ -195,12 +195,12 @@ const CreateBooking= async(req,res,next)=>{
        if(!userId) return res.status(403).send("forbidden");
 
        const clientID = await getClientDb(userId);
-       const interpreterID = await getIntepreterDb(req.body.intepreterID)
+    //    const interpreterID = await getIntepreterDb(req.body.intepreterID)
        console.log("client token", req.user);
 
        const data = {
             clientID: clientID? clientID: null,
-            intepreterID: interpreterID ? interpreterID : null,
+            intepreterID: intepreterID ? intepreterID : null,
             date_: date_ ? date_ : null,
             time_: time_ ? time_ : null,
             status: status ? status : null
