@@ -33,7 +33,7 @@ const updateIntepreter=async(req,res,next)=>{
        if(!req.file) return res.status(404).send({msg:"file missing"});
 
         const img_url= await fileUpload(req.file.path, "images",'image');
-
+        console.log(img_url);
         const {name,lastname,hourly_rate}=req.body;
 
         const status=await updateIntepreterDb({name,lastname,id,hourly_rate,img_url});
