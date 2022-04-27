@@ -83,7 +83,7 @@ export class NavbarComponent implements OnInit {
 
   btnClick() {
     this.router.navigate(['/profile']).then(()=>{
-      // window.location.reload();
+      window.location.reload();
       this.onlineService.setLoggedUser(this.user);
 
     })
