@@ -25,6 +25,8 @@ export class ProfileComponent implements OnInit {
   userLogged: any;
   isclientLoggedIn:boolean;
 
+  timeArr: any =[];
+
   dateValidator(control: AbstractControl): { [key: string]: boolean } | null {
     if (control?.value) {
         const today = new Date();
@@ -78,11 +80,21 @@ export class ProfileComponent implements OnInit {
     let token = localStorage.getItem("auth-token");
     this.bookingService.getAllbookingSlot(token,this.intepreterID.id)
     .subscribe(res =>{
+      let count = 0;
       res.forEach(element => {
-        
+        console.log(element);
+        this.timeArr.push(element.time_);
+        if(element.status === null){
+         
+          console.log("there are "+count+" of null");
+          
+        }
       });
       
     })
+
+    console.log(this.timeArr);
+    
   }
 
 
@@ -135,7 +147,7 @@ export class ProfileComponent implements OnInit {
        res.forEach(element => {
         console.log(element);
         
-         if((this.bookingForm.value.date_ === element.date_) && (this.bookingForm.value.time_ === element.time_)){
+         if((this.data.date_ === element.date_) && (this.data.time_ === element.time_)){
           Swal.fire(
             {
               icon: 'error',
@@ -157,6 +169,10 @@ export class ProfileComponent implements OnInit {
 
         }
       });
+
+      if(){
+        
+      }
       
     })
 
