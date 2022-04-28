@@ -30,12 +30,12 @@ const getUserByClientIdDb = async (id) => {
   return user[0];
 };
 
-const getLanguagesDb = async () => {
-  const {rows : languages} =await pool.query(
-    "select language.* from language",
-  )
-  return languages;
-};
+// const getLanguagesDb = async () => {
+//   const {rows : languages} =await pool.query(
+//     "select language.* from language",
+//   )
+//   return languages;
+// };
 
 const getUserByEmailDb = async (email) => {
   const {rows : exists} =await pool.query(
@@ -97,7 +97,7 @@ module.exports = {
   createResetTokenDb,
   setTokenStatusDb,
   deleteResetTokenDb,
-  getLanguagesDb,
+  // getLanguagesDb,
   getuserByIntepreterIdDb,
   getUserByClientIdDb
 };
