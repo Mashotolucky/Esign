@@ -48,17 +48,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     let todayDate = Date.now();
     console.log(todayDate);
-    // this.Interpreter = JSON.parse(localStorage.getItem('user'));
+   
     this.Interpreter = JSON.parse(localStorage.getItem("Interpreter"));
     console.log(this.Interpreter);
-
-    // this.activatedRoute.params.subscribe(params => {
-    //   console.log("obj",params);
-    //   this.Interpreter = params;
-    //   this.intepreterID = this.Interpreter.id;
-
-    //   //this.router.navigate['/clientbooking'];
-    // });
 
     console.log(this.Interpreter.email);
 
@@ -74,7 +66,7 @@ export class ProfileComponent implements OnInit {
 
     this.intepreterID = this.userService.getUser();
     console.log("interId", this.intepreterID.id)
-    // console.log(this.intepreterID);
+   
     localStorage.setItem("intepreterID", this.intepreterID);
 
     let token = localStorage.getItem("auth-token");
@@ -107,7 +99,7 @@ export class ProfileComponent implements OnInit {
 
   simpleAlert() {
     Swal.fire({
-      // position: 'top-end',
+     
       icon: 'success',
       title: 'Successfully booked',
       showConfirmButton: false,
@@ -120,7 +112,7 @@ export class ProfileComponent implements OnInit {
 
   async creatBooking() {
     this.activatedRoute.params.subscribe(params => {
-      // console.log(params);
+     
       this.Interpreter = params;
       this.intepreterID = this.Interpreter.id;
       console.log(this.intepreterID);

@@ -13,7 +13,7 @@ export const environment = {
   baseUrl:`${BaseUrl}`,
   backend:`${Backend}`,
   devbaseUrl,
-  socketUrl:"http://localhost:4000/stream"
+  videoUri:'apiKey:myDemoApiKey'
 }
 
 /*

@@ -44,14 +44,6 @@
                                 placeholder="Email">
                             </div>
                         </div>
-                        <select class="form-select mb-4 form-control" *ngIf="ifCLIENT()" aria-label="Default select example"formControlName="langID">
-                                <option [selected]="true" value="user-type">language type</option>
-                                <option *ngFor="let opt of languages" [value]="opt.id" >{{opt.name_}}</option>
-                        </select>
-                        <select class="form-select mb-4 form-control" multiple *ngIf="ifINTEPRETER()" (change)="changeSelect($event.target.value)"  aria-label="Default select example" >
-                            <!-- <option [selected]="true" value="user-type">language type</option> -->
-                            <option *ngFor="let opt of languages" [value]="opt.id" >{{opt.name_}}</option>
-                        </select>
                         
 
                         <div class="mb-4">
@@ -83,8 +75,11 @@
                             placeholder="Hourly Rate in ZAR">
                              
                         </div>
+                    <div class="file mb-4">
+                            <input type="file" class="form-control" name="videos" id="customFile" formControlName="img_url" (change)="selectThisImage($event)"/>
+                    </div>
                     <div class="file mb-4" *ngIf="ifINTEPRETER()">
-                        <input type="file" class="form-control" name="videos" id="customFile" formControlName="certificates" (change)="selectThisImage($event)"/>
+                        <input type="file" class="form-control" name="videos" id="customFile" formControlName="certificates" (change)="selectFile($event)"/>
                     </div>
                     <button type="submit" class="btn mt-3 px-5 text-light" id="submit">Sign up</button>
 
