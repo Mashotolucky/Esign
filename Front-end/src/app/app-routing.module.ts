@@ -14,6 +14,7 @@ import { AuthGuardService } from './Services/auth-guard.service';
 import { VideoCallComponent } from './Pages/video-call/video-call.component';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
 import { LandingComponent } from './Pages/landing/landing.component';
+import { EditComponent } from './Pages/edit/edit.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,8 @@ const routes: Routes = [
                         {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
                         // {path: 'user', component: UserProfileComponent},
                         {path: 'stream/:id', component: VideoCallComponent},
+                        {path:'landing',component:LandingComponent},
+                        {path:'edit',component:EditComponent}
                       
                       ];
 

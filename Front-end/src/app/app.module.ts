@@ -30,6 +30,7 @@ import { ClientBookingComponent } from './Pages/client-booking/client-booking.co
 import { StatusPipe } from './Pipes/status.pipe';
 import { TimeFormatPipe } from './Pipes/time-format.pipe';
 import { LandingComponent } from './Pages/landing/landing.component';
+import { EditComponent } from './Pages/edit/edit.component';
 
 
 
@@ -59,6 +60,7 @@ const config: SocketIoConfig = {
     StatusPipe,
     TimeFormatPipe,
     LandingComponent,
+    EditComponent,
        
           
   ],
