@@ -30,6 +30,7 @@ import { ClientBookingComponent } from './Pages/client-booking/client-booking.co
 import { StatusPipe } from './Pipes/status.pipe';
 import { TimeFormatPipe } from './Pipes/time-format.pipe';
 import { VideoViewComponent } from './Pages/video-view/video-view.component';
+import { LandingComponent } from './Pages/landing/landing.component';
 
 
 
@@ -59,6 +60,7 @@ const config: SocketIoConfig = {
     StatusPipe,
     TimeFormatPipe,
     VideoViewComponent,
+    LandingComponent,
        
           
   ],

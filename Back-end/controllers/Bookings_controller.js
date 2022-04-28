@@ -5,6 +5,8 @@ const {
     GetAllBookingsDb,
     getIntepreterBookingDb,
     getIntepreterStreamDb,
+    getIntepreterBookingSlotDb,
+    getClientStreamDb,
     getBookingDb,
     getAllClientBookingDb,
     getClientBookingDb,
@@ -58,6 +60,36 @@ const GetIntepreterBooking=async (req,res,next)=>{
         next(error);
     }
 }
+
+const GetIntepreterBookingSlot=async (req,res,next)=>{
+    
+    try {
+        
+         //check that user is authorized and is intepreter
+         const id = req.user.id && req.user.role===roles.CLIENT ? req.user.id: null;
+
+         intepreterId = req.params.id;
+         console.log(intepreterId);
+
+        if (!id) return res.send(401).send({msg:"you are not authorized to access this route"});
+
+          //get intepreter by user id 
+        const clientid = await getClientDb(id); 
+  
+        if(!clientid) return res.status(404).send("user not found");
+
+        const Bookings=await getIntepreterBookingSlotDb(clientid,intepreterId);
+
+        if(!Bookings) return res.status(404).send({msg:"not found"});
+
+        return res.status(200).send(Bookings);
+
+    } catch (error) {
+        console.log(":",error);
+        next(error);
+    }
+}
+
 
 //get intepreter bookings by intepreter
 const GetIntepreterStreams=async (req,res,next)=>{
@@ -194,12 +226,12 @@ const CreateBooking= async(req,res,next)=>{
        if(!userId) return res.status(403).send("forbidden");
 
        const clientID = await getClientDb(userId);
-       const interpreterID = getIntepreterDb(req.body.intepreterID)
+    //    const interpreterID = await getIntepreterDb(req.body.intepreterID)
        console.log("client token", req.user);
 
        const data = {
             clientID: clientID? clientID: null,
-            intepreterID: interpreterID ? interpreterID : null,
+            intepreterID: intepreterID ? intepreterID : null,
             date_: date_ ? date_ : null,
             time_: time_ ? time_ : null,
             status: status ? status : null
@@ -287,5 +319,6 @@ module.exports={
     setBookingStatus,
     GetIntepreterBooking,
     GetIntepreterStreams,
-    GetClientStreams
+    GetClientStreams,
+    GetIntepreterBookingSlot
 }

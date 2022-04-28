@@ -5,6 +5,8 @@ import {isPlatformBrowser} from '@angular/common';
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 
 import { Conversation, UserAgent, Session, Stream } from '@apirtc/apirtc'
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-video-call',
   templateUrl: './video-call.component.html',
@@ -13,7 +15,9 @@ import { Conversation, UserAgent, Session, Stream } from '@apirtc/apirtc'
 
 export class VideoCallComponent implements OnInit {
 
-  constructor(@Inject(PLATFORM_ID) private _platform: Object,private fb: FormBuilder) { }
+  videoId: any;
+
+  constructor(@Inject(PLATFORM_ID) private _platform: Object,private fb: FormBuilder,private activatedRoute:ActivatedRoute, private router:Router) { }
   navigator:Navigator;
  
   myStream:MediaStream;
@@ -30,6 +34,25 @@ export class VideoCallComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.activatedRoute.paramMap.subscribe(params => {
+      // console.log(params.get('id'));
+      console.log("kjgjhvjhh");
+      
+       this.videoId = params.get('id');
+       console.log(this.videoId);
+       
+        //this.activatedRoute.snapshot.paramMap.get('id');
+      });
+      if(this.videoId) this.getOrcreateConversation()
+      else{ Swal.fire({
+        icon: 'error',
+        title: 'can not join stream at this point',
+        showConfirmButton: false,
+        timer: 1000,
+        width: '300px'
+    })
+    this.router.navigate(['/'])
+  }
    
   }
   @ViewChild("localVideo") videoRef: ElementRef;
@@ -60,7 +83,7 @@ export class VideoCallComponent implements OnInit {
       
       // CREATE CONVERSATION
       
-      const conversation: Conversation = session.getConversation(this.conversationNameFc.value);
+      const conversation: Conversation = session.getConversation(this.videoId);
       this.conversation = conversation;
 
       
@@ -97,7 +120,6 @@ export class VideoCallComponent implements OnInit {
         constraints: {
           audio: {
             echoCancellation: true,
-            noiseSuppression: true
            },
           video: true
         }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 import { interval } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,7 @@ export class BookingService {
   getAllclientstreams(token: any){
     let headers=new HttpHeaders();
     headers=headers.set('Authorization',"Bearer "+token);
-    return this.http.get(this.BaseUrl+"/stream/intepreter/",{headers})
+    return this.http.get(this.BaseUrl+"/stream/client/",{headers})
   }
 
   getAllclienthistory(token: any){
@@ -69,4 +70,11 @@ export class BookingService {
     }
     return this.http.put(this.BaseUrl+"/booking/update/status", data);
   }
+
+  getAllbookingSlot(token: any, id:any): Observable<any>{
+    let headers=new HttpHeaders();
+    headers=headers.set('Authorization',"Bearer "+token);
+    return this.http.get(this.BaseUrl+"/booking/intepreter/slot/"+id,{headers});
+  }
+
 }

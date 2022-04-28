@@ -14,9 +14,11 @@ import { AuthGuardService } from './Services/auth-guard.service';
 import { VideoCallComponent } from './Pages/video-call/video-call.component';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
 import { VideoViewComponent } from './Pages/video-view/video-view.component';
+import { LandingComponent } from './Pages/landing/landing.component';
 
 
 const routes: Routes = [
+                        {path:'landing',component: LandingComponent},
                         {path:'nav',component:NavbarComponent},
                         {path: '', component: HomeComponent},
                         {path: 'login', component: LoginComponent},
@@ -26,7 +28,8 @@ const routes: Routes = [
                         {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
                         // {path: 'user', component: UserProfileComponent},
                         {path: 'stream', component: VideoCallComponent},
-                        {path: 'video', component: VideoViewComponent}
+                        {path: 'video', component: VideoViewComponent},
+                        {path: 'stream/:id', component: VideoCallComponent}
                       
                       ];
 

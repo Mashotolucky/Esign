@@ -8,10 +8,11 @@ const createIntepreterDb=async({userID,cert_url,hourly_rate,langs})=>{
         VALUES($1,$2,$3) 
         returning cert_url,hourly_rate,userID,ID `,[cert_url,hourly_rate,userID]);
       const myintepreter=intepreter.rows[0];
+      console.log(myintepreter);
       languages=langs;
       if(languages)
           languages.forEach(async (lanuageid) => {
-            const intepretLangs= await pool.query(`INSERT INTO intepreter_lang(intepreterID,langID) VALUES($1,$2)`,[myintepreter.ID,lanuageid])
+            const intepretLangs= await pool.query(`INSERT INTO intepreter_lang(intepreterID,langID) VALUES($1,$2)`,[myintepreter.id,parseInt(lanuageid)])
           });
  
 
@@ -32,8 +33,8 @@ const updateIntepreterDb = async ({name,lastname,id,hourly_rate,img_url}) => {
     const myuser=user[0];
 
     const {rows:intepreter} = await pool.query(
-        `UPDATE intepreter set cert_url=$1, hourly_rate=$2, active_status=$3 WHERE userID=$4 `,
-    [cert_url,hourly_rate,active_status, myuser.ID]);
+        `UPDATE intepreter set hourly_rate=$1 WHERE userID=$2 `,
+    [hourly_rate, myuser.ID]);
 
     return {myuser,intepreter:intepreter[0]}
    } catch (error) {
