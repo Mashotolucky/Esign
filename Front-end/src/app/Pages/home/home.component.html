@@ -1,10 +1,10 @@
 <app-navbar></app-navbar>
 
-      <div class="container align-items-sm-stretch">
+      <!-- <div class="container align-items-sm-stretch">
           <div class="row row-cols-1 row-cols-lg-4 g-4">
               <div class="col" *ngFor="let interpreter of interpretors">
                 <div class="card">
-                  <!--ONLINE/OFFLINE STATUS-->
+                  ONLINE/OFFLINE STATUS
                   <div [ngClass]="interpreter.online_status ? 'led-green' : 'led-red-on '" ></div>
                   <div class="avatar text-center">
                     <img class= "img-fluid rounded-circle" width="200" height="200" src={{interpreter.image_url}}/>
@@ -16,7 +16,7 @@
                     <p class="card-text text-center fw-bold" *ngIf="!interpreter.languages">SOUTH AFRICAN SIGN LANGUAGE</p>
                     <p class="card-text text-center fw-bold" *ngIf="interpreter.languages">{{interpreter.languages[0]}}</p>
                     <div class="text-center pb-2">
-                      <!-- <span class="fa fa-star checked" *ngFor="let i of [1,2,3,5]"></span> -->
+                      <span class="fa fa-star checked" *ngFor="let i of [1,2,3,5]"></span>
                     </div>
                     
                     
@@ -28,8 +28,42 @@
                 </div>
               </div>
           </div>
+      </div> -->
+
+      <!-- ------ -->
+      <div class="container">
+      
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-3"  *ngFor="let interpreter of interpretors">
+            <div class="our-team">
+              <div [ngClass]="interpreter.online_status ? 'led-green' : 'led-red-on '" >
+                <!-- <p *ngIf="interpreter.online_status ? 'led-green'">Active</p>
+                <p *ngIf="interpreter.online_status ? 'led-red-on'">Offline</p> -->
+              </div>
+              <div class="picture">
+                <img class="img-fluid" src="{{interpreter.image_url}}">
+              </div>
+              <div class="team-content">
+                <h3 class="name">{{interpreter.name}} {{interpreter.lastname}}</h3>
+                <h4 class="title" *ngIf="!interpreter.languages">SOUTH AFRICAN SIGN LANGUAGE</h4>
+                
+                
+              </div>
+              <ul class="social">
+                <!-- <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-facebook" aria-hidden="true"></a></li>
+                <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter" aria-hidden="true"></a></li>
+                <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-google-plus" aria-hidden="true"></a></li>
+                <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-linkedin" aria-hidden="true"></a></li> -->
+                <div class="text-center">
+                  <button class="btn text-light" (click)="viewProfile(interpreter)">view profile</button>
+                 </div>
+              </ul>
+              
+              
+            </div>
+          </div>
+        </div>
       </div>
-  
       
   
   
