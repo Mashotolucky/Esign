@@ -35,12 +35,12 @@ import { LandingComponent } from './Pages/landing/landing.component';
 
 
 
-const config: SocketIoConfig = {
-	url: environment.socketUrl, // socket server url;
-	options: {
-		transports: ['websocket']
-	}
-}
+// const config: SocketIoConfig = {
+// 	url: environment.socketUrl, // socket server url;
+// 	options: {
+// 		transports: ['websocket']
+// 	}
+// }
 
 @NgModule({
   declarations: [
@@ -70,7 +70,7 @@ const config: SocketIoConfig = {
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    SocketIoModule.forRoot(config),
+    // SocketIoModule.forRoot(config),
     HttpClientModule
   ],
   providers: [AuthGuardService],

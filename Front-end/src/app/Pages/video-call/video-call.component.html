@@ -1,24 +1,49 @@
-<!-- 
-        <form class="text-center" *ngIf="!conversation" [formGroup]="conversationFormGroup" (ngSubmit)="getOrcreateConversation()">
-            <mat-form-field>
-                <mat-label>Conversation Name</mat-label>
-                <input type="text" matInput placeholder="abcd" formControlName="name">
-            </mat-form-field>&nbsp;
-            <button mat-raised-button color="primary" type="submit" [disabled]="!conversationFormGroup.valid" title="Get Or Create Conversation">GetOrCreateConversation</button>
-        </form> -->
-        
-        <div *ngIf="conversation" class="container">
-            <app-navbar></app-navbar>
-            <div id="remote-container" class="fullscreen">
 
-            </div>
-            <div id="local-container" [ngClass]="{'over':remotesCounter>0}">
-                <!-- <i class="fa fa-phone" style="font-size:48px;color:red"></i> -->
-                <!-- <i class='fa fa-volume-up' id="vol" style='font-size:48px;color:black'></i> -->
-                <video #localVideo autoplay controls playsinline></video>
-            </div>
+<div class="split left">
+    <div class="centered" [ngClass]="{'over':remotesCounter>0}">
+
+        <video #localVideo autoplay playsinline ></video>
+        <!-- <div id="local-container" class="video" >
            
+        </div> -->
+       
+    </div>
+    <div class="options">
+        <div class="options__left">
+          <div id="stopVideo" class="options__button">
+            <i class="fa fa-video-camera" (click)="dropVideo()"></i>
+          </div>
+          <div id="muteButton" class="options__button">
+            <i class="fa fa-microphone" (click)="muteVideo()"></i>
+          </div>
+          <div id="muteButton" class="options__button">
+            <i class="fa fa-viadeo" (click)="turnOffScreen()" ></i>
+          </div>
         </div>
-      
+    </div>
+  </div>
+  
+  <div class="split right">
+    <div class="centered" id="remote-container">
+        <!-- <div  class="fullscreen">
+            
+        </div> -->
+    </div>
+  </div>
 
-        
+
+
+  <div class="container" >
+      <div class="row">
+          <div class="col">
+              <div class="card">
+                <video #localVideo autoplay playsinline [ngClass]="{'over':remotesCounter>0}"></video>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col">
+            <div class="card">
+                
+            </div>
+  </div>

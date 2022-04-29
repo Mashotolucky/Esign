@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
 
 
   file: any = '';
-  img :any;
   spinnerState:boolean=false;
 
   constructor(private fb : FormBuilder,
@@ -46,7 +45,7 @@ export class RegisterComponent implements OnInit {
       password: new FormControl(''),
       confirm_password: new FormControl(''),
       certificates: new FormControl(''),
-      img_url: new FormControl(''),
+      bio: new FormControl(''),
       hourly_rate: new FormControl(''),
      
   });
@@ -104,9 +103,11 @@ export class RegisterComponent implements OnInit {
       formData.append('lastname', this.registerForm.value.lastname);
       formData.append('password', this.registerForm.value.password);
       formData.append('hourly_rate', this.registerForm.value.hourly_rate);
-      formData.append('img_url', this.img);
+      formData.append('bio', this.registerForm.value.bio);
       formData.append('role', this.registerForm.value.role);
-          
+     
+
+     
       this.registerService.register(formData)
       .subscribe({
        next: res=>{
@@ -142,10 +143,7 @@ export class RegisterComponent implements OnInit {
     }  
   }
      selectThisImage(myEvent: any) {
-      this.img = myEvent.target.files[0];
-    }
-    selectFile(file:any){
-      this.file = file.target.files[0];
+      this.file = myEvent.target.files[0]; 
     }
 
 }
