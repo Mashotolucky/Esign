@@ -144,20 +144,21 @@ export class VideoCallComponent implements OnInit {
   });
   }
   muteVideo(){
-    // toggle audio
-if (this.localStream.isAudioMuted()) {
-  this.localStream.unmuteAudio();
-} else {
-  this.localStream.muteAudio();
-}
+        // toggle audio
+    if (this.localStream.isAudioMuted()) {
+      this.localStream.unmuteAudio();
+    } else {
+      this.localStream.muteAudio();
+    }
+  }
 
-// toggle video
-if (this.localStream.isVideoMuted()) {
-  this.localStream.unmuteVideo();
-} else {
-  this.localStream.muteVideo();
-}
-
+  turnOffScreen(){
+      // toggle video
+      if (this.localStream.isVideoMuted()) {
+        this.localStream.unmuteVideo();
+      } else {
+        this.localStream.muteVideo();
+      }
   }
 }
 

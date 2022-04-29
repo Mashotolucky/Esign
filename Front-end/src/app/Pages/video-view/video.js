@@ -22,9 +22,9 @@ showChat.addEventListener("click", () => {
 const user = prompt("Enter your name");
 
 var peer = new Peer(undefined, {
-  path: "/peerjs",
+  path: "/whatever.js",
   host: "/",
-  port: "5000",
+  port: "4200",
 });
 
 let myVideoStream;

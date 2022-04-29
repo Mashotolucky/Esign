@@ -24,7 +24,7 @@ const register = async (req, res, next) => {
    
     if(!req.body) return next(new Error("all fields required"));
 
-    const { name, password, email, lastname, role, hourly_rate } = req.body;
+    const { name, password, email, lastname,bio, role, hourly_rate } = req.body;
 
     let cert_url = "";
     let data={};
@@ -52,12 +52,12 @@ const register = async (req, res, next) => {
     
             data.cert_url= cert_url ? cert_url : "",
             data.hourly_rate= hourly_rate ? String(hourly_rate).trim() : null;
-            
+            data.bio= bio ? String(bio).trim() : null;
     
         }
 
         if(!data) return next(new Error("all fields required"));
-
+         console.log(data.bio);
         if (!data.role || !data.name || !data.password || !data.email || !data.lastname)
             return res.status(400).json({ message: `missing/empty field found`, ...data })
 

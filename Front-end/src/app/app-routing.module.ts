@@ -36,6 +36,7 @@ const routes: Routes = [
                         {path:'edit',component:EditComponent},
 
                         {path: 'stream', component: VideoCallComponent},
+                        {path: 'stream', component: VideoCallComponent,canActivate: [AuthGuardService]},
                         {path: 'video', component: VideoViewComponent},
                         {path: 'stream/:id', component: VideoCallComponent , canActivate: [AuthGuardService]}
                       
