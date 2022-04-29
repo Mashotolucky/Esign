@@ -24,20 +24,18 @@ const register = async (req, res, next) => {
    
     if(!req.body) return next(new Error("all fields required"));
 
-    const { name, password, email, lastname, intlangs, role, hourly_rate, langID } = req.body;
-
-
-
-     console.log("languages", intlangs);
-
-     let intepreterLanguages=[];
-     intepreterLanguages=intlangs.split(',');
-
-     console.log("arry",intepreterLanguages);
+    const { name, password, email, lastname, role, hourly_rate } = req.body;
 
     let cert_url = "";
     let data={};
-
+    data = {
+        name: name ? String(name).trim() : null,
+        password: password ? String(password).trim() : null,
+        email: email ? String(email).trim() : null,
+        lastname: lastname ? String(lastname).trim() : null,
+        role: role ,
+        image_url:"https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png",
+    }
    
 
     try {
@@ -52,29 +50,12 @@ const register = async (req, res, next) => {
         
             if(!cert_url) return next(new Error("file upload failed"));
     
-            data = {
-                name: name ? String(name).trim() : null,
-                password: password ? String(password).trim() : null,
-                email: email ? String(email).trim() : null,
-                lastname: lastname ? String(lastname).trim() : null,
-                role: role ,
-                image_url:"https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png",
-                cert_url: cert_url ? cert_url : "",
-                hourly_rate: cert_url ? String(hourly_rate).trim() : null,
-                intlangs: intepreterLanguages
-            }
+            data.cert_url= cert_url ? cert_url : "",
+            data.hourly_rate= hourly_rate ? String(hourly_rate).trim() : null;
+            
     
-        }else if(!req.file && String(role).trim() && role.toUpperCase()==roles.CLIENT){
-                data = {
-                    name: name ? String(name).trim() : null,
-                    password: password ? String(password).trim() : null,
-                    email: email ? String(email).trim() : null,
-                    lastname: lastname ? String(lastname).trim() : null,
-                    role: role ,
-                    image_url:"https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png",
-                    langID: langID ? langID : null,
-                }
         }
+
         if(!data) return next(new Error("all fields required"));
 
         if (!data.role || !data.name || !data.password || !data.email || !data.lastname)

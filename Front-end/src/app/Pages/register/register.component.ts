@@ -21,9 +21,10 @@ export class RegisterComponent implements OnInit {
   passwordMessage: any = '';
   password_matched: boolean = false;
   strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-  interpreterLangs:any=[];
+
 
   file: any = '';
+  img :any;
   spinnerState:boolean=false;
 
   constructor(private fb : FormBuilder,
@@ -32,15 +33,11 @@ export class RegisterComponent implements OnInit {
     private router:Router
     ) { }
     
-  languages:any[]
+  
 
   ngOnInit(): void {
 
-   this.userService.getLanguages().subscribe(res=>{
-     if(res)
-        this.languages=res;
-   })
-
+  
     this.registerForm = new FormGroup({
       role: new FormControl('',[Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -49,9 +46,9 @@ export class RegisterComponent implements OnInit {
       password: new FormControl(''),
       confirm_password: new FormControl(''),
       certificates: new FormControl(''),
-      langID: new FormControl(''),
+      img_url: new FormControl(''),
       hourly_rate: new FormControl(''),
-      interpreterLangs: new FormControl([])
+     
   });
   }
   fieldsWithData(): boolean{
@@ -107,12 +104,9 @@ export class RegisterComponent implements OnInit {
       formData.append('lastname', this.registerForm.value.lastname);
       formData.append('password', this.registerForm.value.password);
       formData.append('hourly_rate', this.registerForm.value.hourly_rate);
-      formData.append('langID', this.registerForm.value.langID);
+      formData.append('img_url', this.img);
       formData.append('role', this.registerForm.value.role);
-      formData.append('intlangs',this.interpreterLangs)
-    // console.log(formData.get("langID"));
-     console.log(formData.get("intlangs"));
-     
+          
       this.registerService.register(formData)
       .subscribe({
        next: res=>{
@@ -148,15 +142,11 @@ export class RegisterComponent implements OnInit {
     }  
   }
      selectThisImage(myEvent: any) {
-      this.file = myEvent.target.files[0]; 
+      this.img = myEvent.target.files[0];
     }
-    changeSelect(value:any){
-      if(this.interpreterLangs.indexOf(value) === -1) {
-        this.interpreterLangs.push(value);
-        console.log(this.interpreterLangs);
+    selectFile(file:any){
+      this.file = file.target.files[0];
     }
-    
-      console.log(this.interpreterLangs)
-    }
+
 }
 

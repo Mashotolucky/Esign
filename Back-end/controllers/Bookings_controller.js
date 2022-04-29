@@ -221,6 +221,7 @@ const getBookingById= async (req,res,next)=>{
 const CreateBooking= async(req,res,next)=>{
     try {
         const { intepreterID, date_, time_, status} = req.body;
+
        const  userId = req.user.id && req.user.role===roles.CLIENT ? req.user.id: null;
        
        if(!userId) return res.status(403).send("forbidden");

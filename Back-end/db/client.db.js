@@ -1,11 +1,11 @@
 const  {pool} =require("../config/dbconfig");
 
-const createClientDb=async({userID,langID} )=>{
+const createClientDb=async({userID} )=>{
     try {
      const client= await pool.query(
-      `INSERT INTO client(langID,userID)
-       VALUES($1,$2) 
-       returning langID, userID`,[langID,userID]);
+      `INSERT INTO client(userID)
+       VALUES($1) 
+       returning userID`,[userID]);
       const myclient=client.rows[0];
  
      const { rows : results }= await pool.query("select * from client,users where users.id= client.userid and users.id= $1",[myclient.userid]);
@@ -38,8 +38,7 @@ const updateClientDb = async ({
     email,
     lastname,
     id,
-    payment_method,
-	  langID 
+    payment_method
   }) => {
       try {
         const { rows: user } = await pool.query(
@@ -50,8 +49,8 @@ const updateClientDb = async ({
         const myuser=user[0];
        
         const {rows:client} = await pool.query(
-            `UPDATE client set payment_method=$1,langID=$2 WHERE userID=$4 `,
-        [payment_method,langID , myuser.ID]);
+            `UPDATE client set payment_method=$1 WHERE userID=$2 `,
+        [payment_method, myuser.ID]);
     
     
         return {myuser,client:client[0]}
@@ -88,17 +87,17 @@ const getClientDb = async (id) => {
     throw error;
   }
 }
-const getLanguagesdb = async () =>{
-  console.log('lang DB');
-  try {
-    const {rows: language} = await pool.query(
-      `SELECT * FROM language`
-    )
-    return language;
-  } catch (error) {
-    throw error
-  }
-}
+// const getLanguagesdb = async () =>{
+//   console.log('lang DB');
+//   try {
+//     const {rows: language} = await pool.query(
+//       `SELECT * FROM language`
+//     )
+//     return language;
+//   } catch (error) {
+//     throw error
+//   }
+// }
 
 module.exports={
     deleteClientDb,
@@ -106,5 +105,5 @@ module.exports={
     getAllClientDb,
     getClientDb,
     createClientDb,
-    getLanguagesdb
+    // getLanguagesdb
 }

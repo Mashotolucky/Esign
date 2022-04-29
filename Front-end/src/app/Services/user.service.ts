@@ -25,9 +25,7 @@ export class UserService {
   }
 
   getAllinterpreter() {
-    //return this.http.get<User[]>(`${BaseUrl}/intepreters/getAll`);
    return interval(1000).pipe(switchMap(() => this.http.get<User[]>(`${BaseUrl}/intepreters/getAll`)))
-
   }
 
   setInterpretorId(id:any): void{
@@ -44,11 +42,6 @@ export class UserService {
 
   delete(id: number) {
       return this.http.delete(`${BaseUrl}/${id}`);
-  }
- 
-  getLanguages():Observable<any[]> {
-    return this.http.get<any[]>(`${BaseUrl}/languages`)
-
   }
 
   setOniline(data: any, token: any):Observable<any[]> {

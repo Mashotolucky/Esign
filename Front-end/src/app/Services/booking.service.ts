@@ -10,8 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class BookingService {
   BaseUrl = environment.production? environment.backend+'/bookings' : environment.devbaseUrl+'/bookings';
-  
-  //baseUrl = 'http://localhost:4000/api/v1/';
+ 
   constructor(private http: HttpClient) { }
 
   booking(data: any,token:any){

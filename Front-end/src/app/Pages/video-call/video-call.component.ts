@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild ,PLATFORM_ID,ElementRef, Inject, OnDestroy} from '@angular/core';
 import { Socket } from 'ngx-socket-io';  
-import {isPlatformBrowser} from '@angular/common';
 
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 
 import { Conversation, UserAgent, Session, Stream } from '@apirtc/apirtc'
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-video-call',
   templateUrl: './video-call.component.html',
@@ -17,7 +17,7 @@ export class VideoCallComponent implements OnInit {
 
   videoId: any;
 
-  constructor(@Inject(PLATFORM_ID) private _platform: Object,private fb: FormBuilder,private activatedRoute:ActivatedRoute, private router:Router) { }
+  constructor(private activatedRoute:ActivatedRoute, private router:Router) { }
   navigator:Navigator;
  
   myStream:MediaStream;
@@ -28,10 +28,6 @@ export class VideoCallComponent implements OnInit {
         noiseSuppression: true
     }
   }
-  /*
-  *{ audio: true, video: { facingMode: { exact: "environment" } } } rear camera view
-  */
-
   ngOnInit(): void {
 
     this.activatedRoute.paramMap.subscribe(params => {
@@ -57,24 +53,14 @@ export class VideoCallComponent implements OnInit {
   }
   @ViewChild("localVideo") videoRef: ElementRef;
 
-  conversationFormGroup = this.fb.group({
-    name: this.fb.control('', [Validators.required])
-  });
-
-  
-
-  get conversationNameFc(): FormControl {
-    return this.conversationFormGroup.get('name') as FormControl;
-  }
-
   conversation: any;
   remotesCounter = 0;
-
+  localStream=null;
   getOrcreateConversation() {
-    var localStream = null;
+   // var localStream = null;
     //CREATE USER AGENT
     var userAgent = new UserAgent({
-      uri: 'apiKey:myDemoApiKey'
+      uri: `${environment.videoUri}`
     });
     // REGISTER
     
@@ -123,26 +109,21 @@ export class VideoCallComponent implements OnInit {
            },
           video: true
         }
-      })
-        .then((stream: Stream) => {
+      }).then((stream: Stream) => {
 
           console.log('createStream :', stream);
 
           // Save local stream
-          localStream = stream;
+          this.localStream = stream;
 
           // Display stream
-          localStream.attachToElement(this.videoRef.nativeElement);
+          this.localStream.attachToElement(this.videoRef.nativeElement);
 
-          
           // JOIN CONVERSATION
-          
           conversation.join()
             .then(() => {
-              
               // PUBLISH LOCAL STREAM
-              
-              conversation.publish(localStream).then((stream: Stream) => {
+              conversation.publish(this.localStream).then((stream: Stream) => {
                 console.log('published', stream);
               }).catch((err: any) => {
                 console.error('publish error', err);
@@ -154,6 +135,29 @@ export class VideoCallComponent implements OnInit {
           console.error('create stream error', err);
         });
     });
+  }
+
+
+  dropVideo(){
+  this.conversation.leave().then(() => {
+    this.conversation.destroy();
+  });
+  }
+  muteVideo(){
+    // toggle audio
+if (this.localStream.isAudioMuted()) {
+  this.localStream.unmuteAudio();
+} else {
+  this.localStream.muteAudio();
+}
+
+// toggle video
+if (this.localStream.isVideoMuted()) {
+  this.localStream.unmuteVideo();
+} else {
+  this.localStream.muteVideo();
+}
+
   }
 }
 
