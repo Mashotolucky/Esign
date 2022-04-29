@@ -31,6 +31,7 @@ import { StatusPipe } from './Pipes/status.pipe';
 import { TimeFormatPipe } from './Pipes/time-format.pipe';
 import { VideoViewComponent } from './Pages/video-view/video-view.component';
 import { LandingComponent } from './Pages/landing/landing.component';
+import { EditComponent } from './Pages/edit/edit.component';
 
 
 
@@ -61,6 +62,7 @@ import { LandingComponent } from './Pages/landing/landing.component';
     TimeFormatPipe,
     VideoViewComponent,
     LandingComponent,
+    EditComponent,
        
           
   ],

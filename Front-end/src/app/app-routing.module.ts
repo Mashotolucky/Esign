@@ -15,6 +15,7 @@ import { VideoCallComponent } from './Pages/video-call/video-call.component';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
 import { VideoViewComponent } from './Pages/video-view/video-view.component';
 import { LandingComponent } from './Pages/landing/landing.component';
+import { EditComponent } from './Pages/edit/edit.component';
 import { InterpreterGuardService } from './Services/interpreter-guard.service';
 import { ClientGuardService } from './Services/client-guard.service';
 
@@ -29,6 +30,12 @@ const routes: Routes = [
                         {path: 'clientbooking', component: ClientBookingComponent, canActivate:[ClientGuardService]},
                         {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
                         // {path: 'user', component: UserProfileComponent},
+
+                        {path: 'stream/:id', component: VideoCallComponent},
+                        {path:'landing',component:LandingComponent},
+                        {path:'edit',component:EditComponent},
+
+                        {path: 'stream', component: VideoCallComponent},
                         {path: 'stream', component: VideoCallComponent,canActivate: [AuthGuardService]},
                         {path: 'video', component: VideoViewComponent},
                         {path: 'stream/:id', component: VideoCallComponent , canActivate: [AuthGuardService]}
