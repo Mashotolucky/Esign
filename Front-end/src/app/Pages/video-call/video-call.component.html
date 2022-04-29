@@ -1,14 +1,24 @@
 
-<div class="split left">
-    <div class="centered" [ngClass]="{'over':remotesCounter>0}">
+  <div class="row  " id="loginContainer">
+      <div class="header">
+        <h3 style="position: center;">Video Chat</h3>
+      </div>
+      <div class="col col-sm-12 col-lg-6 ">
+        <div class="" id="local-container">
 
-        <video #localVideo autoplay playsinline ></video>
-        <!-- <div id="local-container" class="video" >
-           
-        </div> -->
-       
-    </div>
-    <div class="options">
+          <video #localVideo autoplay playsinline></video>
+    
+        </div>
+    
+      </div>
+      <div class="col col-12 col-lg-6 border-start">
+          
+        <div class="" id="remote-container">
+
+        </div>
+      </div>
+
+      <div class="options">
         <div class="options__left">
           <div id="stopVideo" class="options__button">
             <i class="fa fa-video-camera" (click)="dropVideo()"></i>
@@ -17,33 +27,10 @@
             <i class="fa fa-microphone" (click)="muteVideo()"></i>
           </div>
           <div id="muteButton" class="options__button">
-            <i class="fa fa-viadeo" (click)="turnOffScreen()" ></i>
+            <i class="fa fa-viadeo" (click)="turnOffScreen()"></i>
           </div>
         </div>
-    </div>
+      </div>
   </div>
   
-  <div class="split right">
-    <div class="centered" id="remote-container">
-        <!-- <div  class="fullscreen">
-            
-        </div> -->
-    </div>
-  </div>
 
-
-
-  <div class="container" >
-      <div class="row">
-          <div class="col">
-              <div class="card">
-                <video #localVideo autoplay playsinline [ngClass]="{'over':remotesCounter>0}"></video>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-        <div class="col">
-            <div class="card">
-                
-            </div>
-  </div>

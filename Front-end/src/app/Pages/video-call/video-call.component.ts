@@ -93,7 +93,7 @@ export class VideoCallComponent implements OnInit {
     
       conversation.on('streamAdded', (stream: Stream) => {
         this.remotesCounter += 1;
-        stream.addInDiv('remote-container', 'remote-media-' + stream.streamId, {width:'100%'}, false);
+        stream.addInDiv('remote-container', 'remote-media-' + stream.streamId, {width:'100%', borderradius:'1rem'}, false);
       }).on('streamRemoved', (stream: any) => {
         this.remotesCounter -= 1;
         stream.removeFromDiv('remote-container', 'remote-media-' + stream.streamId);
