@@ -153,12 +153,13 @@ export class ProfileComponent implements OnInit {
                 width: '300px'
               }
             )
-            this.router.navigate['/profile'];
+            this.router.navigate['/home'];
       }else{
         //book
         this.bookingService.booking(this.data, token)
           .subscribe(res => {
             this.simpleAlert();
+            this.router.navigate['/clientbooking'];
           }, error => {
             console.log(error);
 

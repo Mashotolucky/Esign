@@ -13,6 +13,7 @@ import{NavbarComponent} from './Components/navbar/navbar.component';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { VideoCallComponent } from './Pages/video-call/video-call.component';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
+import { VideoViewComponent } from './Pages/video-view/video-view.component';
 import { LandingComponent } from './Pages/landing/landing.component';
 import { EditComponent } from './Pages/edit/edit.component';
 
@@ -20,16 +21,21 @@ import { EditComponent } from './Pages/edit/edit.component';
 const routes: Routes = [
                         {path:'landing',component: LandingComponent},
                         {path:'nav',component:NavbarComponent},
-                        {path: '', component: HomeComponent},
+                        {path: 'home', component: HomeComponent},
                         {path: 'login', component: LoginComponent},
                         {path:'register', component: RegisterComponent},
                         {path: 'interpreterbooking', component: InterpreterBookingComponent},
                         {path: 'clientbooking', component: ClientBookingComponent},
                         {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
                         // {path: 'user', component: UserProfileComponent},
+
                         {path: 'stream/:id', component: VideoCallComponent},
                         {path:'landing',component:LandingComponent},
-                        {path:'edit',component:EditComponent}
+                        {path:'edit',component:EditComponent},
+
+                        {path: 'stream', component: VideoCallComponent},
+                        {path: 'video', component: VideoViewComponent},
+                        {path: 'stream/:id', component: VideoCallComponent}
                       
                       ];
 
