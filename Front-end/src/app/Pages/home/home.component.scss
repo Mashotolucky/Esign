@@ -115,7 +115,7 @@ h1,button{
   left: 0;
   opacity: 0.9;
   transform: scale(3);
-  transition: all 0.3s linear 0s;
+  transition: all 0s linear 0s;
 }
 
 .our-team:hover .picture::before {
@@ -139,7 +139,7 @@ h1,button{
   height: auto;
   border-radius: 50%;
   transform: scale(1);
-  transition: all 0.9s ease 0s;
+  transition: all 0s ease 0s;
 }
 
 .our-team:hover .picture img {
@@ -162,7 +162,7 @@ h1,button{
   position: absolute;
   bottom: -100px;
   left: 0;
-  transition: all 0.5s ease 0s;
+  transition: all 0s ease 0s;
 }
 
 .our-team:hover .social {
