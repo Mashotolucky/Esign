@@ -1,12 +1,12 @@
 const {pool} = require('../config/dbconfig');
 
-const createIntepreterDb=async({userID,cert_url,hourly_rate,bio})=>{
+const createIntepreterDb=async({userID,cert_url,hourly_rate,bio,tagline})=>{
   try {
 
       const intepreter= await pool.query(
-        `INSERT INTO intepreter(cert_url,hourly_rate,userID,bio)
-        VALUES($1,$2,$3,$4) 
-        returning cert_url,hourly_rate,userID,ID,bio`,[cert_url,hourly_rate,userID,bio]);
+        `INSERT INTO intepreter(cert_url,hourly_rate,userID,bio,tagline)
+        VALUES($1,$2,$3,$4,$5) 
+        returning cert_url,hourly_rate,userID,ID,bio,tagline`,[cert_url,hourly_rate,userID,bio,tagline]);
       const myintepreter=intepreter.rows[0];
       console.log(myintepreter);
       return myintepreter;
@@ -15,7 +15,7 @@ const createIntepreterDb=async({userID,cert_url,hourly_rate,bio})=>{
     throw error;
   }
 };
-const updateIntepreterDb = async ({name,lastname,id,hourly_rate,img_url,bio}) => {
+const updateIntepreterDb = async ({name,lastname,id,hourly_rate,img_url,bio,tagline}) => {
    try {
     
     const { rows: user } = await pool.query(
@@ -26,8 +26,8 @@ const updateIntepreterDb = async ({name,lastname,id,hourly_rate,img_url,bio}) =>
     const myuser=user[0];
 
     const {rows:intepreter} = await pool.query(
-        `UPDATE intepreter set hourly_rate=$1,bio=$2 WHERE userID=$3  `,
-    [hourly_rate,bio,myuser.ID]);
+        `UPDATE intepreter set hourly_rate=$1,bio=$2 tagline=$3 WHERE userID=$4  `,
+    [hourly_rate,bio,tagline,myuser.ID]);
 
     return {myuser,intepreter:intepreter[0]}
 

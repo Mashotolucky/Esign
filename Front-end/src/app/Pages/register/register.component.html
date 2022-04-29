@@ -75,8 +75,12 @@
                             placeholder="Hourly Rate in ZAR">
                              
                         </div>
+                        <div class="file mb-4" *ngIf="ifINTEPRETER()">
+                            <input type="text" class="form-control" placeholder="Tag line" name="videos" id="customFile" formControlName="tagline"/> 
+                        </div>
                      <div class="file mb-4" *ngIf="ifINTEPRETER()">
-                            <input type="text" class="form-control" placeholder="tell us a bit about you" name="videos" id="customFile" formControlName="bio"/>
+                            <!-- <input type="text" class="form-control" placeholder="tell us a bit about you" name="videos" id="customFile" formControlName="bio"/> -->
+                                <textarea class="form-control" placeholder="Bio" id="customFile" formControlName="bio" type="text"></textarea>  
                     </div>
                     <div class="file mb-4" *ngIf="ifINTEPRETER()">
                         <input type="file" class="form-control" name="videos" id="customFile" formControlName="certificates" (change)="selectThisImage($event)"/>

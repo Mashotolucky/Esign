@@ -24,7 +24,7 @@ const register = async (req, res, next) => {
    
     if(!req.body) return next(new Error("all fields required"));
 
-    const { name, password, email, lastname,bio, role, hourly_rate } = req.body;
+    const { name, password, email, lastname,bio, role,tagline, hourly_rate } = req.body;
 
     let cert_url = "";
     let data={};
@@ -32,7 +32,7 @@ const register = async (req, res, next) => {
         name: name ? String(name).trim() : null,
         password: password ? String(password).trim() : null,
         email: email ? String(email).trim() : null,
-        lastname: lastname ? String(lastname).trim() : null,
+        lastname: lastname ? String(lastname).trim() : null, 
         role: role ,
         image_url:"https://www.pngitem.com/pimgs/m/294-2947257_interface-icons-user-avatar-profile-user-avatar-png.png",
     }
@@ -53,6 +53,7 @@ const register = async (req, res, next) => {
             data.cert_url= cert_url ? cert_url : "",
             data.hourly_rate= hourly_rate ? String(hourly_rate).trim() : null;
             data.bio= bio ? String(bio).trim() : null;
+            data.tagline = tagline ? String(tagline).trim() : null;
     
         }
 

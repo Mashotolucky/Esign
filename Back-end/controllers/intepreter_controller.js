@@ -34,9 +34,9 @@ const updateIntepreter=async(req,res,next)=>{
 
         const img_url= await fileUpload(req.file.path, "images",'image');
         console.log(img_url);
-        const {name,lastname,hourly_rate}=req.body;
+        const {name,lastname,hourly_rate,bio,tagline}=req.body;
 
-        const status=await updateIntepreterDb({name,lastname,id,hourly_rate,img_url,bio});
+        const status=await updateIntepreterDb({name,lastname,id,hourly_rate,img_url,bio,tagline});
         return res.status(200).send(status);
     } catch (error) {
         next(error);

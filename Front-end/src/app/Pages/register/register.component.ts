@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit {
       password: new FormControl(''),
       confirm_password: new FormControl(''),
       certificates: new FormControl(''),
+      tagline: new FormControl(''),
       bio: new FormControl(''),
       hourly_rate: new FormControl(''),
      
@@ -104,6 +105,7 @@ export class RegisterComponent implements OnInit {
       formData.append('password', this.registerForm.value.password);
       formData.append('hourly_rate', this.registerForm.value.hourly_rate);
       formData.append('bio', this.registerForm.value.bio);
+      formData.append('tagline', this.registerForm.value.tagline);
       formData.append('role', this.registerForm.value.role);
      
 
