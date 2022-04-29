@@ -46,6 +46,7 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getDate();
     let todayDate = Date.now();
     console.log(todayDate);
    
@@ -67,7 +68,7 @@ export class ProfileComponent implements OnInit {
     this.intepreterID = this.userService.getUser();
     console.log("interId", this.intepreterID.id)
    
-    localStorage.setItem("intepreterID", this.intepreterID);
+    localStorage.setItem("intepreterID", this.intepreterID.id);
 
     let token = localStorage.getItem("auth-token");
     this.bookingService.getAllbookingSlot(token, this.intepreterID.id)
@@ -88,6 +89,22 @@ export class ProfileComponent implements OnInit {
     console.log(this.timeArr);
 
   }
+  minDate: any = "";
+  getDate(){
+    let date: any = new Date();
+    let toDate: any = date.getDate(); 
+    if(toDate <10){
+      toDate = '0' + toDate;
+    }
+    let month: any = date.getMonth() + 1;
+    if(month < 10){
+      month = '0' + month;
+    }
+    let year = date.getFullYear();
+    this.minDate = year + "-" + month + "-" + toDate;
+    console.log(this.minDate);
+  }
+  
 
 
   isInterpreter(): boolean {
@@ -134,6 +151,7 @@ export class ProfileComponent implements OnInit {
 
     let token = localStorage.getItem("auth-token");
 
+    if((this.data.date_ && this.data.date_ ) !== ''){
       if(this.timeArr.includes(this.data.time_))
       {
         Swal.fire(
@@ -157,11 +175,19 @@ export class ProfileComponent implements OnInit {
 
           })
       }
-     
-    
-    this.intepreterID = this.Interpreter.id;
-
-    localStorage.setItem("intepreterID", this.intepreterID);
+    }
+    else{
+      Swal.fire(
+        {
+          icon: 'error',
+          title: "Fields cannot be empty!",
+          showConfirmButton: false,
+          timer: 2000,
+          width: '300px'
+        }
+      )
+    }
+      
   }
 
 }
