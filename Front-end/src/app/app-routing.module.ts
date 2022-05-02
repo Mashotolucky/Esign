@@ -23,7 +23,7 @@ import { ClientGuardService } from './Services/client-guard.service';
 const routes: Routes = [
                         {path:'landing',component: LandingComponent},
                         {path:'nav',component:NavbarComponent},
-                        {path: 'home', component: HomeComponent},
+                        {path: '', component: HomeComponent},
                         {path: 'login', component: LoginComponent},
                         {path:'register', component: RegisterComponent},
                         {path: 'interpreterbooking', component: InterpreterBookingComponent , canActivate:[InterpreterGuardService]},

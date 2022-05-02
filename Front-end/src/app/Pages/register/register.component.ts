@@ -126,8 +126,11 @@ export class RegisterComponent implements OnInit {
             }
           ) 
         }
+        else if(this.ifINTEPRETER()){
+          return this.router.navigate(['/edit']);
+        }
         // console.log(res[0]);
-           return this.router.navigate(['/login']);
+        return this.router.navigate(['/login']);
        },
         error: err => {
           swal.fire(

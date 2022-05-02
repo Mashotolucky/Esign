@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
+import { RegisterService } from 'src/app/Services/register.service';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -11,14 +12,14 @@ export class EditComponent implements OnInit {
 
   User: any;
   file: any = '';
-  constructor(private userService: UserService, private authService: AuthService) { }
+  constructor(private userService: UserService, private authService: AuthService,private registerService: RegisterService) { }
 
   ngOnInit(): void {
     this.getUser();
   }
 
   getUser(){
-    this.User = JSON.parse(localStorage.getItem("Interpreter"));
+    this.User = this.registerService.setInterpreter();
     console.log(this.User);
   }
 
