@@ -82,7 +82,7 @@ export class NavbarComponent implements OnInit {
   }
 
   btnClick() {
-    this.router.navigate(['/profile']).then(()=>{
+    this.router.navigate(['/edit']).then(()=>{
       window.location.reload();
       this.onlineService.setLoggedUser(this.user);
 
@@ -94,13 +94,13 @@ export class NavbarComponent implements OnInit {
   }
 
 
-  // isInterpreter(){
-  //   if(this.userWho.role === 'CLIENT'){
+  isInterpreter(){
+    if(this.role === 'CLIENT'){
       
-  //     return this.router.navigate(['/clientbooking']);
-  //   }
-  //   return this.router.navigate(['/interpreterbooking']);
-  // }
+      return this.router.navigate(['/clientbooking']);
+    }
+    return this.router.navigate(['/interpreterbooking']);
+  }
 
 
 }

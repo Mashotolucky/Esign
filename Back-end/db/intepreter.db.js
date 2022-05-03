@@ -18,15 +18,16 @@ const createIntepreterDb=async({userID,cert_url,hourly_rate,bio,tagline})=>{
 const updateIntepreterDb = async ({name,lastname,id,hourly_rate,img_url,bio,tagline}) => {
    try {
     
+    console.log(name);
     const { rows: user } = await pool.query(
       `UPDATE users set name = $1,image_url = $2,lastname = $3
         where ID = $4 returning name, email, lastname, ID`,
       [name, img_url,lastname,id]
     );
     const myuser=user[0];
-
+  console.log(myuser);
     const {rows:intepreter} = await pool.query(
-        `UPDATE intepreter set hourly_rate=$1,bio=$2 tagline=$3 WHERE userID=$4  `,
+        `UPDATE intepreter set hourly_rate=$1,bio=$2 ,tagline=$3 WHERE userID=$4  `,
     [hourly_rate,bio,tagline,myuser.ID]);
 
     return {myuser,intepreter:intepreter[0]}
@@ -35,7 +36,7 @@ const updateIntepreterDb = async ({name,lastname,id,hourly_rate,img_url,bio,tagl
      throw error;
    }
 
-};
+};    
 const deleteInteprterDb = async (id) => {
   try {
         const { rows: user } = await pool.query(

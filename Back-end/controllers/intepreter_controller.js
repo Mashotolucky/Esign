@@ -36,6 +36,9 @@ const updateIntepreter=async(req,res,next)=>{
         console.log(img_url);
         const {name,lastname,hourly_rate,bio,tagline}=req.body;
 
+        console.log(name,lastname,hourly_rate,bio,tagline);
+
+        
         const status=await updateIntepreterDb({name,lastname,id,hourly_rate,img_url,bio,tagline});
         return res.status(200).send(status);
     } catch (error) {

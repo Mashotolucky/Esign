@@ -21,7 +21,7 @@ import { ClientGuardService } from './Services/client-guard.service';
 
 
 const routes: Routes = [
-                        {path:'landing',component: LandingComponent},
+                        {path:'',component: LandingComponent},
                         {path:'nav',component:NavbarComponent},
                         {path: 'home', component: HomeComponent},
                         {path: 'login', component: LoginComponent},
@@ -32,7 +32,6 @@ const routes: Routes = [
                         // {path: 'user', component: UserProfileComponent},
 
                         {path: 'stream/:id', component: VideoCallComponent},
-                        {path:'landing',component:LandingComponent},
                         {path:'edit',component:EditComponent},
 
                         {path: 'stream', component: VideoCallComponent},

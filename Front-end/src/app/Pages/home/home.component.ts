@@ -12,11 +12,13 @@ import { UserService } from 'src/app/Services/user.service';
 export class HomeComponent implements OnInit ,OnDestroy{
 
   interpretors: any;
-
+  getUser: any;
   constructor(private userService: UserService, public router: Router) { }
    intepreterSub:any;
    
   ngOnInit(): void {
+    
+    this.getUser = JSON.parse(localStorage.getItem("user"));
     this.getAllIntepreters();
   }
 
@@ -35,8 +37,12 @@ export class HomeComponent implements OnInit ,OnDestroy{
 
   viewProfile(interpreter: any){
     console.log(interpreter);
-    
-    this.router.navigate(['/profile'],{state:{int:interpreter}});
+    if(this.getUser.role === "INTEPRETER"){
+      this.router.navigate(['/interpreterbooking'])
+    }
+    else{
+      this.router.navigate(['/profile'],{state:{int:interpreter}});
+    }
     this.userService.user(interpreter);
   }
   
