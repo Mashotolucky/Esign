@@ -32,6 +32,7 @@ import { TimeFormatPipe } from './Pipes/time-format.pipe';
 import { VideoViewComponent } from './Pages/video-view/video-view.component';
 import { LandingComponent } from './Pages/landing/landing.component';
 import { EditComponent } from './Pages/edit/edit.component';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
 
@@ -70,6 +71,7 @@ import { EditComponent } from './Pages/edit/edit.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxUiLoaderModule,
     // SocketIoModule.forRoot(config),
     HttpClientModule
   ],

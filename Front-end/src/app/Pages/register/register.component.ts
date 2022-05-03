@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 // import { UserService } from 'src/app/Services/user.service';
 import swal from "sweetalert2";
 import { UserService } from 'src/app/Services/user.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-register',
@@ -29,13 +30,13 @@ export class RegisterComponent implements OnInit {
   constructor(private fb : FormBuilder,
     private registerService: RegisterService,
     private userService:UserService,
-    private router:Router
-    ) { }
+    private router:Router,
+    private ngxService: NgxUiLoaderService) { }
     
   
 
   ngOnInit(): void {
-
+   
   
     this.registerForm = new FormGroup({
       role: new FormControl('',[Validators.required]),
@@ -108,13 +109,15 @@ export class RegisterComponent implements OnInit {
       formData.append('tagline', this.registerForm.value.tagline);
       formData.append('role', this.registerForm.value.role);
      
-
+      this.ngxService.start();
      
       this.registerService.register(formData)
       .subscribe({
        next: res=>{
 
         if (res == null){
+          
+          this.ngxService.stop();
           this.router.navigate(['/register']);
           return swal.fire(
             {
@@ -127,12 +130,15 @@ export class RegisterComponent implements OnInit {
           ) 
         }
         else if(this.ifINTEPRETER()){
+          this.ngxService.stop();
           return this.router.navigate(['/edit']);
         }
         // console.log(res[0]);
+        this.ngxService.stop();
         return this.router.navigate(['/login']);
        },
         error: err => {
+          this.ngxService.stop();
           swal.fire(
             {
                //position: 'top-end',
