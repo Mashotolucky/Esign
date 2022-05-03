@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LoginService {
-  
   BaseUrl = environment.production? environment.backend +'/auth/login' : environment.devbaseUrl+'/auth/login';
   
 
