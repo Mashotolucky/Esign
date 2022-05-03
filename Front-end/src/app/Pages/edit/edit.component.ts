@@ -23,11 +23,7 @@ export class EditComponent implements OnInit {
     bio: new  FormControl('')
 
   });
-  constructor(private userService: UserService, private authService: AuthService,private registerService: RegisterService, private formBuilder: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.getUser();
-
+  constructor(private userService: UserService, private authService: AuthService,private registerService: RegisterService, private formBuilder: FormBuilder) {
     this.editForm = this.formBuilder.group({
       name: [''],
       lastname: [''],
@@ -36,10 +32,15 @@ export class EditComponent implements OnInit {
       images: [''],
       bio: ['']
     })
+   }
+
+  ngOnInit(): void {
+    this.getUser();
   }
 
   getUser(){
-    this.User = JSON.parse(localStorage.getItem("user"));
+    this.User = JSON.parse(localStorage.getItem("user"));;
+    // this.User = JSON.parse(localStorage.getItem("user"));
     console.log(this.User);
   }
 

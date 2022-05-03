@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #E3E0E0;">
     <div class="container-fluid">
-        <a href="#" class="navbar-brand">
+        <a (click)="userHome()" class="navbar-brand">
             <img src="../../../assets/ADesign.webp"  height="60" alt="">
         </a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -59,7 +59,7 @@
                     Profile
                     </button>
                      &nbsp;
-                     <button class="btn mt-3 ms-3" id= "submit" (click)="clearuser()">Sign out</button>
+                     <button class="btn mt-3 ms-3" id= "submit" (click)="clearuser()" routerLink="/landing">Sign out</button>
                 </div>
               </form>
         </div>

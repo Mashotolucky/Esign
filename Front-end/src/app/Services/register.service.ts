@@ -18,8 +18,7 @@ export class RegisterService {
   }
 
   setInterpreter(){
-    console.log(this.interpreterData);
-    
-    return this.interpreterData;
+    console.log(this.interpreterData.values());
+    return this.interpreterData.values();
   }
 }

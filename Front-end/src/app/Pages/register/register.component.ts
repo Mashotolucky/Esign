@@ -131,7 +131,7 @@ export class RegisterComponent implements OnInit {
         }
         else if(this.ifINTEPRETER()){
           this.ngxService.stop();
-          return this.router.navigate(['/edit']);
+          return this.router.navigate(['/login']);
         }
         // console.log(res[0]);
         this.ngxService.stop();

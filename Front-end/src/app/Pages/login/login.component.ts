@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("user",JSON.stringify(myobject.user));
         localStorage.setItem("auth-token",myobject.token); 
         if(myobject.user.role==="CLIENT"){  
-            return this.router.navigate(['/']);
+            return this.router.navigate(['/home']);
         }else if (myobject.user.role==="INTEPRETER"){
            // set the online_status true
 

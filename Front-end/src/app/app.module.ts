@@ -62,7 +62,8 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     StatusPipe,
     TimeFormatPipe,
     LandingComponent,
-       
+    EditComponent 
+    
           
   ],
   imports: [

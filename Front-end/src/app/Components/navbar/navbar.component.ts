@@ -72,7 +72,7 @@ export class NavbarComponent implements OnInit {
     // window.location.reload();
     // this.router.navigate(['/login']); 
 
-    this.router.navigate(['/login'])
+    this.router.navigate(['/landing'])
   .then(() => {
     window.location.reload();
   });
@@ -98,6 +98,14 @@ export class NavbarComponent implements OnInit {
     if(this.role === 'CLIENT'){
       
       return this.router.navigate(['/clientbooking']);
+    }
+    return this.router.navigate(['/interpreterbooking']);
+  }
+
+  userHome(){
+    if(this.role === 'CLIENT'){
+      
+      return this.router.navigate(['/home']);
     }
     return this.router.navigate(['/interpreterbooking']);
   }

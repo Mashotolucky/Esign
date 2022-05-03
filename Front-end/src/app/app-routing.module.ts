@@ -26,13 +26,13 @@ const routes: Routes = [
                         {path: 'home', component: HomeComponent},
                         {path: 'login', component: LoginComponent},
                         {path:'register', component: RegisterComponent},
-                        {path: 'interpreterbooking', component: InterpreterBookingComponent , canActivate:[InterpreterGuardService]},
-                        {path: 'clientbooking', component: ClientBookingComponent, canActivate:[ClientGuardService]},
+                        {path: 'interpreterbooking', component: InterpreterBookingComponent , canActivate:[InterpreterGuardService, AuthGuardService]},
+                        {path: 'clientbooking', component: ClientBookingComponent, canActivate:[ClientGuardService, AuthGuardService]},
                         {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
                         // {path: 'user', component: UserProfileComponent},
 
                         {path: 'stream/:id', component: VideoCallComponent},
-                        {path:'edit',component:EditComponent},
+                        {path:'edit',component:EditComponent, canActivate: [AuthGuardService]},
 
                         {path: 'stream', component: VideoCallComponent},
                         {path: 'stream', component: VideoCallComponent,canActivate: [AuthGuardService]},
