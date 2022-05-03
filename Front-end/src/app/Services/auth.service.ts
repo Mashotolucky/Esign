@@ -12,11 +12,7 @@ import { map, take } from 'rxjs/operators';
 export class AuthService {
   [x: string]: any;
 
-  constructor(private http: HttpClient
-  //   , private httpOptions: {headers: HttpHeaders} = {
-  //   headers: new HttpHeaders({})
-  // }
-  ) { }
+  constructor(private http: HttpClient) { }
 
   isLoggedIn() {
 
@@ -34,11 +30,6 @@ export class AuthService {
     }else{
         return null;
     }
-
-
-
-
-    
   }
   getUser(){
      //get token from local storage
@@ -46,6 +37,25 @@ export class AuthService {
     // console.log("usert",user);
     
      return user?user:false;
+  }
+
+  isClient(){
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if(user.role=="CLIENT"){
+      return true;
+    }
+    return false;
+  }
+
+  isInterpreter(){
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if(user.role=="INTEPRETER"){
+      return true;
+    }
+    return false;
+
   }
 
     

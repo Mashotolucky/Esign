@@ -38,6 +38,8 @@ CREATE TABLE public.intepreter(
 	userID integer,
 	online_status boolean,
 	active_status boolean,
+    bio text,
+    tagline text,
 	cert_url text NOT NULL,
 	hourly_rate numeric,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,

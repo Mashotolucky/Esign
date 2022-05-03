@@ -29,16 +29,20 @@ import { environment } from 'src/environments/environment';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
 import { StatusPipe } from './Pipes/status.pipe';
 import { TimeFormatPipe } from './Pipes/time-format.pipe';
+import { VideoViewComponent } from './Pages/video-view/video-view.component';
+import { LandingComponent } from './Pages/landing/landing.component';
+import { EditComponent } from './Pages/edit/edit.component';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
 
 
-const config: SocketIoConfig = {
-	url: environment.socketUrl, // socket server url;
-	options: {
-		transports: ['websocket']
-	}
-}
+// const config: SocketIoConfig = {
+// 	url: environment.socketUrl, // socket server url;
+// 	options: {
+// 		transports: ['websocket']
+// 	}
+// }
 
 @NgModule({
   declarations: [
@@ -57,7 +61,9 @@ const config: SocketIoConfig = {
     VideoCallComponent,
     StatusPipe,
     TimeFormatPipe,
-       
+    LandingComponent,
+    EditComponent 
+    
           
   ],
   imports: [
@@ -66,7 +72,8 @@ const config: SocketIoConfig = {
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    SocketIoModule.forRoot(config),
+    NgxUiLoaderModule,
+    // SocketIoModule.forRoot(config),
     HttpClientModule
   ],
   providers: [AuthGuardService],

@@ -40,6 +40,24 @@ const getBookingDb=async (id) => {
     }
   };
 
+  const getIntepreterBookingSlotDb=async (clientid,intepreterid) => {
+    try {
+        console.log("client",clientid);
+        console.log("interpreter", intepreterid);
+      const { rows: booking } = await pool.query(`
+      select booking.id, booking.clientid, booking.intepreterid, booking.date_, booking.time_ ,booking.status,
+      users.name, users.lastname 
+      FROM booking, client ,users
+         WHERE booking.intepreterid = $1 
+         AND booking.clientid = $2
+         AND users.id = client.userId`,[intepreterid, clientid]);
+      return booking;
+    } catch (error) {
+      console.log("err",error);
+      throw error; 
+    }
+  };
+
   const getIntepreterStreamDb=async (id) => {
     try {
       
@@ -164,6 +182,7 @@ const getBookingDb=async (id) => {
     getIntepreterBookingDb,
     getIntepreterStreamDb,
     getClientStreamDb,
+    getIntepreterBookingSlotDb,
     getBookingDb,
     getAllClientBookingDb,
     getClientBookingDb,

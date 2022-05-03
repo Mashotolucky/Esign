@@ -17,7 +17,7 @@ export class InterpreterBookingComponent implements OnInit {
   
   IntepreterBoookings : any;
   IntepreterStreams: any;
-
+  IntepreterHistory:any;
   // public streamss=[
   //   {"name":"lahlie", "lastname":"momo", "date":"14 April 2022", "time":"09:10 AM",}
   // ];
@@ -34,17 +34,7 @@ export class InterpreterBookingComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // let token = localStorage.getItem("auth-token");
-    // console.log(token);
-    
-    //  this.bookingService.getAllbooking(token)
-    //  .subscribe(res =>{
-       
-       
-    //    this.bookings = res;
-    //  })
-
-    // console.log(this.bookings);  
+   
   }
 
 
@@ -95,7 +85,7 @@ export class InterpreterBookingComponent implements OnInit {
       //call bookings service
       this.bookingsService.getAllinterpreterhistory(token).subscribe({
         next:(results)=>{
-         
+          this.IntepreterHistory=results;
         },
         error:(error)=>{
          // this.streams=false;
@@ -137,16 +127,17 @@ export class InterpreterBookingComponent implements OnInit {
   }
 
   joinstream(id:any){
-     if(!id) return Swal.fire({
-          icon: 'error',
-          title: 'can not join stream at this point',
-          showConfirmButton: false,
-          timer: 1000,
-          width: '300px'
-      })
-    
-   this.router.navigate(['stream',{state:{id}}])
+    if(!id) return Swal.fire({
+         icon: 'error',
+         title: 'can not join stream at this point',
+         showConfirmButton: false,
+         timer: 1000,
+         width: '300px'
+     })
+   console.log(id);
+   
+  this.router.navigate(['/stream',id])
 
-  }
+ }
 
 }

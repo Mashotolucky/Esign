@@ -9,7 +9,7 @@ const {generateToken}=require('../middleware/jwt');
 const mail=require('../helpers/mailer');
 
 const {getUserByEmailDb,createUserDb, setTokenStatusDb, createResetTokenDb, changeUserPasswordDb, getUserByIdDb, getAllUsersDb}=require('../db/user.db')
-const { createClientDb, deleteClientDb, getLanguagesdb } = require('../db/client.db');
+const { createClientDb, deleteClientDb } = require('../db/client.db');
 const { createIntepreterDb, updateIntepreterDb, deleteInteprterDb } = require('../db/intepreter.db');
 
 
@@ -41,12 +41,12 @@ const { createIntepreterDb, updateIntepreterDb, deleteInteprterDb } = require('.
         //check user role and create intepreter or client
         if(newuser.role && newuser.role.toUpperCase() == roles.CLIENT){
 
-            const usr = await createClientDb({userID:newuser.id,langID:user.langID});
+            const usr = await createClientDb({userID:newuser.id});
             return usr;
         }else
         if(newuser.role && newuser.role.toUpperCase() == roles.INTEPRETER){
 
-            return await createIntepreterDb({userID:newuser.id,cert_url:user.cert_url,hourly_rate:user.hourly_rate, langs:user.intlangs});
+            return await createIntepreterDb({userID:newuser.id,cert_url:user.cert_url,hourly_rate:user.hourly_rate,bio:user.bio, tagline:user.tagline});
 
         }else{
           throw Error("role is empty or not defined");
@@ -183,13 +183,13 @@ const { createIntepreterDb, updateIntepreterDb, deleteInteprterDb } = require('.
       }
     };
      
-    getAllLanguages = async () => {
-      try {
-        return await getLanguagesdb();
-      } catch (error) {
-        throw error;
-      }
-    };
+    // getAllLanguages = async () => {
+    //   try {
+    //     return await getLanguagesdb();
+    //   } catch (error) {
+    //     throw error;
+    //   }
+    // };
 
   }
   

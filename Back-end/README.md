@@ -4,12 +4,12 @@
 main app runs from server.js 
 
 cloundinary -> cloudinary config file
-config      -> db config file with script
-controllers 
+config      -> db config file with script connect to db
+controllers ->server logic 
 certificates ->temp folder to hold certificates 
-db           ->db fuctions
+db           ->db fuctions get and send info from and to db
 helpers      ->helper functions misc
-middleware
+middleware   ->
 routes
 services?
 video        ->for video calls

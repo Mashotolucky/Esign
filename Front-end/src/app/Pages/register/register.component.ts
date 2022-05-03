@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 // import { UserService } from 'src/app/Services/user.service';
 import swal from "sweetalert2";
 import { UserService } from 'src/app/Services/user.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
   passwordMessage: any = '';
   password_matched: boolean = false;
   strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-  interpreterLangs:any=[];
+
 
   file: any = '';
   spinnerState:boolean=false;
@@ -29,18 +30,14 @@ export class RegisterComponent implements OnInit {
   constructor(private fb : FormBuilder,
     private registerService: RegisterService,
     private userService:UserService,
-    private router:Router
-    ) { }
+    private router:Router,
+    private ngxService: NgxUiLoaderService) { }
     
-  languages:any[]
+  
 
   ngOnInit(): void {
-
-   this.userService.getLanguages().subscribe(res=>{
-     if(res)
-        this.languages=res;
-   })
-
+   
+  
     this.registerForm = new FormGroup({
       role: new FormControl('',[Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -49,9 +46,10 @@ export class RegisterComponent implements OnInit {
       password: new FormControl(''),
       confirm_password: new FormControl(''),
       certificates: new FormControl(''),
-      langID: new FormControl(''),
+      tagline: new FormControl(''),
+      bio: new FormControl(''),
       hourly_rate: new FormControl(''),
-      interpreterLangs: new FormControl([])
+     
   });
   }
   fieldsWithData(): boolean{
@@ -107,17 +105,19 @@ export class RegisterComponent implements OnInit {
       formData.append('lastname', this.registerForm.value.lastname);
       formData.append('password', this.registerForm.value.password);
       formData.append('hourly_rate', this.registerForm.value.hourly_rate);
-      formData.append('langID', this.registerForm.value.langID);
+      formData.append('bio', this.registerForm.value.bio);
+      formData.append('tagline', this.registerForm.value.tagline);
       formData.append('role', this.registerForm.value.role);
-      formData.append('intlangs',this.interpreterLangs)
-    // console.log(formData.get("langID"));
-     console.log(formData.get("intlangs"));
+     
+      this.ngxService.start();
      
       this.registerService.register(formData)
       .subscribe({
        next: res=>{
 
         if (res == null){
+          
+          this.ngxService.stop();
           this.router.navigate(['/register']);
           return swal.fire(
             {
@@ -129,10 +129,16 @@ export class RegisterComponent implements OnInit {
             }
           ) 
         }
+        else if(this.ifINTEPRETER()){
+          this.ngxService.stop();
+          return this.router.navigate(['/login']);
+        }
         // console.log(res[0]);
-           return this.router.navigate(['/login']);
+        this.ngxService.stop();
+        return this.router.navigate(['/login']);
        },
         error: err => {
+          this.ngxService.stop();
           swal.fire(
             {
                //position: 'top-end',
@@ -150,13 +156,6 @@ export class RegisterComponent implements OnInit {
      selectThisImage(myEvent: any) {
       this.file = myEvent.target.files[0]; 
     }
-    changeSelect(value:any){
-      if(this.interpreterLangs.indexOf(value) === -1) {
-        this.interpreterLangs.push(value);
-        console.log(this.interpreterLangs);
-    }
-    
-      console.log(this.interpreterLangs)
-    }
+
 }
 

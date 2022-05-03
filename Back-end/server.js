@@ -26,8 +26,8 @@ const esign_routes = require('./routes');
 
 app.use(helmet());
 app.use(cors(options));
-// remember to Apply the rate limiting middleware to all requests
-app.use(limiter);
+// remember to Apply the rate limiting 
+// app.use(limiter);
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 

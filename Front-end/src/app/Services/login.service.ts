@@ -6,10 +6,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class LoginService {
-  
   BaseUrl = environment.production? environment.backend +'/auth/login' : environment.devbaseUrl+'/auth/login';
   
- // baseUrl = 'http://localhost:4000/api/v1/auth/login';
+
   constructor(private http: HttpClient) { }
 
   login(data: any){

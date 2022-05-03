@@ -1,27 +1,36 @@
 
-        <form class="text-center" *ngIf="!conversation" [formGroup]="conversationFormGroup" (ngSubmit)="getOrcreateConversation()">
-            <mat-form-field>
-                <mat-label>Conversation Name</mat-label>
-                <input type="text" matInput placeholder="abcd" formControlName="name">
-            </mat-form-field>&nbsp;
-            <button mat-raised-button color="primary" type="submit" [disabled]="!conversationFormGroup.valid" title="Get Or Create Conversation">GetOrCreateConversation</button>
-        </form>
-        
-        <div *ngIf="conversation" class="container">
-            <app-navbar></app-navbar>
-            <div id="remote-container" class="fullscreen">
+  <div class="row  " id="loginContainer">
+      <div class="header">
+        <h3 style="position: center;">Video Chat</h3>
+      </div>
+      <div class="col col-sm-12 col-lg-6 ">
+        <div class="" id="local-container">
 
-            </div>
-            <div id="local-container" [ngClass]="{'over':remotesCounter>0}">
-                <i class="fa fa-phone" style="font-size:48px;color:red"></i>
-                <i class='fa fa-volume-up' id="vol" style='font-size:48px;color:black'></i>
-                
-                
-                
-                <video #localVideo autoplay controls playsinline></video>
-            </div>
-           
+          <video #localVideo autoplay playsinline></video>
+    
         </div>
-      
+    
+      </div>
+      <div class="col col-12 col-lg-6 border-start">
+          
+        <div class="" id="remote-container">
 
-        
+        </div>
+      </div>
+
+      <div class="options">
+        <div class="options__left">
+          <div id="stopVideo" class="options__button">
+            <i class="fa fa-video-camera" (click)="dropVideo()"></i>
+          </div>
+          <div id="muteButton" class="options__button">
+            <i class="fa fa-microphone" (click)="muteVideo()"></i>
+          </div>
+          <div id="muteButton" class="options__button">
+            <i class="fa fa-viadeo" (click)="turnOffScreen()"></i>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+

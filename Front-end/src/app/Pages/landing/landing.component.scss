@@ -1,0 +1,62 @@
+
+.img-fluid {
+    width: 850px;
+    -webkit-animation: mover 3s infinite  alternate;
+    animation: mover 3s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+.name{
+     color: #29A9AF;
+ }
+
+ .slogan{
+    font-size: 1rem;
+ }
+
+.card {
+    background-color: rgb(241, 241, 241);
+    border-radius: 1rem;
+}
+
+.cta .container {
+    padding: 80px;
+    background: rgba(var(--color-secondary-rgb), 0.1);
+    border-radius: 15px;
+  }
+
+#signup{
+    background-color: #29A9AF;
+}
+
+.img-fluid-1{
+    width: 300px; 
+}
+
+.aboutUs{
+    font-family: sans-serif;
+}
+
+.aboutUslogan{
+    opacity: .5;
+}
+
+#mission{
+    margin-top: 5rem;
+    // font-family:Arial, Helvetica, sans-serif;
+}
+
+.border{
+    background-color: rgb(245, 245, 245);
+
+}
+.label{
+    margin-right: 6rem;
+}

@@ -13,18 +13,31 @@ import{NavbarComponent} from './Components/navbar/navbar.component';
 import { AuthGuardService } from './Services/auth-guard.service';
 import { VideoCallComponent } from './Pages/video-call/video-call.component';
 import { ClientBookingComponent } from './Pages/client-booking/client-booking.component';
+import { VideoViewComponent } from './Pages/video-view/video-view.component';
+import { LandingComponent } from './Pages/landing/landing.component';
+import { EditComponent } from './Pages/edit/edit.component';
+import { InterpreterGuardService } from './Services/interpreter-guard.service';
+import { ClientGuardService } from './Services/client-guard.service';
 
 
 const routes: Routes = [
+                        {path:'',component: LandingComponent},
                         {path:'nav',component:NavbarComponent},
-                        {path: '', component: HomeComponent},
+                        {path: 'home', component: HomeComponent},
                         {path: 'login', component: LoginComponent},
                         {path:'register', component: RegisterComponent},
-                        {path: 'interpreterbooking', component: InterpreterBookingComponent},
-                        {path: 'clientbooking', component: ClientBookingComponent},
+                        {path: 'interpreterbooking', component: InterpreterBookingComponent , canActivate:[InterpreterGuardService, AuthGuardService]},
+                        {path: 'clientbooking', component: ClientBookingComponent, canActivate:[ClientGuardService, AuthGuardService]},
                         {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
                         // {path: 'user', component: UserProfileComponent},
+
+                        {path: 'stream/:id', component: VideoCallComponent},
+                        {path:'edit',component:EditComponent, canActivate: [AuthGuardService]},
+
                         {path: 'stream', component: VideoCallComponent},
+                        {path: 'stream', component: VideoCallComponent,canActivate: [AuthGuardService]},
+                        {path: 'video', component: VideoViewComponent},
+                        {path: 'stream/:id', component: VideoCallComponent , canActivate: [AuthGuardService]}
                       
                       ];
 

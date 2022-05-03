@@ -1,46 +1,42 @@
 const {pool} = require('../config/dbconfig');
 
-const createIntepreterDb=async({userID,cert_url,hourly_rate,langs})=>{
+const createIntepreterDb=async({userID,cert_url,hourly_rate,bio,tagline})=>{
   try {
-  console.log(langs);
-      const intepreter= await pool.query(
-        `INSERT INTO intepreter(cert_url,hourly_rate,userID)
-        VALUES($1,$2,$3) 
-        returning cert_url,hourly_rate,userID,ID `,[cert_url,hourly_rate,userID]);
-      const myintepreter=intepreter.rows[0];
-      languages=langs;
-      if(languages)
-          languages.forEach(async (lanuageid) => {
-            const intepretLangs= await pool.query(`INSERT INTO intepreter_lang(intepreterID,langID) VALUES($1,$2)`,[myintepreter.ID,lanuageid])
-          });
- 
 
+      const intepreter= await pool.query(
+        `INSERT INTO intepreter(cert_url,hourly_rate,userID,bio,tagline)
+        VALUES($1,$2,$3,$4,$5) 
+        returning cert_url,hourly_rate,userID,ID,bio,tagline`,[cert_url,hourly_rate,userID,bio,tagline]);
+      const myintepreter=intepreter.rows[0];
+      console.log(myintepreter);
       return myintepreter;
 
   } catch (error) {
     throw error;
   }
 };
-const updateIntepreterDb = async ({name,lastname,id,hourly_rate,img_url}) => {
+const updateIntepreterDb = async ({name,lastname,id,hourly_rate,img_url,bio,tagline}) => {
    try {
     
+    console.log(name);
     const { rows: user } = await pool.query(
       `UPDATE users set name = $1,image_url = $2,lastname = $3
         where ID = $4 returning name, email, lastname, ID`,
-      [name, img_url, lastname, id]
+      [name, img_url,lastname,id]
     );
     const myuser=user[0];
-
+  console.log(myuser);
     const {rows:intepreter} = await pool.query(
-        `UPDATE intepreter set cert_url=$1, hourly_rate=$2, active_status=$3 WHERE userID=$4 `,
-    [cert_url,hourly_rate,active_status, myuser.ID]);
+        `UPDATE intepreter set hourly_rate=$1,bio=$2 ,tagline=$3 WHERE userID=$4  `,
+    [hourly_rate,bio,tagline,myuser.ID]);
 
     return {myuser,intepreter:intepreter[0]}
+
    } catch (error) {
      throw error;
    }
 
-};
+};    
 const deleteInteprterDb = async (id) => {
   try {
         const { rows: user } = await pool.query(

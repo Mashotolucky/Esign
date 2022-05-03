@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="container-fluid mx-auto">
+<!-- <div class="container-fluid mx-auto">
   <div class="row ps-1">
     <div class="col right">
       <app-profile-card [user]="Interpreter"></app-profile-card>
@@ -21,24 +21,278 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form [formGroup]="bookingForm">
             <input class="date" type="date" id="modaldate" name="modaldate"  formControlName="date_" />
             <br /><br />
-            <input class="time" type="time" name="time" formControlName="time_" /><i class="bi bi-clock"></i>
+            
+            <select class="time" name="time_" formControlName="time_" placeholder="Time">
+              <option value="00:00:00">00:00</option>      
+              <option value="00:30:00">00:30</option>      
+              <option value="01:00:00">01:00</option>     
+              <option value="01:30:00">01:30</option>      
+              <option value="02:00:00">02:00</option>      
+              <option value="02:30:00">02:30</option>      
+              <option value="03:00:00">03:00</option>      
+              <option value="03:30:00">03:30</option>      
+              <option value="04:00:00">04:00</option>      
+              <option value="04:30:00">04:30</option>      
+              <option value="05:00:00">05:00</option>      
+              <option value="05:30:00">05:30</option>      
+              <option value="06:00:00">06:00</option>      
+              <option value="06:30:00">06:30</option>     
+              <option value="07:00:00">07:00</option>      
+              <option value="07:30:00">07:30</option>      
+              <option value="08:00:00">08:00</option>      
+              <option value="08:30:00">08:30</option>      
+              <option value="09:00:00">09:00</option>      
+              <option value="09:30:00">09:30</option>      
+              <option value="10:00:00">10:00</option>      
+              <option value="10:30:00">10:30</option>      
+              <option value="11:00:00">11:00</option>      
+              <option value="11:30:00">11:30</option>      
+              <option value="12:00:00">12:00</option>      
+              <option value="12:30:00">12:30</option>      
+              <option value="13:00:00">13:00</option>      
+              <option value="13:30:00">13:30</option>      
+              <option value="14:00:00">14:00</option>      
+              <option value="14:30:00">14:30</option>      
+              <option value="15:00:00">15:00</option>      
+              <option value="15:30:00">15:30</option>      
+              <option value="16:00:00">16:00</option>      
+              <option value="16:30:00">16:30</option>      
+              <option value="17:00:00">17:00</option>      
+              <option value="17:30:00">17:30</option>      
+              <option value="18:00:00">18:00</option>      
+              <option value="18:30:00">18:30</option>      
+              <option value="19:00:00">19:00</option>      
+              <option value="19:30:00">19:30</option>      
+              <option value="20:00:00">20:00</option>      
+              <option value="20:30:00">20:30</option>      
+              <option value="21:00:00">21:00</option>      
+              <option value="21:30:00">21:30</option>      
+              <option value="22:00:00">22:00</option>      
+              <option value="22:30:00">22:30</option>      
+              <option value="23:00:00">23:00</option>      
+              <option value="23:30:00">23:30</option>
+          </select>
           </form>
         </div>
 
         <div class="modal-footer">
         
-          <button (click)="creatBooking()" type="button" class="btn-1" data-bs-dismiss="modal" routerLink="/clientbooking">
+          <button (click)="creatBooking()" type="button" class="btn-1" data-bs-dismiss="modal">
             Create booking
           </button>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+<!-- ------------------------------------------------------------------------------------- -->
+
+<app-navbar></app-navbar>
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"> -->
+
+
+<body>
+  <div class="main-content">
+    <!-- Top navbar -->
+    <!-- <nav class="navbar navbar-top navbar-expand-md " id="navbar-main"> -->
+    <!-- <div class="container-fluid"> -->
+    <!-- Brand -->
+    <!-- <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="https://www.creative-tim.com/product/argon-dashboard" target="_blank">User profile</a> -->
+    <!-- Form -->
+    <!-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+          <div class="form-group mb-0">
+           
+          </div>
+        </form> -->
+    <!-- User -->
+    <!-- <ul class="navbar-nav align-items-center d-none d-md-flex">
+          <li class="nav-item dropdown">
+            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg">
+                </span>
+                <div class="media-body ml-2 d-none d-lg-block">
+                  <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
+                </div>
+              </div>
+            </a>
+           
+          </li>
+        </ul>
+      </div>
+    </nav> -->
+    <!-- Header -->
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+      style="min-height: 500px; background-image: url(../../../assets/istockphoto-114312991-612x612.jpeg); background-size: cover; background-position: center top;">
+      <!-- Mask -->
+      <span class="mask  opacity-8"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-7 col-md-10">
+            <h1 class="display-2 text-white">Hello {{userLogged.name}}</h1>
+            <p class="text-white mt-0 mb-5">This is the interpreter booking page. You can go through the interpreter's profile and if they entise or feel comfortable, you can make a booking with them. </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a >
+                    <img src="{{Interpreter.image_url}}" class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body pt-0 pt-md-4">
+              <div class="row">
+                <div class="col">
+                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+
+                  </div>
+                </div>
+              </div>
+              <div class="text-center mt-5">
+                <h3>
+                  {{Interpreter.name}} {{Interpreter.lastname}}
+                </h3>
+                <div class="h5 font-weight-300">
+                  <i class="ni location_pin mr-2"></i>{{Interpreter.email}}
+                </div>
+                <div class="h5 mt-4">
+                  <i class="ni business_briefcase-24 mr-2"></i>{{Interpreter.tagline}}
+                </div>
+                <!-- <div>
+                  <i class="ni education_hat mr-2"></i>{{Interpreter.role}}
+                </div> -->
+                <hr class="my-4">
+                <p>{{Interpreter.bio}}</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="edit-card col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Make Booking</h3>
+                </div>
+
+              </div>
+            </div>
+            <div class="card-body">
+              <form>
+                <h6 class="heading-small text-muted mb-4">Booking information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+
+                    </div>
+                    <form [formGroup]="bookingForm">
+                      <div class="col-lg-">
+                        <div class="form-group">
+                          <label class="form-control-label">Date</label>
+                          <!-- <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com"> -->
+                          <input class="form-control form-control-alternative" type="date" id="modaldate"
+                            name="modaldate" formControlName="date_"  min="{{minDate}}"/>
+                        </div>
+                      </div>
+                      <div class="col-lg-">
+                        <div class="form-group">
+                          <label class="form-control-label">Time</label>
+                          <!-- <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com"> -->
+                          <select class="form-control form-control-alternative" name="time_" formControlName="time_"
+                            placeholder="Time">
+                            <option value="00:00:00">00:00</option>
+                            <option value="00:30:00">00:30</option>
+                            <option value="01:00:00">01:00</option>
+                            <option value="01:30:00">01:30</option>
+                            <option value="02:00:00">02:00</option>
+                            <option value="02:30:00">02:30</option>
+                            <option value="03:00:00">03:00</option>
+                            <option value="03:30:00">03:30</option>
+                            <option value="04:00:00">04:00</option>
+                            <option value="04:30:00">04:30</option>
+                            <option value="05:00:00">05:00</option>
+                            <option value="05:30:00">05:30</option>
+                            <option value="06:00:00">06:00</option>
+                            <option value="06:30:00">06:30</option>
+                            <option value="07:00:00">07:00</option>
+                            <option value="07:30:00">07:30</option>
+                            <option value="08:00:00">08:00</option>
+                            <option value="08:30:00">08:30</option>
+                            <option value="09:00:00">09:00</option>
+                            <option value="09:30:00">09:30</option>
+                            <option value="10:00:00">10:00</option>
+                            <option value="10:30:00">10:30</option>
+                            <option value="11:00:00">11:00</option>
+                            <option value="11:30:00">11:30</option>
+                            <option value="12:00:00">12:00</option>
+                            <option value="12:30:00">12:30</option>
+                            <option value="13:00:00">13:00</option>
+                            <option value="13:30:00">13:30</option>
+                            <option value="14:00:00">14:00</option>
+                            <option value="14:30:00">14:30</option>
+                            <option value="15:00:00">15:00</option>
+                            <option value="15:30:00">15:30</option>
+                            <option value="16:00:00">16:00</option>
+                            <option value="16:30:00">16:30</option>
+                            <option value="17:00:00">17:00</option>
+                            <option value="17:30:00">17:30</option>
+                            <option value="18:00:00">18:00</option>
+                            <option value="18:30:00">18:30</option>
+                            <option value="19:00:00">19:00</option>
+                            <option value="19:30:00">19:30</option>
+                            <option value="20:00:00">20:00</option>
+                            <option value="20:30:00">20:30</option>
+                            <option value="21:00:00">21:00</option>
+                            <option value="21:30:00">21:30</option>
+                            <option value="22:00:00">22:00</option>
+                            <option value="22:30:00">22:30</option>
+                            <option value="23:00:00">23:00</option>
+                            <option value="23:30:00">23:30</option>
+                          </select>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+                </div>
+                <hr class="my-4">
+
+                <!-- <h6 class="heading-small text-muted mb-4">About me</h6> -->
+                <div class="pl-lg-4 text-center">
+
+                  <button (click)="creatBooking()" type="button" class="btn-1">
+                    Create booking
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
