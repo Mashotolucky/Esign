@@ -61,9 +61,7 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     VideoCallComponent,
     StatusPipe,
     TimeFormatPipe,
-    VideoViewComponent,
     LandingComponent,
-    EditComponent,
        
           
   ],
