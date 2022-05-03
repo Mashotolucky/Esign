@@ -91,11 +91,11 @@ export class InforCardsComponent implements OnInit {
     console.log(this.editForm.value);
     
     
-    this.userService.updateIntepreter(this.user, token).subscribe(res=>{
-     console.log(res) 
-    }, error =>{
-      console.log(error);
-    })
+    // this.userService.updateIntepreter(this.user, token).subscribe(res=>{
+    //  console.log(res) 
+    // }, error =>{
+    //   console.log(error);
+    // })
   }
   selectThisImage(myEvent: any) {
     this.file = myEvent.target.files[0]; 

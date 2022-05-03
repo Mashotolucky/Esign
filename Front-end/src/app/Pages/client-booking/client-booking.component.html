@@ -66,7 +66,7 @@
             <td>{{stream.name +' '+ stream.lastname}}</td>
             <td>{{stream.date_ | date: 'fullDate'}}</td>
             <td>{{stream.time_ | timeFormat}}</td>
-            <td><button id="join"class="btn text-light">join</button></td>
+            <td><button id="join"class="btn text-light" (click)="joinstream(stream.id)">join</button></td>
           </tr>
           <!-- <tr>
             <td>Mary</td>

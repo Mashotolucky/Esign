@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BookingService } from 'src/app/Services/booking.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-client-booking',
@@ -15,17 +17,15 @@ export class ClientBookingComponent implements OnInit {
   
   clientBookings: any;
   clientStreams: any;
-  public streamss=[
-    {"name":"lahlie", "lastname":"momo", "date":"14 April 2022", "time":"09:10 AM",}
-  ];
+
 
   public historyss=[
-    {"name":"Mash", "lastname":"mashy", "date":"10 April 2022", "time":"11:11 AM",}
+    // {"name":"Mash", "lastname":"mashy", "date":"10 April 2022", "time":"11:11 AM",}
   ];
 
 
   
-  constructor(private bookingsService:BookingService) { }
+  constructor(private bookingsService:BookingService, private router: Router) { }
 
 
 
@@ -133,6 +133,19 @@ export class ClientBookingComponent implements OnInit {
     // } 
   }
 
+  joinstream(id:any){
+    if(!id) return Swal.fire({
+         icon: 'error',
+         title: 'can not join stream at this point',
+         showConfirmButton: false,
+         timer: 1000,
+         width: '300px'
+     })
+   console.log(id);
+   
+  this.router.navigate(['/stream',id])
+
+ }
   
 
 }

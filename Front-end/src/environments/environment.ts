@@ -7,13 +7,13 @@
 
 const BaseUrl = 'http://10.10.2.155:3100'
 const Backend = 'http://10.10.2.155:3100'
-const devbaseUrl = 'http://localhost:4000/api/v1';
+const devbaseUrl = 'http://10.1.0.173:4000/api/v1';
 export const environment = {
   production: false,
   baseUrl:`${BaseUrl}`,
   backend:`${Backend}`,
   devbaseUrl,
-  socketUrl:"http://localhost:4000/stream"
+  videoUri:'apiKey:myDemoApiKey'
 }
 
 /*
